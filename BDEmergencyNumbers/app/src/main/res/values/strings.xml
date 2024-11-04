@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">জরুরী নম্বরসমূহ</string>
+    <string name="numter_text">নেই</string>
+
+    <!-- hotline -->
+    <string name="hotline_number">হটলাইন নম্বর</string>
+
+    <string name="hotline_numbers">999</string>
+    <string name="hotline_officer">জরুরী সেবা</string>
+
+    <string name="hotline_numbers1">1098</string>
+    <string name="hotline_officer1">শিশু সহায়তা</string>
+
+    <string name="hotline_numbers2">106</string>
+    <string name="hotline_officer2">দুদক</string>
+
+    <string name="hotline_numbers3">10941</string>
+    <string name="hotline_officer3">দুর্যোগ আগাম বার্তা</string>
+
+    <string name="hotline_numbers4">16163</string>
+    <string name="hotline_officer4">ফার্য়ার সার্ভিস</string>
+
+    <string name="hotline_numbers5">333</string>
+    <string name="hotline_officer5">তথ্য সেন্টার</string>
+
+    <string name="hotline_numbers6">16263</string>
+    <string name="hotline_officer6">স্বাস্থ্য সেবা</string>
+
+    <string name="hotline_numbers7">109</string>
+    <string name="hotline_officer7">নারী নির্যাতন</string>
+
+    <string name="hotline_numbers8">16123</string>
+    <string name="hotline_officer8">কৃষি পরামর্শ</string>
+
+    <string name="hotline_numbers9">16430</string>
+    <string name="hotline_officer9">আইনি সহায়তা</string>
+
+    <string name="hotline_numbers10">16256</string>
+    <string name="hotline_officer10">ইউনিয়ন তথ্য</string>
+
+    <string name="hotline_numbers11">105</string>
+    <string name="hotline_officer11">পরিচয়পএের তথ্য </string>
+
+    <string name="hotline_numbers12">16108</string>
+    <string name="hotline_officer12">মানবাধিকার সহায়তা</string>
+
+    <string name="hotline_numbers13">131</string>
+    <string name="hotline_officer13">রেলওয়ে তথ্য</string>
+
+    <string name="hotline_numbers14">100</string>
+    <string name="hotline_officer14">বিটিআরসি সেবা</string>
+
+    <string name="hotline_numbers15">16420</string>
+    <string name="hotline_officer15">বিটিসিএল সেবা</string>
+
+
+    <!-- dhaka bibag -->
+    <string name="dhaka_bibag">ঢাকা বিভাগ</string>
+
+    <!-- chittagang bibag -->
+    <string name="chittang_bibag">চট্টগ্রাম বিভাগ</string>
+
+    <!-- rajshai bibag -->
+    <string name="rajshai_bibag">রাজশাহী বিভাগ</string>
+
+    <!-- khulna bibag -->
+    <string name="khulna_bibag">খুলনা বিভাগ</string>
+
+    <!-- shylet bibag -->
+    <string name="shylet_bibag">সিলেট বিভাগ</string>
+
+    <!-- borishal bibag -->
+    <string name="borishal_bibag">বরিশাল বিভাগ</string>
+
+    <!-- rangpur bibag -->
+    <string name="rangpur_bibag">রংপুর বিভাগ</string>
+
+    <!-- mymansing bibag -->
+    <string name="mymansingh_bibag">ময়মনসিংহ বিভাগ</string>
+
+
+</resources>

@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TvDisplayActivity">
+
+    <include layout="@layout/back_app_bar"
+        android:id="@+id/appbar"
+        />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <!-- police-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="পুলিশ"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_local_police_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_police" />
+
+            </LinearLayout>
+
+            <!-- police-->
+
+
+            <!-- Rab-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="র‌্যাব"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_man_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_rab" />
+
+            </LinearLayout>
+
+            <!-- Rab-->
+
+            <!-- Senabahini-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="সেনাবাহিনী"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_kitesurfing_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_army" />
+
+            </LinearLayout>
+
+            <!-- Senabahini-->
+
+
+            <!-- fire service-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="ফায়ার সার্ভিস ও সিভিল ডিফেন্স  "
+                            android:textSize="18sp"
+                            android:fontFamily="@font/noto_serif"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_fire_truck_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_fire_service" />
+
+            </LinearLayout>
+
+            <!-- fire service-->
+
+
+            <!--ambulance -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="এম্বুলেন্স"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_airport_shuttle_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_ambulance" />
+
+            </LinearLayout>
+
+            <!--ambulance-->
+
+
+            <!--blood group-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="ব্লাড ব্যাংক"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_bloodtype_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_blood_bank" />
+
+            </LinearLayout>
+
+            <!--bloodbank-->
+
+            <!-- ele-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/item_rel7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:id="@+id/item_ele"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="বিদ্যুৎ"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:gravity="start"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:drawableStart="@drawable/baseline_lightbulb_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/ler7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_electricity" />
+
+            </LinearLayout>
+
+            <!-- ele-->
+
+
+
+            <!-- gas-->
+
+           <androidx.cardview.widget.CardView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:cardElevation="5dp"
+               app:cardCornerRadius="10dp"
+               android:layout_margin="7dp"
+               >
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   >
+                   <RelativeLayout
+                       android:id="@+id/item_rel8"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:padding="2dp"
+                       >
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:drawablePadding="21dp"
+                           android:text="গ্যাস"
+                           android:fontFamily="@font/noto_serif"
+                           android:textSize="18sp"
+                           android:textColor="#000"
+                           android:layout_margin="5dp"
+                           android:paddingEnd="20dp"
+                           android:paddingStart="0dp"
+                           android:padding="2dp"
+                           android:gravity="start"
+                           android:drawableStart="@drawable/baseline_local_fire_department_24"
+                           />
+
+                       <ImageView
+                           android:id="@+id/img8"
+                           android:layout_width="wrap_content"
+                           android:layout_height="match_parent"
+                           android:layout_alignParentEnd="true"
+                           android:layout_centerVertical="true"
+                           android:paddingEnd="10dp"
+                           android:paddingStart="0dp"
+                           android:src="@drawable/baseline_keyboard_arrow_down_24"
+                           tools:ignore="ContentDescription" />
+
+                   </RelativeLayout>
+
+               </LinearLayout>
+
+           </androidx.cardview.widget.CardView>
+
+
+
+            <LinearLayout
+                android:id="@+id/ler8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_gas" />
+
+            </LinearLayout>
+
+            <!-- gas-->
+
+
+
+
+
+
+
+            <!-- ohasha-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="ওয়াসা"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_water_drop_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/ler9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_oasha" />
+
+            </LinearLayout>
+
+            <!--ohasha -->
+
+
+            <!--tran montranaloy -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="দূর্যোগ ব্যবস্থাপনা ও ত্রাণ অধিদপ্তর"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/noto_serif"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_personal_injury_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_dorgojg" />
+
+            </LinearLayout>
+
+            <!--tran montranaloy-->
+
+
+            <!--Dhodhak -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="দুদক"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_person_search_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_dodhak" />
+
+            </LinearLayout>
+
+            <!--Dhodhak-->
+
+
+            <!--bon oo poribash -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="7dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/item_rel12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="21dp"
+                            android:text="বন ও পরিবেশ অধিদপ্তর"
+                            android:fontFamily="@font/noto_serif"
+                            android:textSize="18sp"
+                            android:textColor="#000"
+                            android:layout_margin="5dp"
+                            android:paddingEnd="20dp"
+                            android:paddingStart="0dp"
+                            android:padding="2dp"
+                            android:gravity="start"
+                            android:drawableStart="@drawable/baseline_forest_24"
+                            />
+
+                        <ImageView
+                            android:id="@+id/img12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:paddingEnd="10dp"
+                            android:paddingStart="0dp"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            tools:ignore="ContentDescription" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:id="@+id/ler12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <include layout="@layout/number_forest" />
+
+            </LinearLayout>
+
+            <!--bon oo poribash-->
+
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</RelativeLayout>

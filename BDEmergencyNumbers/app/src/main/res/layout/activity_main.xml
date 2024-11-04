@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+
+
+   <include layout="@layout/app_bar"
+       android:id="@+id/appbar"
+       />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hotline_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="#B04646"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/hotline_number"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_support_agent_24"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_25"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:layout_margin="10dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/dhaka_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/chittang_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/raj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/rajshai_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/kh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/khulna_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/shylet_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/borishal_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="21dp"
+                    android:fontFamily="@font/noto_serif"
+                    android:gravity="start"
+                    android:padding="2dp"
+                    android:text="@string/rangpur_bibag"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/my"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:padding="5dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="@string/mymansingh_bibag"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>
