@@ -1,14 +1,27 @@
 package com.rk_softwares.bdemergencynumbers;
 
+
+
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -25,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     //XML id's ------------------------------------------------------------
 
     CardView dh,ch,raj,kh,sy,bo,ra,my,hotline_cardview;
+
+    MaterialToolbar toolbar;
+
 
     public static boolean PERMISSION = false;
 
@@ -47,8 +63,44 @@ public class MainActivity extends AppCompatActivity {
         my = findViewById(R.id.my);
         ra = findViewById(R.id.ra);
         hotline_cardview = findViewById(R.id.hotline_cardview);
+        toolbar = findViewById(R.id.toolbar);
+
 
         //identity period-----------------------------------------------------
+
+        //10
+
+        toolbar.inflateMenu(R.menu.toolbar_menu);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                if (item.getItemId() == R.id.share){
+
+                    Toast.makeText(MainActivity.this, "well", Toast.LENGTH_SHORT).show();
+
+                } else if (item.getItemId() == R.id.info) {
+
+                    Toast.makeText(MainActivity.this, "it", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+                return false;
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
 
 
         check_permission();
@@ -178,9 +230,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }).check();
 
+
     }
-
-
-
 
 }//public class ==============================

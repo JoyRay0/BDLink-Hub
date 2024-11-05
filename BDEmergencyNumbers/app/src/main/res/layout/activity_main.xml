@@ -10,9 +10,11 @@
 
 
 
+
    <include layout="@layout/app_bar"
        android:id="@+id/appbar"
        />
+
 
 
     <androidx.core.widget.NestedScrollView

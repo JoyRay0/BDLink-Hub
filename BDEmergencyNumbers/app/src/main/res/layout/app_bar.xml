@@ -3,13 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+   <com.google.android.material.appbar.AppBarLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <com.google.android.material.appbar.MaterialToolbar
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/action_bar_customize"
+           />
+
+
+   </com.google.android.material.appbar.AppBarLayout>
+
+    <!--
     <View
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/action_bar_customize"
-        />
 
+        />
+        -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,49 +40,37 @@
         android:paddingStart="20dp"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="240dp"
-        android:paddingEnd="0dp"
 
-        >
 
-        <ImageButton
-            android:id="@+id/search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/baseline_search_24"
-            tools:ignore="ContentDescription"
-            android:tooltipText="Search"
-            android:background="?attr/actionBarItemBackground"
-            android:layout_weight="1"
-            />
+    <!--
+     <ImageButton
+          android:id="@+id/share"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:src="@drawable/baseline_share_24"
+               tools:ignore="ContentDescription"
+               android:tooltipText="Share"
+               android:background="?attr/actionBarItemBackground"
+               android:layout_centerVertical="true"
+               android:layout_centerHorizontal="true"
 
-        <ImageButton
-            android:id="@+id/share"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/baseline_share_24"
-            tools:ignore="ContentDescription"
-            android:tooltipText="Share"
-            android:background="?attr/actionBarItemBackground"
-            android:layout_weight="1"
-            />
+               />
 
-        <ImageButton
-            android:id="@+id/info"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/baseline_info_outline_24"
-            tools:ignore="ContentDescription"
-            android:tooltipText="Info"
-            android:background="?attr/actionBarItemBackground"
-            android:layout_weight="1"
-            />
 
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/info"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/baseline_info_outline_24"
+        tools:ignore="ContentDescription"
+        android:tooltipText="Info"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+
+        />
+        -->
 
 
 
