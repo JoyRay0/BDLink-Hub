@@ -33,6 +33,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     CardView dh,ch,raj,kh,sy,bo,ra,my,hotline_cardview;
 
     MaterialToolbar toolbar;
+    FloatingActionButton floating_button;
 
 
     private final String appPackageName = "com.mala.digital_joper_mala";
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         ra = findViewById(R.id.ra);
         hotline_cardview = findViewById(R.id.hotline_cardview);
         toolbar = findViewById(R.id.toolbar);
+        floating_button = findViewById(R.id.floating_button);
 
 
         //identity period-----------------------------------------------------
@@ -261,8 +264,6 @@ public class MainActivity extends AppCompatActivity {
         if (networkInfo != null && networkInfo.isConnectedOrConnecting()){
 
             INTERNET = true;
-
-
 
         }else {
 
