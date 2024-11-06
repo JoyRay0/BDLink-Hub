@@ -4,20 +4,31 @@ package com.rk_softwares.bdemergencynumbers;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
@@ -42,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
     MaterialToolbar toolbar;
 
 
+    private final String appPackageName = "com.mala.digital_joper_mala";
     public static boolean PERMISSION = false;
+    public static boolean INTERNET = false;
 
 
     //XML id's ------------------------------------------------------------
@@ -70,40 +83,10 @@ public class MainActivity extends AppCompatActivity {
 
         //10
 
-        toolbar.inflateMenu(R.menu.toolbar_menu);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                if (item.getItemId() == R.id.share){
-
-                    Toast.makeText(MainActivity.this, "well", Toast.LENGTH_SHORT).show();
-
-                } else if (item.getItemId() == R.id.info) {
-
-                    Toast.makeText(MainActivity.this, "it", Toast.LENGTH_SHORT).show();
-
-                }
-
-
-                return false;
-            }
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
+        toolbar();
         check_permission();
+        checkNetwork();
 
 
 
@@ -230,6 +213,108 @@ public class MainActivity extends AppCompatActivity {
             }
         }).check();
 
+
+    }
+
+    private void toolbar(){     //customize menu toolbar
+
+        toolbar.inflateMenu(R.menu.toolbar_menu);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                if (item.getItemId() == R.id.share){
+
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    String Body = "Download this App";
+                    String sub = "https://play.google.com/store/apps/details?id="+appPackageName;
+                    intent.putExtra(Intent.EXTRA_TEXT,Body);
+                    intent.putExtra(Intent.EXTRA_TEXT,sub);
+                    startActivity(Intent.createChooser(intent,null));
+
+                } else if (item.getItemId() == R.id.info) {
+
+                    Dialog dialog1 = new Dialog(MainActivity.this);
+                    dialog1.setContentView(R.layout.info_dialog);
+                    dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                    dialog1.show();
+
+                }
+
+
+                return false;
+            }
+        });
+
+    }
+
+
+
+    private void checkNetwork(){                //checking the internet connection
+
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()){
+
+            INTERNET = true;
+
+
+
+        }else {
+
+            INTERNET = false;
+
+            //bottom dialog interface--------------------------------------------------------
+
+
+            Dialog dialog = new Dialog(MainActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.bottom_sheet_dialog);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+            dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            dialog.show();
+
+            //bottom dialog interface--------------------------------------------------------
+
+            AppCompatButton no_button = dialog.findViewById(R.id.no_button);
+            AppCompatButton yes_button = dialog.findViewById(R.id.yes_button);
+
+            no_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    dialog.dismiss();
+
+                }
+            });
+            yes_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));   // open wifi setting
+
+
+                    Intent intent = getIntent();    //Refresh the app
+                    finish();
+                    startActivity(intent);
+                    dialog.dismiss();
+
+                }
+            });
+
+
+
+
+
+
+        }
 
     }
 
