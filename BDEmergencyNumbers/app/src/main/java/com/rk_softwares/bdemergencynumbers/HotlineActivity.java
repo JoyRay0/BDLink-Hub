@@ -244,7 +244,7 @@ public class HotlineActivity extends AppCompatActivity {
         hashMap = new HashMap<>(); //16123
         hashMap.put("number",hotline_numbers8);
         hashMap.put("officer",hotline_officer8);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/agriculture_location.png");
+        hashMap.put("img","https://rksoftwares.xyz/img_icon/agriculture-location.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16430
@@ -280,7 +280,7 @@ public class HotlineActivity extends AppCompatActivity {
         hashMap = new HashMap<>(); //100
         hashMap.put("number",hotline_numbers14);
         hashMap.put("officer",hotline_officer14);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/car_registration.png");
+        hashMap.put("img","https://rksoftwares.xyz/img_icon/telecommunication.png");
         arrayList.add(hashMap);
 
 

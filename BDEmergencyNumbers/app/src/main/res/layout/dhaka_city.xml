@@ -18,6 +18,7 @@
         android:layout_below="@+id/backappbar"
         android:divider="@null"
         android:listSelector="@android:color/transparent"
+
         />
 
 </RelativeLayout>

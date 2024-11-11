@@ -14,11 +14,4 @@
 
     </style>
     
-    <style name="searchview" parent="Widget.AppCompat.SearchView">
-        
-        <item name="android:tint">@color/white</item>
-
-
-    </style>
-    
 </resources>

@@ -9,9 +9,7 @@
 
     <include layout="@layout/back_app_bar"
         android:id="@+id/hospital_toolbar"
-        style="@style/searchview"
         />
-
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -20,15 +18,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/hospital_toolbar"
+
         >
-        <androidx.core.widget.ContentLoadingProgressBar
+
+        <ProgressBar
             android:id="@+id/hospital_progressbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content"/>
 
         <ListView
-            android:visibility="gone"
+            android:id="@+id/hospital_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@null"
@@ -48,6 +47,7 @@
         android:layout_below="@id/hospital_online_linerlayout"
         android:layout_centerVertical="true"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         >
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -62,13 +62,28 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Check your network"
+            android:text="Check your network!"
             android:textColor="#000"
             android:textSize="20sp"
             android:fontFamily="@font/noto_serif"
             android:textStyle="normal"
             android:gravity="center"
             android:layout_margin="10dp"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:fontFamily="@font/noto_serif"
+            android:drawableStart="@drawable/baseline_refresh_24"
+            android:drawablePadding="5dp"
+            android:layout_gravity="center"
+
             />
 
 

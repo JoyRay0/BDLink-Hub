@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/action_bar_customize"
-        android:theme="@style/searchview"
+
         />
 
     <ImageButton

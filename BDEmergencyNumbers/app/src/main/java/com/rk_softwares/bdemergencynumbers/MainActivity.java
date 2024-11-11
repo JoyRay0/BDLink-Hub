@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public static boolean INTERNET = false;
 
 
+
     //XML id's ------------------------------------------------------------
 
     @Override
@@ -318,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnectedOrConnecting()){
+
 
             INTERNET = true;
 
