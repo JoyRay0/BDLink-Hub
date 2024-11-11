@@ -35,11 +35,15 @@ import androidx.cardview.widget.CardView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     //XML id's ------------------------------------------------------------
 
-    CardView dh,ch,raj,kh,sy,bo,ra,my,hotline_cardview;
+    CardView dh,ch,raj,kh,sy,bo,ra,my,hotline_cardview,hospital_cardview;
 
     MaterialToolbar toolbar;
     FloatingActionButton floating_button;
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         my = findViewById(R.id.my);
         ra = findViewById(R.id.ra);
         hotline_cardview = findViewById(R.id.hotline_cardview);
+        hospital_cardview = findViewById(R.id.hospital_cardview);
         toolbar = findViewById(R.id.toolbar);
         floating_button = findViewById(R.id.floating_button);
 
@@ -174,6 +179,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        hospital_cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(MainActivity.this, HospitalNumberActivity.class));
+
+            }
+        });
+
 
 
 
@@ -185,6 +199,48 @@ public class MainActivity extends AppCompatActivity {
     }//on create ===============================
 
     private void check_permission(){    //permission check
+
+
+        Dexter.withContext(this).withPermissions(
+
+                        Manifest.permission.CALL_PHONE,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                        if (report.areAllPermissionsGranted()){
+
+                            PERMISSION = true;
+
+                        } else if (report.isAnyPermissionPermanentlyDenied()) {
+
+                            PERMISSION = false;
+
+                            Toast.makeText(MainActivity.this, "Need permission to use this task", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+
+                            Toast.makeText(MainActivity.this, "Allow all permission to use features", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                        token.continuePermissionRequest();
+
+                    }
+                }).check();
+
+
+
+        /*
+        //single permission
+
 
         Dexter.withContext(MainActivity.this).withPermission(Manifest.permission.CALL_PHONE).withListener(new PermissionListener() {
             @Override
@@ -206,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.setData(uri);
                 startActivity(intent);
 
-                 */
             }
 
             @Override
@@ -216,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }).check();
 
+         */
 
     }
 
@@ -318,5 +374,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
 }//public class ==============================

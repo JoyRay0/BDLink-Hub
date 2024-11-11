@@ -54,6 +54,33 @@
                     />
             </androidx.cardview.widget.CardView>
 
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hospital_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:layout_margin="10dp"
+                android:backgroundTint="#F036873B"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="21dp"
+                    android:text="হাসপাতালের নম্বর"
+                    android:fontFamily="@font/noto_serif"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:layout_margin="10dp"
+                    android:padding="2dp"
+                    android:gravity="start"
+                    android:drawableStart="@drawable/baseline_local_hospital_24"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_25"
+                    />
+            </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/dh"
                 android:layout_width="match_parent"
@@ -283,6 +310,7 @@
         app:fabSize="normal"
         style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
         android:src="@drawable/baseline_my_location_24"
+
         />
 
 </RelativeLayout>
