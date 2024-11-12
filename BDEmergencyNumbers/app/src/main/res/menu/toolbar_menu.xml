@@ -17,5 +17,6 @@
         android:icon="@drawable/baseline_info_outline_24"
         android:title="info"
         app:showAsAction="ifRoom"
+
        />
 </menu>

@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         //identity period-----------------------------------------------------
 
-        //10
+
 
 
         toolbar();
@@ -276,6 +276,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     private void toolbar(){     //customize menu toolbar
 
         toolbar.inflateMenu(R.menu.toolbar_menu);
@@ -309,6 +311,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
 
 
@@ -353,6 +357,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
             yes_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

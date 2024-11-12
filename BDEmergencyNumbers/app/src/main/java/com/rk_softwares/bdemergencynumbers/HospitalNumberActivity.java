@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -18,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -59,7 +63,11 @@ public class HospitalNumberActivity extends AppCompatActivity {
         //identity period----------------------------------------------
 
 
-        hospital_toolbar();
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(" ");
+
+
+
 
         if (MainActivity.INTERNET == true){
 
@@ -84,6 +92,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
         }
 
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,35 +104,48 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     }//on create============================================
 
 
-    public final void hospital_toolbar(){
+    @Override               //menu function
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        toolbar.inflateMenu(R.menu.hospital_menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.hospital_menu, menu);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        MenuItem search = menu.findItem(R.id.search);
+
+        SearchView searchView = (SearchView) search.getActionView();
+
+
+        //search item created------------------------------------------------
+
+        assert searchView != null;
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-                if (item.getItemId() == R.id.search){
+            @Override
+            public boolean onQueryTextChange(String newText) {
 
+                if (TextUtils.isEmpty(newText)){
 
+                    //myadapter.getFilter().filter("");
 
+                }else {
+
+                    //myadapter.getFilter().filter(newText);
                 }
 
-                return false;
+                return true;
             }
         });
 
+        //search item created------------------------------------------------
 
-
+        return true;
 
     }
-
-
 }//public class ===============================

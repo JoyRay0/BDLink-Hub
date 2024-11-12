@@ -9,7 +9,7 @@
 
     <include layout="@layout/back_app_bar"
         android:id="@+id/hospital_toolbar"
-        />
+    />
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
