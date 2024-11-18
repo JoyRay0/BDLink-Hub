@@ -8,20 +8,35 @@
     >
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        android:padding="10dp"
-        android:backgroundTint="#F0EBE4E4"
+        app:cardElevation="5dp"
         android:layout_margin="10dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#F4EEEE"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_margin="10dp"
 
             >
+            <TextView
+                android:id="@+id/hospital_quality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="সরকারি"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                android:layout_margin="5dp"
+                android:gravity="left|center"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+
+                />
 
             <TextView
                 android:id="@+id/hospital_name"
@@ -30,7 +45,7 @@
                 android:text="হাসপাতালের নাম"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_margin="10dp"
+                android:layout_margin="7dp"
                 android:gravity="center"
                 android:textColor="#000"
                 android:fontFamily="@font/noto_serif"
@@ -42,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="হাসপাতালের ঠিকানা"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="normal"
                 android:layout_margin="5dp"
                 android:gravity="center"
@@ -58,6 +73,7 @@
                 android:orientation="horizontal"
                 android:weightSum="2"
                 android:layout_margin="5dp"
+
                 >
 
                 <TextView
@@ -70,9 +86,15 @@
                     android:gravity="center"
                     android:textColor="#000"
                     android:fontFamily="@font/noto_serif"
-                    android:drawableStart="@drawable/baseline_call_24"
+                    android:drawableStart="@drawable/baseline_call_25"
                     android:layout_weight="1"
                     android:layout_margin="4dp"
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EDD3D3"
                     />
 
 
@@ -87,8 +109,76 @@
                     android:textColor="#000"
                     android:fontFamily="@font/noto_serif"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/baseline_call_24"
+                    android:drawableStart="@drawable/baseline_call_25"
                     android:layout_margin="4dp"
+                    android:padding="2dp"
+
+                    />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EDD3D3"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_margin="5dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/hospital_facebook_id"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EDD3D3"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/hospital_mail"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EDD3D3"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/hospital_website"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EDD3D3"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/hospital_location"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+
                     />
 
 

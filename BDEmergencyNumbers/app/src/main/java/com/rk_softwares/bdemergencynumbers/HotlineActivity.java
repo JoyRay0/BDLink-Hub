@@ -196,101 +196,110 @@ public class HotlineActivity extends AppCompatActivity {
         hashMap = new HashMap<>(); //999
         hashMap.put("number",hotline_numbers);
         hashMap.put("officer",hotline_officer);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/customer-service.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/customer-service.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //1098
         hashMap.put("number",hotline_numbers1);
         hashMap.put("officer",hotline_officer1);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/baby.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/baby.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //106
         hashMap.put("number",hotline_numbers2);
         hashMap.put("officer",hotline_officer2);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/find.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/find.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //10941
         hashMap.put("number",hotline_numbers3);
         hashMap.put("officer",hotline_officer3);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/storm.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/storm.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16163
         hashMap.put("number",hotline_numbers4);
         hashMap.put("officer",hotline_officer4);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/fire.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/fire.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //333
         hashMap.put("number",hotline_numbers5);
         hashMap.put("officer",hotline_officer5);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/receptionist.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/receptionist.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16263
         hashMap.put("number",hotline_numbers6);
         hashMap.put("officer",hotline_officer6);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/medical-team.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/medical-team.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //109
         hashMap.put("number",hotline_numbers7);
         hashMap.put("officer",hotline_officer7);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/protection.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/protection.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16123
         hashMap.put("number",hotline_numbers8);
         hashMap.put("officer",hotline_officer8);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/agriculture-location.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/agriculture-location.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16430
         hashMap.put("number",hotline_numbers9);
         hashMap.put("officer",hotline_officer9);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/compliant.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/compliant.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16256
         hashMap.put("number",hotline_numbers10);
         hashMap.put("officer",hotline_officer10);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/warehouse.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/warehouse.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //105
         hashMap.put("number",hotline_numbers11);
         hashMap.put("officer",hotline_officer11);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/digital-identity.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/digital-identity.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //16108
         hashMap.put("number",hotline_numbers12);
         hashMap.put("officer",hotline_officer12);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/people.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/people.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //131
         hashMap.put("number",hotline_numbers13);
         hashMap.put("officer",hotline_officer13);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/train-station.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/train-station.png");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>(); //100
         hashMap.put("number",hotline_numbers14);
         hashMap.put("officer",hotline_officer14);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/telecommunication.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/telecommunication.png");
         arrayList.add(hashMap);
 
 
         hashMap = new HashMap<>(); //16420
         hashMap.put("number",hotline_numbers15);
         hashMap.put("officer",hotline_officer15);
-        hashMap.put("img","https://rksoftwares.xyz/img_icon/telephone.png");
+        hashMap.put("img","https://rksoftwares.xyz/hospital_view/img_icon/telephone.png");
         arrayList.add(hashMap);
 
 
     }//hashmap==============================
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 }//public class ended===================================

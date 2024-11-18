@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E8FAF8F8"
     tools:context=".HospitalNumberActivity">
 
     <include layout="@layout/back_app_bar"
@@ -12,34 +13,43 @@
     />
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:id="@+id/hospital_online_linerlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@id/hospital_toolbar"
+        android:orientation="vertical">
 
-        >
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/hospital_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search here"
+            android:drawableStart="@drawable/baseline_search_24"
+            android:drawablePadding="10dp"
+            android:padding="12dp"
+            android:background="@drawable/searchview"
+            android:layout_margin="10dp"
+            android:inputType="text"
+            />
+
 
         <ProgressBar
             android:id="@+id/hospital_progressbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <ListView
             android:id="@+id/hospital_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@null"
-            android:listSelector="@android:color/transparent"
-            />
+            android:listSelector="@android:color/transparent" />
 
 
+    </LinearLayout>
 
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:id="@+id/hospital_offline_linerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -87,6 +97,6 @@
             />
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 
 </RelativeLayout>
