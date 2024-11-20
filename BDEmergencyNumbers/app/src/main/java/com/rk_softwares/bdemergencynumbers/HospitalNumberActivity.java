@@ -161,9 +161,9 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
 
 
-        //1
 
-        String url = "https://rksoftwares.xyz/hospital_view/hospital_name.json";
+
+        String url = "https://rksoftwares.xyz/hospital_view/hospital_info.json";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -245,6 +245,26 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(HospitalNumberActivity.this);
         requestQueue.add(jsonObjectRequest);
+
+
+        hospital_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
     }//on create============================================
@@ -436,7 +456,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
                     String website2 = hashMap1.get("website1");
 
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www."+website2)));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(website2)));
 
 
                 }

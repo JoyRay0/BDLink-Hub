@@ -26,16 +26,18 @@
             >
             <TextView
                 android:id="@+id/hospital_quality"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="সরকারি"
                 android:textSize="15sp"
                 android:textStyle="normal"
                 android:layout_margin="5dp"
+                android:padding="3dp"
                 android:gravity="left|center"
+                android:elevation="1dp"
                 android:textColor="#000"
                 android:fontFamily="@font/noto_serif"
-
+                android:background="@drawable/hospital_qulaity_shape"
                 />
 
             <TextView
