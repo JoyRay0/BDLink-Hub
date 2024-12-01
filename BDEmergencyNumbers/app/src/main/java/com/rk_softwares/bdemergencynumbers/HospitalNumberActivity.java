@@ -322,9 +322,9 @@ public class HospitalNumberActivity extends AppCompatActivity {
         private CustomFilter filter;
 
 
-        public Myadapter(Context context, ArrayList<HashMap<String, String>> data_list){
+        public Myadapter(Context context,ArrayList<HashMap<String, String>>arrayList){
             this.context = context;
-            this.data_list = data_list;
+            this.data_list = arrayList;
             this.filtered_data_list = new ArrayList<>(data_list);
 
         }
