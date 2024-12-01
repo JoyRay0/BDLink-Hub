@@ -22,6 +22,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CursorAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -64,7 +67,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
-import java.util.logging.Filter;
 
 public class HospitalNumberActivity extends AppCompatActivity {
 
@@ -72,7 +74,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
     AppCompatButton button_refresh;
 
-    AppCompatEditText hospital_search;
+    AppCompatAutoCompleteTextView hospital_search;
 
     Toolbar toolbar;
 
@@ -87,6 +89,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
     HashMap<String, String> hashMap ;
 
+    Myadapter adapter;
 
 
     //XML id's----------------------------------------------
@@ -114,10 +117,13 @@ public class HospitalNumberActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         //getSupportActionBar().setTitle(" ");
 
+        data_from_server();
+
+        adapter = new Myadapter(this,arrayList);
+        hospital_listview.setAdapter(adapter);
 
 
-        Myadapter myadapter = new Myadapter();
-        hospital_listview.setAdapter(myadapter);
+
 
 
 
@@ -159,9 +165,58 @@ public class HospitalNumberActivity extends AppCompatActivity {
             }
         });
 
+        hospital_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                //do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence , int i, int i1, int i2) {
+
+                adapter.getFilter().filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                //do nothing
+            }
+        });
 
 
 
+
+
+
+
+
+
+
+    }//on create============================================
+
+
+
+
+    //@Override               //menu function
+    //public boolean onCreateOptionsMenu(Menu menu) {
+
+       // MenuInflater menuInflater = getMenuInflater();
+       // menuInflater.inflate(R.menu.hospital_menu, menu);
+
+        // search = menu.findItem(R.id.search);
+
+
+
+        //search item created------------------------------------------------
+        //search item created------------------------------------------------
+
+       // return true;
+
+   // }
+
+    private void data_from_server(){
 
         String url = "https://rksoftwares.xyz/hospital_view/hospital_info.json";
 
@@ -217,11 +272,16 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
 
                             }
+                            if (adapter != null){
+
+                                adapter.update_list();
+                                adapter.notifyDataSetChanged();
+
+                            }
 
 
 
-
-                            } catch (JSONException ex) {
+                        } catch (JSONException ex) {
                             throw new RuntimeException(ex);
                         }
 
@@ -238,6 +298,8 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
                         hospital_progressbar.setVisibility(View.GONE);
 
+                        Toast.makeText(HospitalNumberActivity.this, "Updating sever", Toast.LENGTH_SHORT).show();
+
 
                     }
                 });
@@ -247,69 +309,44 @@ public class HospitalNumberActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
 
-        hospital_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    }//data_from_server
 
 
 
-            }
+    private class Myadapter extends BaseAdapter implements Filterable {//list adpter
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-
-    }//on create============================================
+        public ArrayList<HashMap<String, String>>data_list;
+        public ArrayList<HashMap<String, String>> filtered_data_list;
+        public Context context;
+        private CustomFilter filter;
 
 
+        public Myadapter(Context context, ArrayList<HashMap<String, String>> data_list){
+            this.context = context;
+            this.data_list = data_list;
+            this.filtered_data_list = new ArrayList<>(data_list);
 
+        }
 
-    //@Override               //menu function
-    //public boolean onCreateOptionsMenu(Menu menu) {
-
-       // MenuInflater menuInflater = getMenuInflater();
-       // menuInflater.inflate(R.menu.hospital_menu, menu);
-
-        // search = menu.findItem(R.id.search);
-
-
-
-        //search item created------------------------------------------------
-        //search item created------------------------------------------------
-
-       // return true;
-
-   // }
-
-
-
-    private class Myadapter extends BaseAdapter{    //list adpter
 
         @Override
         public int getCount() {
-            return arrayList.size();
+            return filtered_data_list.size();
         }
 
         @Override
-        public Object getItem(int i) {
-            return null;
+        public Object getItem(int position) {
+            return filtered_data_list.get(position);
         }
 
         @Override
-        public long getItemId(int i) {
-            return 0;
+        public long getItemId(int position) {
+            return position;
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(int position, View view, ViewGroup viewGroup) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view1 = layoutInflater.inflate(R.layout.hospital_card_view, viewGroup, false);
@@ -331,7 +368,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
             //cardview.setBackgroundColor(color);
             //random colors--------------------------------------------------------------------
 
-            HashMap<String, String> hashMap1 = arrayList.get(i);
+            HashMap<String, String> hashMap1 = filtered_data_list.get(position);
 
 
 
@@ -465,7 +502,67 @@ public class HospitalNumberActivity extends AppCompatActivity {
             return view1;
         }
 
+        @Override
+        public Filter getFilter() {
+
+            if (filter == null){
+                filter = new CustomFilter();
+            }
+
+            return filter;
+        }
+
+        private class CustomFilter extends Filter{
+
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                FilterResults results = new FilterResults();
+
+
+                if (charSequence != null || charSequence.length() > 0){
+
+                    ArrayList<HashMap<String, String>> filtered_data = new ArrayList<>();
+
+                    String filter_data_pattern  = charSequence.toString().toLowerCase().trim();
+
+                    for (HashMap<String, String> item : arrayList){
+
+                        if (item.get("hospital_name").toLowerCase().contains(filter_data_pattern)){
+
+                            filtered_data.add(item);
+
+                        }
+
+
+                    }
+                    results.values = filtered_data;
+                    results.count = filtered_data.size();
+
+                }else {
+
+                    results.values = data_list;
+                    results.count = data_list.size();
+                }
+
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+
+                filtered_data_list = (ArrayList<HashMap<String, String>>) filterResults.values;
+
+                notifyDataSetChanged();
+            }
+        }
+
+        public void update_list(){
+            this.filtered_data_list = new ArrayList<>(arrayList);
+        }
     }
+
 
     @Override
     protected void onRestart() {

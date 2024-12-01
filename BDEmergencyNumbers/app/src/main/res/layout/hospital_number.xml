@@ -20,7 +20,7 @@
         android:layout_below="@id/hospital_toolbar"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/hospital_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,8 +30,13 @@
             android:padding="12dp"
             android:background="@drawable/searchview"
             android:layout_margin="10dp"
-            android:inputType="text"
-            />
+            android:inputType="textAutoComplete|textAutoCorrect"
+            android:ems="10"
+            android:imeOptions="actionSearch"
+            android:completionThreshold="2"
+            >
+            <requestFocus> </requestFocus>
+        </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
 
 
         <ProgressBar

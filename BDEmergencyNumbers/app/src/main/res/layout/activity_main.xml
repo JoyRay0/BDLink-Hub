@@ -307,10 +307,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"
-        app:fabSize="normal"
-        style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+        app:fabSize="auto"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:src="@drawable/baseline_my_location_24"
-
+        app:backgroundTint="#ab47bc"
+        tools:ignore="contentDescription"
         />
 
 </RelativeLayout>
