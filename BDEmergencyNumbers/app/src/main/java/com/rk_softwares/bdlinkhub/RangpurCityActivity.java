@@ -1,4 +1,4 @@
-package com.rk_softwares.bdemergencynumbers;
+package com.rk_softwares.bdlinkhub;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SylhetCityActivity extends AppCompatActivity {
+public class RangpurCityActivity extends AppCompatActivity {
 
 
     //XML id's----------------------------------------------
@@ -34,7 +34,7 @@ public class SylhetCityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sylhet_city);
+        setContentView(R.layout.rangpur_city);
 
         //identity period------------------------------------------
         back = findViewById(R.id.back);
@@ -42,14 +42,13 @@ public class SylhetCityActivity extends AppCompatActivity {
 
         //identity period------------------------------------------
 
-
         //Adpter-------------------------------------
 
 
-        hashmap8();
+        hashmap7();
 
-        Myadpter8 myadpter8 = new Myadpter8();
-        listView.setAdapter(myadpter8);
+        Myadpter7 myadpter7 = new Myadpter7();
+        listView.setAdapter(myadpter7);
 
         //Adpter-------------------------------------
 
@@ -58,14 +57,13 @@ public class SylhetCityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(SylhetCityActivity.this, MainActivity.class));
+                startActivity(new Intent(RangpurCityActivity.this, MainActivity.class));
 
             }
         });
 
-    }//on create=======================
-
-    public class Myadpter8 extends BaseAdapter {
+    }//on create======================
+    public class Myadpter7 extends BaseAdapter {
 
 
         @Override
@@ -94,15 +92,15 @@ public class SylhetCityActivity extends AppCompatActivity {
 
             HashMap<String, String> hashMap1 = arrayList.get(i);
 
-            String jela8 = hashMap1.get("jela");
+            String jela7 = hashMap1.get("jela");
 
-            tvDisplay.setText(jela8);
+            tvDisplay.setText(jela7);
 
             item_jela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(SylhetCityActivity.this, TvDisplayActivity.class));
+                    startActivity(new Intent(RangpurCityActivity.this, TvDisplayActivity.class));
 
 
 
@@ -113,21 +111,37 @@ public class SylhetCityActivity extends AppCompatActivity {
         }
     }
 
-    public void hashmap8(){
+    public void hashmap7(){
         hashMap = new HashMap<>();
-        hashMap.put("jela","সিলেট");
+        hashMap.put("jela","রংপুর");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","হবিগঞ্জ");
+        hashMap.put("jela","নীলফামারী");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","সুনামগঞ্জ");
+        hashMap.put("jela","গাইবান্ধা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","মৌলভীবাজার");
+        hashMap.put("jela","কুড়িগ্রাম");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","দিনাজপুর");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","লালমনিরহাট");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","ঠাকুরগাঁও");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","পঞ্চগড়");
         arrayList.add(hashMap);
 
 
@@ -142,4 +156,4 @@ public class SylhetCityActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-}//public class ======================
+}//public class======================

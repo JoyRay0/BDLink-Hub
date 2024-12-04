@@ -1,4 +1,4 @@
-package com.rk_softwares.bdemergencynumbers;
+package com.rk_softwares.bdlinkhub;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RangpurCityActivity extends AppCompatActivity {
+public class RajshahiCityActivity extends AppCompatActivity {
 
 
     //XML id's----------------------------------------------
 
     ImageButton back;
-
     ListView listView;
 
     ArrayList<HashMap<String,String>> arrayList = new ArrayList<>();
@@ -34,9 +33,10 @@ public class RangpurCityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rangpur_city);
+        setContentView(R.layout.rajshahi_city);
 
         //identity period------------------------------------------
+
         back = findViewById(R.id.back);
         listView = findViewById(R.id.listview);
 
@@ -45,10 +45,10 @@ public class RangpurCityActivity extends AppCompatActivity {
         //Adpter-------------------------------------
 
 
-        hashmap7();
+        hashmap6();
 
-        Myadpter7 myadpter7 = new Myadpter7();
-        listView.setAdapter(myadpter7);
+        Myadpter6 myadpter6 = new Myadpter6();
+        listView.setAdapter(myadpter6);
 
         //Adpter-------------------------------------
 
@@ -57,13 +57,14 @@ public class RangpurCityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(RangpurCityActivity.this, MainActivity.class));
+                startActivity(new Intent(RajshahiCityActivity.this, MainActivity.class));
 
             }
         });
 
-    }//on create======================
-    public class Myadpter7 extends BaseAdapter {
+    }//on create ==============================
+
+    public class Myadpter6 extends BaseAdapter {
 
 
         @Override
@@ -92,15 +93,15 @@ public class RangpurCityActivity extends AppCompatActivity {
 
             HashMap<String, String> hashMap1 = arrayList.get(i);
 
-            String jela7 = hashMap1.get("jela");
+            String jela6 = hashMap1.get("jela");
 
-            tvDisplay.setText(jela7);
+            tvDisplay.setText(jela6);
 
             item_jela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(RangpurCityActivity.this, TvDisplayActivity.class));
+                    startActivity(new Intent(RajshahiCityActivity.this, TvDisplayActivity.class));
 
 
 
@@ -111,37 +112,37 @@ public class RangpurCityActivity extends AppCompatActivity {
         }
     }
 
-    public void hashmap7(){
+    public void hashmap6(){
         hashMap = new HashMap<>();
-        hashMap.put("jela","রংপুর");
+        hashMap.put("jela","রাজশাহী");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","নীলফামারী");
+        hashMap.put("jela","চাপাইনবাবগঞ্জ");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","গাইবান্ধা");
+        hashMap.put("jela","নওগা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","কুড়িগ্রাম");
+        hashMap.put("jela","নাটোর");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","দিনাজপুর");
+        hashMap.put("jela","পাবনা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","লালমনিরহাট");
+        hashMap.put("jela","বগুড়া");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","ঠাকুরগাঁও");
+        hashMap.put("jela","সিরাজগঞ্জ");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","পঞ্চগড়");
+        hashMap.put("jela","জয়পুরহাট");
         arrayList.add(hashMap);
 
 
@@ -156,4 +157,4 @@ public class RangpurCityActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-}//public class======================
+}//public class ============================

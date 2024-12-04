@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.rk_softwares.bdemergencynumbers'
+    namespace 'com.rk_softwares.bdlinkhub'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.rk_softwares.bdemergencynumbers"
+        applicationId "com.rk_softwares.bdlinkhub"
         minSdk 22
         targetSdk 34
         versionCode 1
@@ -39,8 +39,7 @@ dependencies {
     androidTestImplementation libs.espresso.core
     implementation libs.picasso
     implementation libs.dexter
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-    implementation 'com.android.volley:volley:1.2.1'
+    implementation libs.volley
 
 
 }

@@ -76,7 +76,7 @@
                     android:layout_margin="10dp"
                     android:padding="2dp"
                     android:gravity="start"
-                    android:drawableStart="@drawable/baseline_local_hospital_24"
+                    android:drawableStart="@drawable/hospital_svgrepo_com"
                     android:drawableEnd="@drawable/baseline_keyboard_arrow_right_25"
                     />
             </androidx.cardview.widget.CardView>
@@ -88,20 +88,22 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 android:layout_margin="10dp"
+                android:backgroundTint="#18ffff"
                 >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="21dp"
-                    android:text="@string/dhaka_bibag"
+                    android:text="গুরুত্বপূর্ণ ওয়েবসাইট"
                     android:fontFamily="@font/noto_serif"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:layout_margin="10dp"
                     android:padding="2dp"
                     android:gravity="start"
-                    android:drawableStart="@drawable/baseline_travel_explore_24"
+
+                    android:drawableStart="@drawable/web_svgrepo_com"
                     android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
                     />
             </androidx.cardview.widget.CardView>

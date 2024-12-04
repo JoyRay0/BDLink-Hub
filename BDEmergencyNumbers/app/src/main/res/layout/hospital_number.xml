@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8FAF8F8"
-    tools:context=".HospitalNumberActivity">
+    tools:context=".HospitalNumberActivity"
+    >
 
     <include layout="@layout/back_app_bar"
         android:id="@+id/hospital_toolbar"
@@ -24,19 +25,18 @@
             android:id="@+id/hospital_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search here"
+            android:hint="হাসপাতালের নাম"
+            android:fontFamily="@font/noto_serif"
             android:drawableStart="@drawable/baseline_search_24"
             android:drawablePadding="10dp"
-            android:padding="12dp"
+            android:padding="10dp"
             android:background="@drawable/searchview"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:inputType="textAutoComplete|textAutoCorrect"
             android:ems="10"
             android:imeOptions="actionSearch"
             android:completionThreshold="2"
-            >
-            <requestFocus> </requestFocus>
-        </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
+            />
 
 
         <ProgressBar

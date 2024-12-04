@@ -1,4 +1,4 @@
-package com.rk_softwares.bdemergencynumbers;
+package com.rk_softwares.bdlinkhub;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class KhulnaCityActivity extends AppCompatActivity {
+public class MymensinghCityActivity extends AppCompatActivity {
 
 
     //XML id's----------------------------------------------
@@ -34,7 +34,7 @@ public class KhulnaCityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.khulna_city);
+        setContentView(R.layout.mymensingh_city);
 
         //identity period------------------------------------------
         back = findViewById(R.id.back);
@@ -44,10 +44,11 @@ public class KhulnaCityActivity extends AppCompatActivity {
 
         //Adpter-------------------------------------
 
-        hashmap4();
 
-        Myadpter4 myadpter4 = new Myadpter4();
-        listView.setAdapter(myadpter4);
+        hashmap5();
+
+        Myadpter5 myadpter5 = new Myadpter5();
+        listView.setAdapter(myadpter5);
 
         //Adpter-------------------------------------
 
@@ -56,14 +57,14 @@ public class KhulnaCityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(KhulnaCityActivity.this, MainActivity.class));
+                startActivity(new Intent(MymensinghCityActivity.this, MainActivity.class));
 
             }
         });
 
-    }//on create ================================
+    }//on create==============================
 
-    public class Myadpter4 extends BaseAdapter {
+    public class Myadpter5 extends BaseAdapter {
 
 
         @Override
@@ -92,15 +93,15 @@ public class KhulnaCityActivity extends AppCompatActivity {
 
             HashMap<String, String> hashMap1 = arrayList.get(i);
 
-            String jela4 = hashMap1.get("jela");
+            String jela5 = hashMap1.get("jela");
 
-            tvDisplay.setText(jela4);
+            tvDisplay.setText(jela5);
 
             item_jela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(KhulnaCityActivity.this, TvDisplayActivity.class));
+                    startActivity(new Intent(MymensinghCityActivity.this, TvDisplayActivity.class));
 
 
 
@@ -111,45 +112,21 @@ public class KhulnaCityActivity extends AppCompatActivity {
         }
     }
 
-    public void hashmap4(){
+    public void hashmap5(){
         hashMap = new HashMap<>();
-        hashMap.put("jela","খুলনা");
+        hashMap.put("jela","ময়মনসিংহ");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","বাগেরহাট");
+        hashMap.put("jela","জামালপুর");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","সাতক্ষীরা");
+        hashMap.put("jela","নেত্রকোনা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","যশোর");
-        arrayList.add(hashMap);
-
-        hashMap = new HashMap<>();
-        hashMap.put("jela","মাগুরা");
-        arrayList.add(hashMap);
-
-        hashMap = new HashMap<>();
-        hashMap.put("jela","ঝিনাইদহ");
-        arrayList.add(hashMap);
-
-        hashMap = new HashMap<>();
-        hashMap.put("jela","নড়াইল");
-        arrayList.add(hashMap);
-
-        hashMap = new HashMap<>();
-        hashMap.put("jela","কুষ্টিয়া");
-        arrayList.add(hashMap);
-
-        hashMap = new HashMap<>();
-        hashMap.put("jela","মেহেরপুর");
-        arrayList.add(hashMap);
-
-        hashMap = new HashMap<>();
-        hashMap.put("jela","চুয়াডাঙ্গা");
+        hashMap.put("jela","শেরপুর");
         arrayList.add(hashMap);
 
 
@@ -164,4 +141,4 @@ public class KhulnaCityActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-}//public class==============================
+}//public class ==============================

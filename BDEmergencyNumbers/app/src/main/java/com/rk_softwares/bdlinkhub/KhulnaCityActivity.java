@@ -1,4 +1,4 @@
-package com.rk_softwares.bdemergencynumbers;
+package com.rk_softwares.bdlinkhub;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BorishalCityActivity extends AppCompatActivity {
+public class KhulnaCityActivity extends AppCompatActivity {
+
 
     //XML id's----------------------------------------------
 
@@ -33,7 +34,7 @@ public class BorishalCityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.borishal_city);
+        setContentView(R.layout.khulna_city);
 
         //identity period------------------------------------------
         back = findViewById(R.id.back);
@@ -43,11 +44,10 @@ public class BorishalCityActivity extends AppCompatActivity {
 
         //Adpter-------------------------------------
 
+        hashmap4();
 
-        hashmap1();
-
-        Myadpter1 myadpter1 = new Myadpter1();
-        listView.setAdapter(myadpter1);
+        Myadpter4 myadpter4 = new Myadpter4();
+        listView.setAdapter(myadpter4);
 
         //Adpter-------------------------------------
 
@@ -56,16 +56,14 @@ public class BorishalCityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(BorishalCityActivity.this, MainActivity.class));
+                startActivity(new Intent(KhulnaCityActivity.this, MainActivity.class));
 
             }
         });
 
+    }//on create ================================
 
-
-    }//on create ===============================
-
-    public class Myadpter1 extends BaseAdapter {
+    public class Myadpter4 extends BaseAdapter {
 
 
         @Override
@@ -94,15 +92,15 @@ public class BorishalCityActivity extends AppCompatActivity {
 
             HashMap<String, String> hashMap1 = arrayList.get(i);
 
-            String jela1 = hashMap1.get("jela");
+            String jela4 = hashMap1.get("jela");
 
-            tvDisplay.setText(jela1);
+            tvDisplay.setText(jela4);
 
             item_jela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(BorishalCityActivity.this, TvDisplayActivity.class));
+                    startActivity(new Intent(KhulnaCityActivity.this, TvDisplayActivity.class));
 
 
 
@@ -113,32 +111,47 @@ public class BorishalCityActivity extends AppCompatActivity {
         }
     }
 
-    public void hashmap1() {
-
-
+    public void hashmap4(){
         hashMap = new HashMap<>();
-        hashMap.put("jela", "বরিশাল");
+        hashMap.put("jela","খুলনা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela", "ঝালকাঠি");
+        hashMap.put("jela","বাগেরহাট");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela", "পিরোজপুর");
+        hashMap.put("jela","সাতক্ষীরা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela", "পটুয়াখালী");
+        hashMap.put("jela","যশোর");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela", "বরগুনা");
+        hashMap.put("jela","মাগুরা");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela", "ভোলা");
+        hashMap.put("jela","ঝিনাইদহ");
         arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","নড়াইল");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","কুষ্টিয়া");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","মেহেরপুর");
+        arrayList.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("jela","চুয়াডাঙ্গা");
+        arrayList.add(hashMap);
+
 
     }
 
@@ -151,4 +164,4 @@ public class BorishalCityActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-}//public class
+}//public class==============================

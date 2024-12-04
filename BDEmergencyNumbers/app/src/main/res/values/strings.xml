@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">জরুরী নম্বরসমূহ</string>
+    <string name="app_name">BDLink Hub</string>
     <string name="numter_text">নেই</string>
+
+    <!-- bottom sheet dialog -->
     <string name="no_internet_connection">ইন্টারনেট সংযোগ প্রয়োজন</string>
-    <string name="check_connection">এই অ্যাপ এর কিছু ফিচার ব্যবহার করতে ইন্টারনেট সংযোগ প্রয়োজন। আপনি ইন্টারনেট সংযোগ স্থাপন করতে চান?</string>
+    <string name="check_connection">এই অ্যাপ এর কিছু ফিচার ব্যবহার করতে ইন্টারনেট সংযোগ প্রয়োজন। আপনি কি ইন্টারনেট সংযোগ স্থাপন করতে চান?</string>
 
 
     <!-- hotline -->
@@ -10,51 +12,75 @@
 
     <string name="hotline_numbers">999</string>
     <string name="hotline_officer">জরুরী সেবা</string>
+    <string name="customer_service_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/customer-service.png</string>
 
     <string name="hotline_numbers1">1098</string>
     <string name="hotline_officer1">শিশু সহায়তা</string>
+    <string name="baby_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/baby.png</string>
 
     <string name="hotline_numbers2">106</string>
     <string name="hotline_officer2">দুদক</string>
+    <string name="find_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/find.png</string>
 
     <string name="hotline_numbers3">10941</string>
     <string name="hotline_officer3">দুর্যোগ আগাম বার্তা</string>
+    <string name="storm_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/storm.png</string>
 
     <string name="hotline_numbers4">16163</string>
     <string name="hotline_officer4">ফার্য়ার সার্ভিস</string>
+    <string name="fire_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/fire.png</string>
 
     <string name="hotline_numbers5">333</string>
     <string name="hotline_officer5">তথ্য সেন্টার</string>
+    <string name="info_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/receptionist.png</string>
 
     <string name="hotline_numbers6">16263</string>
     <string name="hotline_officer6">স্বাস্থ্য সেবা</string>
+    <string name="medical_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/medical-team.png</string>
 
     <string name="hotline_numbers7">109</string>
     <string name="hotline_officer7">নারী নির্যাতন</string>
+    <string name="women_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/protection.png</string>
 
     <string name="hotline_numbers8">16123</string>
     <string name="hotline_officer8">কৃষি পরামর্শ</string>
+    <string name="agriculture_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/agriculture-location.png</string>
 
     <string name="hotline_numbers9">16430</string>
     <string name="hotline_officer9">আইনি সহায়তা</string>
+    <string name="law_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/compliant.png</string>
 
     <string name="hotline_numbers10">16256</string>
     <string name="hotline_officer10">ইউনিয়ন তথ্য</string>
+    <string name="union_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/warehouse.png</string>
 
     <string name="hotline_numbers11">105</string>
     <string name="hotline_officer11">পরিচয়পএের তথ্য </string>
+    <string name="identity_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/digital-identity.png</string>
 
     <string name="hotline_numbers12">16108</string>
     <string name="hotline_officer12">মানবাধিকার সহায়তা</string>
+    <string name="human_right_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/people.png</string>
 
     <string name="hotline_numbers13">131</string>
     <string name="hotline_officer13">রেলওয়ে তথ্য</string>
+    <string name="train_info">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/train-station.png</string>
 
     <string name="hotline_numbers14">100</string>
     <string name="hotline_officer14">বিটিআরসি সেবা</string>
+    <string name="telecommunication_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/telecommunication.png</string>
 
     <string name="hotline_numbers15">16420</string>
     <string name="hotline_officer15">বিটিসিএল সেবা</string>
+    <string name="telephone_img">https://rksoftwares.xyz/BDLink Hub/hotline_img_icon/telephone.png</string>
+
+    <!-- hospital_view -->
+    <string name="hospital_info_json">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_info.json</string>
+    <string name="facebook_img">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_card_img/facebook.png</string>
+    <string name="email_img">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_card_img/mail.png</string>
+    <string name="website_img">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_card_img/world-wide-web.png</string>
+    <string name="location_img">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_card_img/map.png</string>
+
 
 
     <!-- dhaka bibag -->
@@ -80,6 +106,7 @@
 
     <!-- mymansing bibag -->
     <string name="mymansingh_bibag">ময়মনসিংহ বিভাগ</string>
+
     <string name="app_info_normal_text">আমরা অ্যাপ এর মধ্যে নিয়মিত আপডেট দিই এবং প্রতিটি আপডেটে নতুন নতুন ফিচার যুক্ত করি। আমাদের অ্যাপ ব্যবহার করতে যদি কোনো প্রকার সমস্যা হয় তবে দয়া করে আমাদের জানান। আমরা আপনার সমস্যা সমাধানের যথাসাধ্য চেষ্টা করবো।</string>
     <string name="app_info_bold_text">ধন্যবাদ আমাদের অ্যাপ ব্যবহার করার জন্য</string>
 

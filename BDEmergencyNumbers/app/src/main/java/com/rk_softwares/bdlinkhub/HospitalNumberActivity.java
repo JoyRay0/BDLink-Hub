@@ -1,28 +1,20 @@
-package com.rk_softwares.bdemergencynumbers;
+package com.rk_softwares.bdlinkhub;
 
 
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.CursorAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -32,31 +24,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.search.SearchBar;
-import com.google.android.material.shape.MaterialShapeDrawable;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -65,8 +44,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Random;
 
 public class HospitalNumberActivity extends AppCompatActivity {
 
@@ -90,6 +67,8 @@ public class HospitalNumberActivity extends AppCompatActivity {
     HashMap<String, String> hashMap ;
 
     Myadapter adapter;
+
+     boolean is_searchVisible = true;
 
 
     //XML id's----------------------------------------------
@@ -190,10 +169,6 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     }//on create============================================
 
 
@@ -218,12 +193,13 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
     private void data_from_server(){
 
-        String url = "https://rksoftwares.xyz/hospital_view/hospital_info.json";
+        String url = getString(R.string.hospital_info_json);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                     @Override
+
                     public void onResponse(JSONObject response) {
 
                         hospital_progressbar.setVisibility(View.GONE);
@@ -253,21 +229,32 @@ public class HospitalNumberActivity extends AppCompatActivity {
                                 String website = hospital_other_info.getString("website");
                                 String location = hospital_other_info.getString("location");
 
+                                String facebook_img = getString(R.string.facebook_img);
+                                String email_img = getString(R.string.email_img);
+                                String website_img = getString(R.string.website_img);
+                                String location_img = getString(R.string.location_img);
+
 
                                 hashMap = new HashMap<>();
                                 hashMap.put("hospital_quality",hospital_quality);
+
                                 hashMap.put("hospital_name",hospital_name);
                                 hashMap.put("hospital_address",hospital_address);
                                 hashMap.put("hospital_num1",hospital_num1);
                                 hashMap.put("hospital_num2",hospital_num2);
-                                hashMap.put("facebook_id","https://rksoftwares.xyz/hospital_view/hospital_card_img/facebook.png");
+
+                                hashMap.put("facebook_id", facebook_img);
                                 hashMap.put("facebook",facebook_id);
-                                hashMap.put("mail","https://rksoftwares.xyz/hospital_view/hospital_card_img/mail.png");
+
+                                hashMap.put("mail", email_img);
                                 hashMap.put("email",email_id);
-                                hashMap.put("website","https://rksoftwares.xyz/hospital_view/hospital_card_img/world-wide-web.png");
+
+                                hashMap.put("website", website_img);
                                 hashMap.put("website1",website);
-                                hashMap.put("location","https://rksoftwares.xyz/hospital_view/hospital_card_img/map.png");
+
+                                hashMap.put("location", location_img);
                                 hashMap.put("location1",location);
+                                
                                 arrayList.add(hashMap);
 
 

@@ -1,4 +1,4 @@
-package com.rk_softwares.bdemergencynumbers;
+package com.rk_softwares.bdlinkhub;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MymensinghCityActivity extends AppCompatActivity {
+public class SylhetCityActivity extends AppCompatActivity {
 
 
     //XML id's----------------------------------------------
@@ -34,7 +34,7 @@ public class MymensinghCityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mymensingh_city);
+        setContentView(R.layout.sylhet_city);
 
         //identity period------------------------------------------
         back = findViewById(R.id.back);
@@ -42,13 +42,14 @@ public class MymensinghCityActivity extends AppCompatActivity {
 
         //identity period------------------------------------------
 
+
         //Adpter-------------------------------------
 
 
-        hashmap5();
+        hashmap8();
 
-        Myadpter5 myadpter5 = new Myadpter5();
-        listView.setAdapter(myadpter5);
+        Myadpter8 myadpter8 = new Myadpter8();
+        listView.setAdapter(myadpter8);
 
         //Adpter-------------------------------------
 
@@ -57,14 +58,14 @@ public class MymensinghCityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(MymensinghCityActivity.this, MainActivity.class));
+                startActivity(new Intent(SylhetCityActivity.this, MainActivity.class));
 
             }
         });
 
-    }//on create==============================
+    }//on create=======================
 
-    public class Myadpter5 extends BaseAdapter {
+    public class Myadpter8 extends BaseAdapter {
 
 
         @Override
@@ -93,15 +94,15 @@ public class MymensinghCityActivity extends AppCompatActivity {
 
             HashMap<String, String> hashMap1 = arrayList.get(i);
 
-            String jela5 = hashMap1.get("jela");
+            String jela8 = hashMap1.get("jela");
 
-            tvDisplay.setText(jela5);
+            tvDisplay.setText(jela8);
 
             item_jela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    startActivity(new Intent(MymensinghCityActivity.this, TvDisplayActivity.class));
+                    startActivity(new Intent(SylhetCityActivity.this, TvDisplayActivity.class));
 
 
 
@@ -112,21 +113,21 @@ public class MymensinghCityActivity extends AppCompatActivity {
         }
     }
 
-    public void hashmap5(){
+    public void hashmap8(){
         hashMap = new HashMap<>();
-        hashMap.put("jela","ময়মনসিংহ");
+        hashMap.put("jela","সিলেট");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","জামালপুর");
+        hashMap.put("jela","হবিগঞ্জ");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","নেত্রকোনা");
+        hashMap.put("jela","সুনামগঞ্জ");
         arrayList.add(hashMap);
 
         hashMap = new HashMap<>();
-        hashMap.put("jela","শেরপুর");
+        hashMap.put("jela","মৌলভীবাজার");
         arrayList.add(hashMap);
 
 
@@ -141,4 +142,4 @@ public class MymensinghCityActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-}//public class ==============================
+}//public class ======================
