@@ -35,7 +35,7 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 android:layout_margin="10dp"
-                android:backgroundTint="#B04646"
+                android:backgroundTint="#E94B4B"
                 >
 
                 <TextView
@@ -62,7 +62,8 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 android:layout_margin="10dp"
-                android:backgroundTint="#F036873B"
+                android:backgroundTint="#59DFDF"
+
                 >
 
                 <TextView
@@ -71,13 +72,13 @@
                     android:drawablePadding="21dp"
                     android:text="হাসপাতালের তথ্য"
                     android:fontFamily="@font/noto_serif"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textSize="18sp"
                     android:layout_margin="10dp"
                     android:padding="2dp"
                     android:gravity="start"
                     android:drawableStart="@drawable/hospital_svgrepo_com"
-                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_25"
+                    android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
                     />
             </androidx.cardview.widget.CardView>
 
@@ -88,7 +89,8 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 android:layout_margin="10dp"
-                android:backgroundTint="#18ffff"
+                android:backgroundTint="#59DFDF"
+
                 >
 
                 <TextView
@@ -102,7 +104,6 @@
                     android:layout_margin="10dp"
                     android:padding="2dp"
                     android:gravity="start"
-
                     android:drawableStart="@drawable/web_svgrepo_com"
                     android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
                     />
@@ -116,13 +117,14 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp"
                 android:padding="10dp"
+                android:backgroundTint="#59DFDF"
                 >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="21dp"
-                    android:text="@string/chittang_bibag"
+                    android:text="পএ-পএিকা সমূহ"
                     android:fontFamily="@font/noto_serif"
                     android:textColor="#000"
                     android:textSize="18sp"
@@ -130,8 +132,7 @@
                     android:padding="2dp"
                     android:drawableEnd="@drawable/baseline_keyboard_arrow_right_24"
                     android:gravity="start"
-                    android:drawableStart="@drawable/baseline_travel_explore_24"
-
+                    android:drawableStart="@drawable/newspaper_6_svgrepo_com"
                     />
             </androidx.cardview.widget.CardView>
 

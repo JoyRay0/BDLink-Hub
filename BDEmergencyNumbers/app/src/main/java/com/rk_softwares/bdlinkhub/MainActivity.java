@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -16,12 +17,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -76,14 +82,17 @@ public class MainActivity extends AppCompatActivity {
         floating_button = findViewById(R.id.floating_button);
 
 
+
         //identity period-----------------------------------------------------
-
-
-
 
         toolbar();
         check_permission();
         checkNetwork();
+
+        Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.nightmode_lightmode);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        dialog.show();
 
 
 
@@ -369,6 +378,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
+
 
     @Override
     protected void onRestart() {

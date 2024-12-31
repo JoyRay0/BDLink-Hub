@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
@@ -229,6 +231,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
                                 String website = hospital_other_info.getString("website");
                                 String location = hospital_other_info.getString("location");
 
+                                //string resources =====================================
                                 String facebook_img = getString(R.string.facebook_img);
                                 String email_img = getString(R.string.email_img);
                                 String website_img = getString(R.string.website_img);
@@ -337,6 +340,9 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view1 = layoutInflater.inflate(R.layout.hospital_card_view, viewGroup, false);
+
+            Animation animation = AnimationUtils.loadAnimation(HospitalNumberActivity.this, R.anim.scale_up);
+            view1.startAnimation(animation);
 
             TextView hospital_name = view1.findViewById(R.id.hospital_name);
             TextView hospital_address = view1.findViewById(R.id.hospital_address);

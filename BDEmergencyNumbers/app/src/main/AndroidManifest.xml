@@ -21,12 +21,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher1_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BDEmergencyNumbers"
+        android:theme="@style/Base.Theme.BDEmergencyNumbers"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".HospitalNumberActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".HotlineActivity"
             android:exported="false" />
@@ -58,14 +60,14 @@
             android:name=".DhakaCityActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BDEmergencyNumbers.Splash"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
-
             </intent-filter>
         </activity>
     </application>

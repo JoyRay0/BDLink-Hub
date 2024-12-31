@@ -37,7 +37,7 @@
                 android:textSize="17sp"
                 android:textStyle="normal" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/hotline_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
