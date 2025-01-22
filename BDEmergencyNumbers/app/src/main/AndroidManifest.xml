@@ -62,7 +62,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/Theme.BDEmergencyNumbers.Splash"
+
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

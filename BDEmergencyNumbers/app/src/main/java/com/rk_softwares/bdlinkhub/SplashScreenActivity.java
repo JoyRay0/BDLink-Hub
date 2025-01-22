@@ -19,6 +19,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
@@ -51,7 +52,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
         startActivity(intent);
-        finish();
+        finishAffinity();
 
     }
 }

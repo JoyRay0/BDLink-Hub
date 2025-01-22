@@ -288,7 +288,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
                         hospital_progressbar.setVisibility(View.GONE);
 
-                        Toast.makeText(HospitalNumberActivity.this, "Updating sever", Toast.LENGTH_SHORT).show();
+
 
 
                     }
