@@ -244,7 +244,7 @@ public class TvDisplayActivity extends AppCompatActivity {
         ler10 = findViewById(R.id.ler10);
         ler11 = findViewById(R.id.ler11);
         ler12 = findViewById(R.id.ler12);
-
+/*
         item_police_numb1 = findViewById(R.id.item_police_numb1);
         item_police_numb2 = findViewById(R.id.item_police_numb2);
         item_police_numb3 = findViewById(R.id.item_police_numb3);
@@ -296,6 +296,8 @@ public class TvDisplayActivity extends AppCompatActivity {
         item_police_numb49 = findViewById(R.id.item_police_numb49);
         item_police_numb50 = findViewById(R.id.item_police_numb50);
 
+
+ */
 
 
 

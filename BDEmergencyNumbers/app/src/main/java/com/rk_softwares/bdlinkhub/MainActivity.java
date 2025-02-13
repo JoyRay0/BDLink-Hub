@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     //XML id's ------------------------------------------------------------
 
+    private FrameLayout frame_layout;
     CardView dh,ch,raj,kh,sy,bo,ra,my,hotline_cardview,hospital_cardview;
 
     MaterialToolbar toolbar;
@@ -68,18 +71,18 @@ public class MainActivity extends AppCompatActivity {
 
         //identity period-----------------------------------------------------
 
-        dh = findViewById(R.id.dh);
-        ch = findViewById(R.id.ch);
-        raj = findViewById(R.id.raj);
-        kh = findViewById(R.id.kh);
-        sy = findViewById(R.id.sy);
-        bo = findViewById(R.id.bo);
-        my = findViewById(R.id.my);
-        ra = findViewById(R.id.ra);
-        hotline_cardview = findViewById(R.id.hotline_cardview);
-        hospital_cardview = findViewById(R.id.hospital_cardview);
+        frame_layout = findViewById(R.id.frame_layout);
+        //ch = findViewById(R.id.ch);
+        //raj = findViewById(R.id.raj);
+        //kh = findViewById(R.id.kh);
+        //sy = findViewById(R.id.sy);
+        //bo = findViewById(R.id.bo);
+        //my = findViewById(R.id.my);
+        //ra = findViewById(R.id.ra);
+        //hotline_cardview = findViewById(R.id.hotline_cardview);
+        //hospital_cardview = findViewById(R.id.hospital_cardview);
         toolbar = findViewById(R.id.toolbar);
-        floating_button = findViewById(R.id.floating_button);
+        //floating_button = findViewById(R.id.floating_button);
 
 
 
@@ -89,102 +92,18 @@ public class MainActivity extends AppCompatActivity {
         check_permission();
         checkNetwork();
 
+        /*
         Dialog dialog = new Dialog(MainActivity.this);
         dialog.setContentView(R.layout.nightmode_lightmode);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         dialog.show();
 
+         */
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.frame_layout, new Home_fragment()).commit();
 
 
-        dh.setOnClickListener(new View.OnClickListener() {  //dhaka-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, DhakaCityActivity.class));
-
-            }
-        });
-
-        ch.setOnClickListener(new View.OnClickListener() {  //chittagong-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, ChittagongCityActivity.class));
-
-            }
-        });
-
-        raj.setOnClickListener(new View.OnClickListener() {  //rajshahi-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, RajshahiCityActivity.class));
-
-            }
-        });
-
-        kh.setOnClickListener(new View.OnClickListener() {  //khulna-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, KhulnaCityActivity.class));
-
-            }
-        });
-
-        sy.setOnClickListener(new View.OnClickListener() {  //sylhet-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, SylhetCityActivity.class));
-
-            }
-        });
-
-        bo.setOnClickListener(new View.OnClickListener() {  //borishal-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, BorishalCityActivity.class));
-
-            }
-        });
-
-        my.setOnClickListener(new View.OnClickListener() {  //mymensingh-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, MymensinghCityActivity.class));
-
-            }
-        });
-
-        ra.setOnClickListener(new View.OnClickListener() {  //rangpur-----
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, RangpurCityActivity.class));
-
-            }
-        });
-
-        hotline_cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this , HotlineActivity.class));
-
-            }
-        });
-
-        hospital_cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(MainActivity.this, HospitalNumberActivity.class));
-
-            }
-        });
 
 
 
@@ -277,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void toolbar(){     //customize menu toolbar
 
-        toolbar.inflateMenu(R.menu.toolbar_menu);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override

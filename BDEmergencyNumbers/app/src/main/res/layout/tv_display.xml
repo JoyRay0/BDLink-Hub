@@ -87,7 +87,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_police" />
+
 
             </LinearLayout>
 
@@ -157,7 +157,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_rab" />
+
 
             </LinearLayout>
 
@@ -226,7 +226,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_army" />
+
 
             </LinearLayout>
 
@@ -296,7 +296,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_fire_service" />
+
 
             </LinearLayout>
 
@@ -366,7 +366,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_ambulance" />
+
 
             </LinearLayout>
 
@@ -436,7 +436,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_blood_bank" />
+
 
             </LinearLayout>
 
@@ -504,7 +504,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_electricity" />
+
 
             </LinearLayout>
 
@@ -575,7 +575,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_gas" />
+
 
             </LinearLayout>
 
@@ -649,7 +649,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_oasha" />
+
 
             </LinearLayout>
 
@@ -719,7 +719,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_dorgojg" />
+
 
             </LinearLayout>
 
@@ -789,7 +789,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_dodhak" />
+
 
             </LinearLayout>
 
@@ -859,7 +859,7 @@
                 android:visibility="gone"
                 >
 
-                <include layout="@layout/number_forest" />
+
 
             </LinearLayout>
 

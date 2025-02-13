@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.rk_softwares.bdlinkhub"
-        minSdk 22
+        minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -17,11 +17,19 @@ android {
     }
 
     buildTypes {
-        release {
+        debug{
+            debuggable true
             minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -40,6 +48,5 @@ dependencies {
     implementation libs.picasso
     implementation libs.dexter
     implementation libs.volley
-
 
 }
