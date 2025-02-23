@@ -33,50 +33,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="জরুরী নম্বরসমূহ"
+        android:text="BDLink Hub"
         android:textSize="20sp"
-        android:textColor="#fff"
-        android:fontFamily="@font/noto_serif"
+        android:textColor="#FFF"
+        android:textStyle="bold"
         android:layout_centerVertical="true"
         android:paddingStart="20dp"
         />
-
-
-
-    <!--
-     <ImageButton
-          android:id="@+id/share"
-               android:layout_width="50dp"
-               android:layout_height="50dp"
-               android:src="@drawable/baseline_share_24"
-               tools:ignore="ContentDescription"
-               android:tooltipText="Share"
-               android:background="?attr/actionBarItemBackground"
-               android:layout_centerVertical="true"
-               android:layout_centerHorizontal="true"
-
-               />
-
-
-    <ImageButton
-        android:id="@+id/info"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/baseline_info_outline_24"
-        tools:ignore="ContentDescription"
-        android:tooltipText="Info"
-        android:background="?attr/actionBarItemBackground"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentEnd="true"
-
-        />
-        -->
-
-
-
-
-
 
 
 </RelativeLayout>

@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<FrameLayout
+    android:id="@+id/fl_backButton"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="56dp"
+    android:layout_height="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="15dp"
+    android:background="@drawable/back_button_corner"
+    android:elevation="3dp"
     >
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/action_bar_customize"
 
-        />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/baseline_arrow_back_ios_new_24"
-        android:background="?attr/actionBarItemBackground"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription" />
-
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="জেলাসমূহ"
-        android:textSize="20sp"
-        android:textColor="#fff"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_back"
+        android:layout_gravity="center"
         />
 
-        -->
 
-</RelativeLayout>
+
+</FrameLayout>

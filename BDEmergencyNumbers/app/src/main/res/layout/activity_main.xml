@@ -6,7 +6,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Activity.MainActivity"
+    android:fitsSystemWindows="false"
+
+
     >
 
 
@@ -15,6 +18,7 @@
        android:layout_height="wrap_content"
        android:id="@+id/appbar"
 
+
        />
 
     <FrameLayout
@@ -22,27 +26,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appbar"
-        android:layout_above="@id/botton_nav"
+
          />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/botton_nav"
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:background="#4CAF50"
+        android:background="@drawable/bottom_nav"
         app:menu="@menu/bottom_nav"
         app:itemIconSize="25dp"
         app:itemIconTint="@drawable/selected_bottom_nav"
-        app:itemTextColor="#504D4D"
-        app:labelVisibilityMode="selected"
-        app:itemPaddingBottom="5dp"
+        app:itemTextColor="#D8C7C7"
+        app:labelVisibilityMode="labeled"
         app:itemPaddingTop="10dp"
-        >
+        app:itemPaddingBottom="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        />
 
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
 

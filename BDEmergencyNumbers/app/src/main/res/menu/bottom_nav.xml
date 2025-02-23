@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/home"
-        android:title="Home"
+        android:title="হোম"
         android:icon="@drawable/ic_home"
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/search"
-        android:title="Search"
+        android:title="সার্চ"
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/profile"
-        android:title="Profile"
+        android:title="প্রোফাইল"
         android:icon="@drawable/ic_profile"
         app:showAsAction="ifRoom"/>
 

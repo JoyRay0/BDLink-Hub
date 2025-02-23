@@ -46,11 +46,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/no_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No"
-            android:textColor="#fff"
-            android:textSize="20sp"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:text="না"
+            android:textColor="#DFD7D7"
+            android:textSize="17sp"
             android:textAllCaps="false"
             android:layout_weight="1"
             android:layout_margin="20dp"
@@ -60,10 +60,10 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/yes_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yes"
-            android:textSize="20sp"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:text="হ্যাঁ"
+            android:textSize="17sp"
             android:textColor="#fff"
             android:textAllCaps="false"
             android:layout_weight="1"

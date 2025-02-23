@@ -3,8 +3,8 @@
     <string name="numter_text">নেই</string>
 
     <!-- bottom sheet dialog -->
-    <string name="no_internet_connection">ইন্টারনেট সংযোগ প্রয়োজন</string>
-    <string name="check_connection">এই অ্যাপ এর কিছু ফিচার ব্যবহার করতে ইন্টারনেট সংযোগ প্রয়োজন। আপনি কি ইন্টারনেট সংযোগ স্থাপন করতে চান?</string>
+    <string name="no_internet_connection">ইন্টারনেট সংযোগ নেই !</string>
+    <string name="check_connection">এই অ্যাপ ব্যবহার করতে ইন্টারনেট সংযোগ প্রয়োজন। আপনি কি ইন্টারনেট সংযোগ স্থাপন করতে চান ?</string>
 
 
     <!-- hotline -->

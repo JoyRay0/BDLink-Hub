@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8FAF8F8"
-    tools:context=".HospitalNumberActivity"
+    tools:context=".Activity.HospitalNumberActivity"
     >
 
     <include layout="@layout/back_app_bar"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="হাসপাতালের নাম"
             android:fontFamily="@font/noto_serif"
-            android:drawableStart="@drawable/baseline_search_24"
+            android:drawableStart="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:padding="10dp"
             android:background="@drawable/searchview"
