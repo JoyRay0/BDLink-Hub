@@ -81,31 +81,6 @@
     <string name="website_img">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_card_img/world-wide-web.png</string>
     <string name="location_img">https://rksoftwares.xyz/BDLink Hub/hospital_view/hospital_card_img/map.png</string>
 
-
-    <!-- dhaka bibag -->
-    <string name="dhaka_bibag">ঢাকা বিভাগ</string>
-
-    <!-- chittagang bibag -->
-    <string name="chittang_bibag">চট্টগ্রাম বিভাগ</string>
-
-    <!-- rajshai bibag -->
-    <string name="rajshai_bibag">রাজশাহী বিভাগ</string>
-
-    <!-- khulna bibag -->
-    <string name="khulna_bibag">খুলনা বিভাগ</string>
-
-    <!-- shylet bibag -->
-    <string name="shylet_bibag">সিলেট বিভাগ</string>
-
-    <!-- borishal bibag -->
-    <string name="borishal_bibag">বরিশাল বিভাগ</string>
-
-    <!-- rangpur bibag -->
-    <string name="rangpur_bibag">রংপুর বিভাগ</string>
-
-    <!-- mymansing bibag -->
-    <string name="mymansingh_bibag">ময়মনসিংহ বিভাগ</string>
-
     <string name="app_info_normal_text">আমরা অ্যাপ এর মধ্যে নিয়মিত আপডেট দিই এবং প্রতিটি আপডেটে নতুন নতুন ফিচার যুক্ত করি। আমাদের অ্যাপ ব্যবহার করতে যদি কোনো প্রকার সমস্যা হয় তবে দয়া করে আমাদের জানান। আমরা আপনার সমস্যা সমাধানের যথাসাধ্য চেষ্টা করবো।</string>
     <string name="app_info_bold_text">ধন্যবাদ আমাদের অ্যাপ ব্যবহার করার জন্য</string>
     <!-- TODO: Remove or change this placeholder text -->

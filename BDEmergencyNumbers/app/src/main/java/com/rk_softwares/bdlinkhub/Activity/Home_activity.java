@@ -4,14 +4,20 @@ package com.rk_softwares.bdlinkhub.Activity;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -24,14 +30,17 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.rk_softwares.bdlinkhub.R;
 
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class Home_activity extends AppCompatActivity {
 
 
 
@@ -46,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private final String appPackageName = "com.mala.digital_joper_mala";
-    public static boolean PERMISSION = false;
+    public static boolean POST_NOTIFICATION_PERMISSION = false;
     public static boolean INTERNET = false;
+    private boolean isDialog = false;
 
     private BottomNavigationView bottom_nav;
 
@@ -58,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.home_activity);
 
 
 
@@ -85,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         //identity period-----------------------------------------------------
 
         toolbar();
-        check_permission();
+        //check_permission();
 
 
         /*
@@ -102,55 +112,87 @@ public class MainActivity extends AppCompatActivity {
 
         bottom_navigation();
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
 
+                Back_pressed_dialog();
 
-
-
-
-
-
+            }
+        });
 
     }//on create ===============================
 
     private void check_permission(){    //permission check
 
 
-        Dexter.withContext(this).withPermissions(
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
 
 
-                        Manifest.permission.ACCESS_FINE_LOCATION)
+           Dexter.withContext(this).withPermission(Manifest.permission.POST_NOTIFICATIONS)
+                   .withListener(new PermissionListener() {
+                       @Override
+                       public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
 
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                           POST_NOTIFICATION_PERMISSION = true;
 
-                        if (report.areAllPermissionsGranted()){
+                       }
 
-                            PERMISSION = true;
+                       @Override
+                       public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
 
-                        } else if (report.isAnyPermissionPermanentlyDenied()) {
+                           POST_NOTIFICATION_PERMISSION = false;
 
-                            PERMISSION = false;
+                       }
 
-                            Toast.makeText(MainActivity.this, "Need permission to use this task", Toast.LENGTH_LONG).show();
-                        }
-                        else {
+                       @Override
+                       public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
 
-                            Toast.makeText(MainActivity.this, "Allow all permission to use features", Toast.LENGTH_SHORT).show();
+                           permissionToken.continuePermissionRequest();
 
-                        }
+                       }
+                   }).check();
+
+                        //    Toast.makeText(MainActivity.this, "Allow all permission to use features", Toast.LENGTH_SHORT).show();
+
+            //       Toast.makeText(MainActivity.this, "Need permission to use this task", Toast.LENGTH_LONG).show();
+        }else {
+
+            Dexter.withContext(this).withPermissions(
+
+                    Manifest.permission.CALL_PHONE)
+
+                    .withListener(new MultiplePermissionsListener(){
+                @Override
+                public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                    if (report.areAllPermissionsGranted()){
+
+                       // PERMISSION = true;
+
+                    } else if (report.isAnyPermissionPermanentlyDenied()) {
+
+                        //PERMISSION = false;
+
+                        Toast.makeText(Home_activity.this, "Need permission to use this task", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+
+                        Toast.makeText(Home_activity.this, "Allow all permission to use features", Toast.LENGTH_SHORT).show();
 
                     }
 
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                }
 
-                        token.continuePermissionRequest();
+                @Override
+                public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
 
-                    }
-                }).check();
+                    token.continuePermissionRequest();
 
+                }
+            }).check();
 
+        }
 
         /*
         //single permission
@@ -199,11 +241,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (itemId == R.id.search){
 
-                    Toast.makeText(MainActivity.this, "search", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Home_activity.this, "search", Toast.LENGTH_SHORT).show();
 
                 } else if (itemId == R.id.profile) {
 
-                    startActivity(new Intent(MainActivity.this, Login.class));
+                    startActivity(new Intent(Home_activity.this, Login.class));
 
                 }
 
@@ -235,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (item.getItemId() == R.id.info) {
 
-                    Dialog dialog1 = new Dialog(MainActivity.this);
+                    Dialog dialog1 = new Dialog(Home_activity.this);
                     dialog1.setContentView(R.layout.info_dialog);
                     dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
                     dialog1.show();
@@ -243,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-                return false;
+                return true;
             }
         });
 
@@ -255,4 +297,56 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            Back_pressed_dialog();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void Back_pressed_dialog(){
+
+        if (isDialog) return;
+        isDialog = true;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.ic_alert);
+        builder.setTitle("সর্তকবার্তা !");
+        builder.setMessage("আপনি কি বেরিয়ে যেতে চান ?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("হ্যাঁ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                new Handler().postDelayed(() -> {
+
+                    dialogInterface.dismiss();
+                    isDialog = false;
+                    finishAffinity();
+
+                },100);
+
+
+            }
+        });
+        builder.setNegativeButton("না", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+                isDialog = false;
+
+
+            }
+        });
+        builder.show();
+
+    }
+
+
 }//public class ==============================

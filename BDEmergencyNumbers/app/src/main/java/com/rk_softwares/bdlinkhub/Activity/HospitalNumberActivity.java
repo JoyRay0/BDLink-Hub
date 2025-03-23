@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
@@ -109,7 +108,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
 
 
-        if (MainActivity.INTERNET == true){
+        if (Home_activity.INTERNET == true){
 
 
             hospital_offline_linerlayout.setVisibility(View.GONE);
@@ -375,6 +374,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
 
 
 
+            /*
             if (MainActivity.PERMISSION == true){
 
 
@@ -408,6 +408,8 @@ public class HospitalNumberActivity extends AppCompatActivity {
                 Toast.makeText(HospitalNumberActivity.this, "Please allow call permission", Toast.LENGTH_SHORT).show();
 
             }
+
+             */
 
             Picasso.get().load(hospital_facebook_id1).into(hospital_facebook_id);
             Picasso.get().load(hospital_mail1).into(hospital_mail);
@@ -554,7 +556,7 @@ public class HospitalNumberActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Home_activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
