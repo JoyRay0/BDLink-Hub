@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FBEBEB"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        android:layout_margin="10dp"
+        >
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <!-- category-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="১। ক্যাটাগরি"
+                android:textSize="17sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:layout_margin="8dp"
+                android:paddingStart="7dp"
+                android:paddingEnd="0dp"
+                />
+
+            <RadioGroup
+                android:id="@+id/rd_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rd_gov"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="সরকারি"
+                    android:fontFamily="@font/noto_serif"
+                    android:textSize="17sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rd_non_gov"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="বেসরকারি"
+                    android:fontFamily="@font/noto_serif"
+                    android:textSize="17sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rd_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="নিজ"
+                    android:fontFamily="@font/noto_serif"
+                    android:textSize="17sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    />
+
+            </RadioGroup>
+
+            <!-- Link title-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="২। লিংক টাইটেল"
+                android:textSize="17sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:layout_margin="8dp"
+                android:paddingStart="7dp"
+                android:paddingEnd="0dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:hintEnabled="true"
+                android:hint="লিংকের টাইটেল"
+                app:hintAnimationEnabled="true"
+                app:hintTextColor="#000"
+                app:expandedHintEnabled="true"
+                app:boxBackgroundColor="#fff"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#000"
+                app:boxStrokeWidthFocused="1dp"
+                app:boxCornerRadiusTopStart="15dp"
+                app:boxCornerRadiusTopEnd="15dp"
+                app:boxCornerRadiusBottomStart="15dp"
+                app:boxCornerRadiusBottomEnd="15dp"
+                app:endIconMode="clear_text"
+
+                >
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:id="@+id/act_link_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:fontFamily="@font/noto_serif"
+                    android:textSize="17sp"
+                    android:inputType="text"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Link description-->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="৩। লিংক ডেসক্রিপশন"
+                android:textSize="17sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:layout_margin="8dp"
+                android:paddingStart="7dp"
+                android:paddingEnd="0dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:hintEnabled="true"
+                android:hint="লিংকের ডেসক্রিপশন"
+                app:hintAnimationEnabled="true"
+                app:hintTextColor="#000"
+                app:expandedHintEnabled="true"
+                app:boxBackgroundColor="#fff"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#000"
+                app:boxStrokeWidthFocused="1dp"
+                app:boxCornerRadiusTopStart="15dp"
+                app:boxCornerRadiusTopEnd="15dp"
+                app:boxCornerRadiusBottomStart="15dp"
+                app:boxCornerRadiusBottomEnd="15dp"
+                app:endIconMode="clear_text"
+                >
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:id="@+id/act_link_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:fontFamily="@font/noto_serif"
+                    android:textSize="17sp"
+                    android:inputType="text"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- your Link -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="৪। লিংকে (http://) বাদে তার পরের অংশ দিন"
+                android:textSize="17sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:layout_margin="8dp"
+                android:paddingStart="7dp"
+                android:paddingEnd="0dp"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:hintEnabled="true"
+                android:hint="www.example.com"
+                app:hintAnimationEnabled="true"
+                app:hintTextColor="#000"
+                app:expandedHintEnabled="true"
+                app:boxBackgroundColor="#fff"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#000"
+                app:boxStrokeWidthFocused="1dp"
+                app:boxCornerRadiusTopStart="15dp"
+                app:boxCornerRadiusTopEnd="15dp"
+                app:boxCornerRadiusBottomStart="15dp"
+                app:boxCornerRadiusBottomEnd="15dp"
+                app:endIconMode="clear_text"
+                >
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:id="@+id/act_user_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:fontFamily="@font/noto_serif"
+                    android:textSize="17sp"
+                    android:inputType="text"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- save button-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cd_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="#9EC29F"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="end"
+                    android:tooltipText="অ্যাড"
+                    android:layout_alignParentEnd="true"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="অ্যাড করুন"
+                        android:fontFamily="@font/noto_serif"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:layout_margin="10dp"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cd_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="#DDA7A4"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="end"
+                    android:tooltipText="বাতিল"
+                    android:layout_alignParentStart="true"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="বাতিল করুন"
+                        android:fontFamily="@font/noto_serif"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:layout_margin="10dp"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

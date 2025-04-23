@@ -1,17 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BDEmergencyNumbers" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Base.Theme.BDLink_Hub" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/primary</item>
-
-
-
-
-
-
+        <item name="android:forceDarkAllowed">false</item>
     </style>
-
-    <style name="Theme.BDEmergencyNumbers" parent="Base.Theme.BDEmergencyNumbers" />
     
     <style name="DialogAnimation">
 
@@ -19,8 +12,4 @@
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
 
     </style>
-
-
-
-    
 </resources>

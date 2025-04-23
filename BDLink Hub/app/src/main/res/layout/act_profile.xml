@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Act_Profile"
+    android:background="@drawable/img_profile_background"
+    >
+
+    <LinearLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/sh_profile_img_name"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        >
+        <include layout="@layout/lay_user_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ইউজারের নাম"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:fontFamily="@font/noto_serif"
+            android:gravity="center"
+            android:layout_margin="15dp"
+            />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_layout"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sh_bottom_of_profile"
+            android:orientation="vertical"
+
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="সেটিংস"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="@font/noto_serif"
+                android:textColor="#000"
+                android:padding="15dp"
+                android:drawableEnd="@drawable/ic_right"
+                android:drawableStart="@drawable/ic_setting"
+                android:drawablePadding="15dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                />
+
+
+            <!-- Account -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_delete_ac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="একাউন্ট ডিলিট"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="@font/noto_serif"
+                android:textColor="#F44336"
+                android:padding="15dp"
+                android:drawableEnd="@drawable/ic_right"
+                android:drawableStart="@drawable/ic_delete"
+                android:drawablePadding="15dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="লগ আউট"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="@font/noto_serif"
+                android:textColor="#F44336"
+                android:padding="15dp"
+                android:drawableEnd="@drawable/ic_right"
+                android:drawableStart="@drawable/ic_logout"
+                android:drawablePadding="15dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                />
+
+            <!-- Account -->
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ইনফরমেশন"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:fontFamily="@font/noto_serif"
+                android:textColor="#000"
+                android:padding="15dp"
+                android:drawableEnd="@drawable/ic_right"
+                android:drawableStart="@drawable/ic_info"
+                android:drawablePadding="15dp"
+                />
+            
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

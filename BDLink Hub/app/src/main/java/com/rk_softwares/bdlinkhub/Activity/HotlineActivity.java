@@ -313,7 +313,7 @@ public class HotlineActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-        Intent intent = new Intent(this, Home_activity.class);
+        Intent intent = new Intent(this, Act_Home_activity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

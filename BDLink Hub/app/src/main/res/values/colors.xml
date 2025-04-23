@@ -2,12 +2,11 @@
 <resources>
     <color name="primary">#2196F3</color>
     <color name="bottom_nav">#1976D2</color>
-    <color name="blod_toolbar_texst">#5B6ABF</color>
 
     <color name="right_arrow">#B5605858</color> <!-- right arrow-->
 
     <color name="divider">#BE8F8787</color> <!-- divider color -->
 
-    <color name="icon_color">#000</color> <!-- icons color-->
+    <color name="icon_color">#fff</color> <!-- icons color-->
 
 </resources>

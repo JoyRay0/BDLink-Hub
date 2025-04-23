@@ -9,7 +9,7 @@
     tools:context=".Activity.HospitalNumberActivity"
     >
 
-    <include layout="@layout/back_app_bar"
+    <include layout="@layout/lay_back_app_bar"
         android:id="@+id/hospital_toolbar"
     />
 
@@ -30,7 +30,7 @@
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:padding="10dp"
-            android:background="@drawable/searchview"
+            android:background="@drawable/sh_searchview"
             android:layout_margin="8dp"
             android:inputType="textAutoComplete|textAutoCorrect"
             android:ems="10"
@@ -64,15 +64,6 @@
         android:layout_alignParentBottom="true"
         android:visibility="gone"
         >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/hospital_offline_img"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:srcCompat="@drawable/disconnected"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"

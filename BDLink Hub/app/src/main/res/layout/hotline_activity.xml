@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.HotlineActivity">
 
-    <include layout="@layout/back_app_bar"
+    <include layout="@layout/lay_back_app_bar"
         android:id="@+id/back_toolbar"
         />
 

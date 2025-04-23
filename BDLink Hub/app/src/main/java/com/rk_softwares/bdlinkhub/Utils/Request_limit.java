@@ -2,6 +2,9 @@ package com.rk_softwares.bdlinkhub.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
 import android.widget.Toast;
 
 public class Request_limit {
@@ -9,7 +12,7 @@ public class Request_limit {
     private SharedPreferences sharedPreferences;
 
     private static final long TIME_LIMIT = 60 * 1000;
-    private static final int MAX_REQUEST = 3;
+    private static final int MAX_REQUEST = 5;
 
     // Constructor to initialize SharedPreferences
     public Request_limit(Context context) {
@@ -19,7 +22,6 @@ public class Request_limit {
 
     // Method to check request limit and update count
     public boolean canMakeRequest(Context context) {
-        
         long currentTime = System.currentTimeMillis();
         long lastRequestTime = sharedPreferences.getLong("lastRequestTime", 0);
         int requestCount = sharedPreferences.getInt("requestCount", 0);
@@ -36,7 +38,12 @@ public class Request_limit {
             // 1 মিনিটের মধ্যে যদি 5 এর বেশি রিকুয়েস্ট হয়ে থাকে, false রিটার্ন করুন
             if (requestCount >= MAX_REQUEST) {
 
-                Toast.makeText(context, "কিছুক্ষণ পর আবার চেষ্টা করুন", Toast.LENGTH_SHORT).show();
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    Toast.makeText(context, "কিছুক্ষণ পর আবার চেষ্টা করুন", Toast.LENGTH_SHORT).show();
+
+                });
+
                 return false; // Too many requests
             }
 

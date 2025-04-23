@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+   <com.google.android.material.appbar.AppBarLayout
+       android:id="@+id/app_bar_layout"
+       android:layout_width="match_parent"
+       android:layout_height="55dp">
+
+       <com.google.android.material.appbar.MaterialToolbar
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/sh_action_bar_customize"
+           app:menu="@menu/toolbar_menu"
+           />
+
+
+   </com.google.android.material.appbar.AppBarLayout>
+
+    <!--
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/action_bar_customize"
+
+        />
+        -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BDLink Hub"
+        android:textSize="20sp"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:paddingStart="20dp"
+        />
+
+
+</RelativeLayout>
