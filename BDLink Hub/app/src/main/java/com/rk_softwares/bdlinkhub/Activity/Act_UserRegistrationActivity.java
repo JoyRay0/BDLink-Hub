@@ -182,7 +182,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
         String user_reg = gson.toJson(userInfo);
 
 
-        PostApi postApi = new PostApi(user_reg, "post_reg");
+        PostApi postApi = new PostApi("post_reg", user_reg);
 
         postApi.postApi(new Callback() {
             @Override

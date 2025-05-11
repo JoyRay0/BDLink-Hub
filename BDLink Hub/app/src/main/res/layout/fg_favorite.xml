@@ -45,8 +45,8 @@
 
 
     <include layout="@layout/lay_user_links"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="90dp"

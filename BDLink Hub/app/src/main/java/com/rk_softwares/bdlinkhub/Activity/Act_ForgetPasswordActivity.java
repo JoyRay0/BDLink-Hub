@@ -127,7 +127,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
         String change_password = gson.toJson(userInfo);
 
 
-        PutApi putApi = new PutApi(change_password, "put_user_password");
+        PutApi putApi = new PutApi("put_user_password", change_password);
 
         putApi.putApi(new Callback() {
             @Override

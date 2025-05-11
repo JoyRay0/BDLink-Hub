@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="3dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_no_links"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="কোন লিংক নেই"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:textAlignment="center"
+                android:visibility="visible"
+                android:layout_margin="5dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_my_links"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="আমার লিংক :"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:textAlignment="textStart"
+                android:visibility="gone"
+                android:layout_marginStart="7dp"
+                android:padding="3dp"
+                />
+
+            <!-- save links view-->
+            <LinearLayout
+                android:id="@+id/ll_saved_links"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="2"
+                >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_link1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Link1"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/noto_serif"
+                    android:visibility="gone"
+                    android:background="@drawable/sh_fglink_background"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:textAlignment="center"
+                    />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_link2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Link2"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/noto_serif"
+                    android:textAlignment="center"
+                    android:visibility="gone"
+                    android:background="@drawable/sh_fglink_background"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,11 +1,19 @@
  package com.rk_softwares.bdlinkhub.Activity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,13 +26,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 
+import com.rk_softwares.bdlinkhub.Act_Browser;
 import com.rk_softwares.bdlinkhub.Adapter.MyAdapter;
+import com.rk_softwares.bdlinkhub.Adapter.Popular_item_Adapter;
 import com.rk_softwares.bdlinkhub.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 
  public class Fg_Home extends Fragment {
@@ -32,32 +45,60 @@ import java.util.List;
     //XML id's-----------------------------------------------
 
      //10
+     private RecyclerView rv_test;
+     private GridView gd_item;
+     private AppCompatImageView iv_forward;
+     private AppCompatTextView tv_no_links,tv_link1,tv_link2, tv_my_links;
+     private LinearLayout ll_saved_links;
 
-     RecyclerView rv_test;
+     private MyAdapter adapter;
 
-     MyAdapter adapter;
+     private Popular_item_Adapter plAdapter;
 
      List<HashMap<String, String>> list = new ArrayList<>();
      HashMap<String, String> hashMap;
 
-    //XML id's-----------------------------------------------
+     List<HashMap<String, String>> item_list = new ArrayList<>();
+     HashMap<String, String> map;
+
+
+
+     private boolean link1 = false;
+     private boolean link2 = false;
+
+     //XML id's-----------------------------------------------
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater,
+                              ViewGroup container,
+                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fg_home, container, false);
+       View view = inflater.inflate(R.layout.fg_home, container, false);
 
-        //identity period---------------------------------------------
+       //identity period------------------------------------------
 
         rv_test = view.findViewById(R.id.rv_test);
+        gd_item = view.findViewById(R.id.gd_item);
+        iv_forward = view.findViewById(R.id.iv_forward);
+        tv_no_links = view.findViewById(R.id.tv_no_links);
+        tv_link1 = view.findViewById(R.id.tv_link1);
+        tv_link2 = view.findViewById(R.id.tv_link2);
+        ll_saved_links = view.findViewById(R.id.ll_saved_links);
+        tv_my_links = view.findViewById(R.id.tv_my_links);
 
-        //identity period---------------------------------------------
+        //identity period------------------------------------------
 
-        //checkNetwork();
 
         adapter = new MyAdapter(requireActivity(), list);
         rv_test.setAdapter(adapter);
         rv_test.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
+
+        //grid view
+        plAdapter = new Popular_item_Adapter(requireActivity(), item_list);
+        gd_item.setAdapter(plAdapter);
+
+
+        grid_view();
 
 
         hashMap = new HashMap<>();
@@ -75,6 +116,59 @@ import java.util.List;
         list.add(hashMap);
 
 
+        iv_forward.setOnClickListener(view1 -> {
+
+            startActivity(new Intent(requireActivity(), Act_all_item.class));
+
+        });
+
+        //save links--------------------------------------------------------
+        save_Links();
+        SharedPreferences user_link1 = requireActivity().getSharedPreferences("user_link1", Context.MODE_PRIVATE);
+        SharedPreferences user_link2 = requireActivity().getSharedPreferences("user_link2", Context.MODE_PRIVATE);
+
+        String title1 = user_link1.getString("title", "No title");
+        String Link1 =user_link1.getString("link", "No link");
+
+        String title2 = user_link2.getString("title", "No title");
+        String Link2 = user_link1.getString("link","No link");
+
+        tv_no_links.setVisibility(View.VISIBLE);
+        ll_saved_links.setVisibility(View.GONE);
+        tv_link1.setVisibility(View.GONE);
+        tv_link2.setVisibility(View.GONE);
+        tv_my_links.setVisibility(View.GONE);
+
+        if (link1){
+
+            tv_link1.setVisibility(View.VISIBLE);
+            tv_link1.setText(title1);
+            tv_no_links.setVisibility(View.GONE);
+            tv_my_links.setVisibility(View.VISIBLE);
+            ll_saved_links.setVisibility(View.VISIBLE);
+            tv_link1.setOnClickListener(view1 -> {
+
+                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(Link1)));
+
+
+            });
+        }
+
+        if (link2){
+
+            tv_link2.setVisibility(View.VISIBLE);
+            tv_link2.setText(title2);
+            tv_no_links.setVisibility(View.GONE);
+            tv_my_links.setVisibility(View.VISIBLE);
+            ll_saved_links.setVisibility(View.VISIBLE);
+            tv_link2.setOnClickListener(view1 -> {
+
+                startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(Link2)));
+
+            });
+
+        }
+        //save links--------------------------------------------------------
 
 
 
@@ -132,5 +226,47 @@ import java.util.List;
 
     }
 
+    private void grid_view(){
+
+        map = new HashMap<>();
+        map.put("item1", "item");
+        item_list.add(map);
+
+    }
+
+    public void save_Links(){
+
+        SharedPreferences user_link1 = requireActivity().getSharedPreferences("user_link1", Context.MODE_PRIVATE);
+        SharedPreferences user_link2 = requireActivity().getSharedPreferences("user_link2", Context.MODE_PRIVATE);
+
+        String title1 = user_link1.getString("title", "No title");
+        String description1 = user_link1.getString("description", "No description");
+        String Link1 = user_link1.getString("link","No link");
+
+        String title2 = user_link2.getString("title", "No title");
+        String description2 = user_link2.getString("title", "No description");
+        String Link2 = user_link1.getString("link","No link");
+
+        if (title1.contains("No title")){
+
+            link1 = false;
+
+        }else{
+
+            link1 = true;
+
+        }
+
+        if (title2.contains("No title")){
+
+            link2 = false;
+
+
+        }else {
+            link2 = true;
+
+        }
+
+    }
 
  }//public class===========================================

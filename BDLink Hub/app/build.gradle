@@ -56,6 +56,6 @@ dependencies {
     implementation libs.firebase.analytics
     implementation libs.firebase.auth  // Firebase Auth Dependency
     implementation libs.gson
-
-
+    implementation(libs.firebase.inappmessaging.display)
+    implementation 'androidx.browser:browser:1.4.0'
 }

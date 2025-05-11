@@ -6,6 +6,8 @@
     <string name="no_internet_connection">ইন্টারনেট সংযোগ নেই !</string>
     <string name="check_connection">এই অ্যাপ ব্যবহার করতে ইন্টারনেট সংযোগ প্রয়োজন। আপনি কি ইন্টারনেট সংযোগ স্থাপন করতে চান ?</string>
 
+    <string name="open">openDrawer</string>
+    <string name="close">closeDrawer</string>
 
     <!-- hotline -->
     <string name="hotline_number">হটলাইন নম্বর</string>

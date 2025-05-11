@@ -71,7 +71,7 @@ public class Act_Profile extends AppCompatActivity {
         userInfo.setUser_id(user_id);
         String delete_user = gson.toJson(userInfo);
 
-        DeleteApi deleteApi = new DeleteApi(delete_user, "delete_user");
+        DeleteApi deleteApi = new DeleteApi("delete_user" ,delete_user);
 
         deleteApi.deleteApi(new Callback() {
             @Override

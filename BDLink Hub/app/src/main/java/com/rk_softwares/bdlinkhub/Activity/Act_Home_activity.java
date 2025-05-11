@@ -16,10 +16,12 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -27,6 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.navigation.NavigationView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -64,6 +67,9 @@ public class Act_Home_activity extends AppCompatActivity {
 
     private BottomNavigationView bottom_nav;
 
+    private DrawerLayout drawer_layout;
+    private NavigationView nv_drawer;
+
 
 
     //XML id's ------------------------------------------------------------
@@ -74,17 +80,18 @@ public class Act_Home_activity extends AppCompatActivity {
         setContentView(R.layout.act_home_activity);
 
 
-
-
-
         //identity period-----------------------------------------------------
 
         frame_layout = findViewById(R.id.frame_layout);
         toolbar = findViewById(R.id.toolbar);
         //floating_button = findViewById(R.id.floating_button);
         bottom_nav = findViewById(R.id.bottom_nav);
+        drawer_layout = findViewById(R.id.drawer_layout);
+        nv_drawer = findViewById(R.id.nv_drawer);
 
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Act_Home_activity.this, drawer_layout, toolbar, R.string.open, R.string.close);
 
+        drawer_layout.addDrawerListener(toggle);
 
         //identity period-----------------------------------------------------
 

@@ -251,7 +251,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setPassword(password);
         String user_login = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi(user_login, "post_userLogin");
+        PostApi postApi = new PostApi("post_userLogin", user_login);
 
         postApi.postApi(new Callback() {
             @Override
@@ -278,6 +278,7 @@ public class Act_Login extends AppCompatActivity {
                         User_info userInfo = gson.fromJson(data, User_info.class);
 
                         new Handler(Looper.getMainLooper()).post(() -> {
+
 
                             if (userInfo.getStatus().equals("Successful")){
 
@@ -342,7 +343,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setEmail(email);
         String user_data = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi(user_data, "post_google_OAuth");
+        PostApi postApi = new PostApi("post_google_OAuth",user_data);
 
            postApi.postApi(new Callback() {
                @Override

@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/sh_oval_img"
+    android:background="@drawable/img_profile_background"
     >
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_userImage"
+    <RelativeLayout
+        android:id="@+id/fl"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/img_user_img"
-        android:layout_gravity="center"
+        android:background="@drawable/sh_oval_img"
+        android:layout_centerInParent="true"
+        >
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_userImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/img_user_img"
+            android:layout_centerInParent="true"
+
+            />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User"
+        android:textSize="17sp"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:fontFamily="@font/noto_serif"
+        android:layout_below="@id/fl"
         />
 
-</FrameLayout>
+
+
+</RelativeLayout>

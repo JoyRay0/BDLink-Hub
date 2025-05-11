@@ -13,9 +13,9 @@
     >
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        app:srcCompat="@drawable/img_user_bookmark"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/ic_add"
         android:layout_margin="10dp"
         android:layout_gravity="center"
         />

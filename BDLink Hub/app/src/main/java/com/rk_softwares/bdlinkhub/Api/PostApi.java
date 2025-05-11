@@ -28,12 +28,11 @@ public class PostApi {
 
     public void postApi(Callback callback){
 
+        device_id = UUID.randomUUID().toString();
+
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),strValue );
+
         url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/user_reg_login?res="+endPointLink;
-
-       device_id = UUID.randomUUID().toString();
-
-        RequestBody body = RequestBody.create(JSON, strValue);
-
 
         Request request = new Request.Builder()
                 .url(url)
@@ -41,6 +40,7 @@ public class PostApi {
                 .addHeader("Content-Type", "application/json")
                 .header("X-UUID", device_id)
                 .build();
+
 
         client.newCall(request).enqueue(callback);
 
