@@ -19,16 +19,16 @@ public class PostApi {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-    public PostApi(String endPointLink, String strValue) {
+    public PostApi(String endPointLink, String strValue, String device_id) {
         this.client = new OkHttpClient();
         this.endPointLink = endPointLink;
         this.strValue = strValue;
+        this.device_id = device_id;
     }
 
 
     public void postApi(Callback callback){
 
-        device_id = UUID.randomUUID().toString();
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),strValue );
 

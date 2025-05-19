@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/fl_add_btn"
+<androidx.cardview.widget.CardView
+    android:id="@+id/cv_user_link"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="56dp"
     android:layout_height="56dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/sh_add_btn"
     android:layout_margin="10dp"
-    android:tooltipText="এড লিংক"
-    android:elevation="10dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="7dp"
+    app:cardBackgroundColor="#DACCCC"
+    android:tooltipText="লিংক"
     >
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:padding="5dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/add"
-        android:background="@android:color/transparent"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:srcCompat="@drawable/ic_add"
+        android:layout_margin="10dp"
         android:layout_gravity="center"
         />
 
-</FrameLayout>
+</androidx.cardview.widget.CardView>

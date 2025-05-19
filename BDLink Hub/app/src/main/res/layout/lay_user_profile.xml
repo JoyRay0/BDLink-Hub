@@ -20,21 +20,20 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/img_user_img"
             android:layout_centerInParent="true"
-
+            android:scaleType="centerCrop"
             />
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User"
+        android:text="Guest"
         android:textSize="17sp"
         android:textColor="#fff"
         android:gravity="center"
         android:fontFamily="@font/noto_serif"
         android:layout_below="@id/fl"
+        android:layout_marginTop="8dp"
         />
-
-
 
 </RelativeLayout>

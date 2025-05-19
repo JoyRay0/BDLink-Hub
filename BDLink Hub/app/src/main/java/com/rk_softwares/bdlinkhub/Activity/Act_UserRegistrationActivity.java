@@ -172,6 +172,8 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
     //sending user data to server
     private void send_data_to_server(String name, String email, String password, String DateofBirth){
 
+        String device_id = UUID.randomUUID().toString();
+
         Gson gson = new Gson();
 
         User_info userInfo = new User_info();
@@ -182,7 +184,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
         String user_reg = gson.toJson(userInfo);
 
 
-        PostApi postApi = new PostApi("post_reg", user_reg);
+        PostApi postApi = new PostApi("post_reg", user_reg, device_id);
 
         postApi.postApi(new Callback() {
             @Override

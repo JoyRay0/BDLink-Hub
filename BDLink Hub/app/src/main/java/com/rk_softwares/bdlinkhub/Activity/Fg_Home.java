@@ -9,14 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 
 import android.os.Handler;
@@ -26,18 +26,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
-import com.rk_softwares.bdlinkhub.Act_Browser;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.MyAdapter;
 import com.rk_softwares.bdlinkhub.Adapter.Popular_item_Adapter;
+import com.rk_softwares.bdlinkhub.Adapter.ViewPagerAdapter;
+import com.rk_softwares.bdlinkhub.Api.GetApi;
+import com.rk_softwares.bdlinkhub.Model.Item;
+import com.rk_softwares.bdlinkhub.Model.Item_data;
 import com.rk_softwares.bdlinkhub.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.UUID;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 
  public class Fg_Home extends Fragment {
@@ -50,6 +63,7 @@ import java.util.concurrent.atomic.AtomicReference;
      private AppCompatImageView iv_forward;
      private AppCompatTextView tv_no_links,tv_link1,tv_link2, tv_my_links;
      private LinearLayout ll_saved_links;
+     private ViewPager2 vp_img;
 
      private MyAdapter adapter;
 
@@ -61,10 +75,18 @@ import java.util.concurrent.atomic.AtomicReference;
      List<HashMap<String, String>> item_list = new ArrayList<>();
      HashMap<String, String> map;
 
+     private ViewPagerAdapter viewPagerAdapter;
 
+     int[] images = {R.drawable.img_test2, R.drawable.img_test, R.drawable.img_google_login};
 
      private boolean link1 = false;
      private boolean link2 = false;
+
+     int currentItem = 0;
+
+     private TabLayout tl_dot;
+
+     Handler handler;
 
      //XML id's-----------------------------------------------
 
@@ -85,6 +107,8 @@ import java.util.concurrent.atomic.AtomicReference;
         tv_link2 = view.findViewById(R.id.tv_link2);
         ll_saved_links = view.findViewById(R.id.ll_saved_links);
         tv_my_links = view.findViewById(R.id.tv_my_links);
+        vp_img = view.findViewById(R.id.vp_img);
+
 
         //identity period------------------------------------------
 
@@ -97,6 +121,30 @@ import java.util.concurrent.atomic.AtomicReference;
         plAdapter = new Popular_item_Adapter(requireActivity(), item_list);
         gd_item.setAdapter(plAdapter);
 
+
+        //image slider------------------------------------------
+        viewPagerAdapter = new ViewPagerAdapter(requireActivity(), images);
+        vp_img.setAdapter(viewPagerAdapter);
+
+
+
+        handler  = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                currentItem = (currentItem + 1) % images.length;
+                vp_img.setCurrentItem(currentItem, true);
+                handler.postDelayed(this, 5000);
+
+
+
+            }
+        };
+
+        handler.postDelayed(runnable, 2000);
+
+        //image slider------------------------------------------
 
         grid_view();
 
@@ -269,4 +317,74 @@ import java.util.concurrent.atomic.AtomicReference;
 
     }
 
+    private void item_icon_data(){
+
+        String device_id = UUID.randomUUID().toString();
+
+        Gson gson = new Gson();
+
+        GetApi getApi = new GetApi("ai");
+
+        getApi.getApi(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                if (response.isSuccessful() && response.body() != null){
+
+                    String data = response.body().string();
+
+                    try {
+
+                        Item_data itemData = gson.fromJson(data, Item_data.class);
+
+                        new Handler(Looper.getMainLooper()).post(() -> {
+
+                            if (itemData.getStatus().equals("successful")){
+
+
+                                List<Item> item = itemData.getData();
+
+                                for (int i = 0; i < item.size(); i++){
+
+                                    Item item1 = item.get(i);
+
+                                    map = new HashMap<>();
+                                    map.put("cat",item1.getCat());
+                                    map.put("title",item1.getTitle());
+                                    map.put("description",item1.getDescription());
+                                    map.put("link", item1.getLink());
+                                    item_list.add(map);
+
+
+                                }
+
+                            }
+
+
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        });
+
+
+
+    }
+
+
+     @Override
+     public void onDestroy() {
+         super.onDestroy();
+         handler.removeCallbacksAndMessages(null);
+     }
  }//public class===========================================

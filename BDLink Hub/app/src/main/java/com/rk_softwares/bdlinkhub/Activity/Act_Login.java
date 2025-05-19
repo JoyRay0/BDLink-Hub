@@ -244,6 +244,8 @@ public class Act_Login extends AppCompatActivity {
     //Login user
     private void login(String email, String password){
 
+        String device_id = UUID.randomUUID().toString();
+
         Gson gson = new Gson();
 
         User_info userInfo = new User_info();
@@ -251,7 +253,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setPassword(password);
         String user_login = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi("post_userLogin", user_login);
+        PostApi postApi = new PostApi("post_userLogin", user_login, device_id);
 
         postApi.postApi(new Callback() {
             @Override
@@ -335,7 +337,7 @@ public class Act_Login extends AppCompatActivity {
     //send data to server
     private void send_data_to_server(String name, String email){
 
-        //10
+        String device_id = UUID.randomUUID().toString();
         Gson gson = new Gson();
 
         User_info userInfo = new User_info();
@@ -343,7 +345,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setEmail(email);
         String user_data = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi("post_google_OAuth",user_data);
+        PostApi postApi = new PostApi("post_google_OAuth",user_data, device_id);
 
            postApi.postApi(new Callback() {
                @Override

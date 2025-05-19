@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Act_Home_activity"
     tools:openDrawer="start"
+
     >
 
     <RelativeLayout
@@ -40,6 +41,8 @@
             app:itemIconTint="@drawable/sh_selected_bottom_nav"
             app:itemTextColor="#D8C7C7"
             app:labelVisibilityMode="labeled"
+            app:itemTextAppearanceActive="@style/bottom_menu_text_active"
+            app:itemTextAppearanceInactive="@style/bottom_menu_text_inactive"
             app:itemPaddingTop="10dp"
             app:itemPaddingBottom="8dp"
             android:layout_marginTop="15dp"
@@ -57,7 +60,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer"
-        app:headerLayout="@layout/lay_user_image"
+        app:headerLayout="@layout/lay_user_profile"
+        app:itemTextAppearance="@style/Custom_menu_text"
+        app:itemIconPadding="25dp"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

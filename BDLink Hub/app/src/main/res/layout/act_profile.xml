@@ -23,7 +23,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         >
-        <include layout="@layout/lay_user_image"
+        <include layout="@layout/lay_user_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

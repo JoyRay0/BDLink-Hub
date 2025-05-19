@@ -1,34 +1,39 @@
 package com.rk_softwares.bdlinkhub.Activity;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.rk_softwares.bdlinkhub.R;
+import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
+
 
 
 public class Act_SplashScreenActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_splash_screen);
 
-        //getWindow().setStatusBarColor(Color.TRANSPARENT);
-        //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
 
             //navigate_main();
             nav();
+
 
         }else {
 
@@ -37,6 +42,7 @@ public class Act_SplashScreenActivity extends AppCompatActivity {
                 public void run() {
                     //navigate_main();
                     nav();
+
                 }
             },2000);
 
@@ -68,7 +74,6 @@ public class Act_SplashScreenActivity extends AppCompatActivity {
 
 
     }
-
 
 
 }

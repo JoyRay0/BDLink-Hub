@@ -11,7 +11,7 @@
     >
 
     <include
-        layout="@layout/lay_back_app_bar"
+        layout="@layout/lay_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/cv_user_link"
+<FrameLayout
+    android:id="@+id/fl_backButton"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="56dp"
     android:layout_height="56dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="7dp"
-    app:cardBackgroundColor="#DACCCC"
-    android:tooltipText="লিংক"
+    android:layout_margin="15dp"
+    android:background="?attr/actionBarItemBackground"
+    android:elevation="3dp"
     >
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        app:srcCompat="@drawable/ic_add"
-        android:layout_margin="10dp"
+        android:src="@drawable/ic_back"
         android:layout_gravity="center"
         />
 
-</androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

@@ -26,7 +26,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -89,23 +88,20 @@ public class Act_Home_activity extends AppCompatActivity {
         drawer_layout = findViewById(R.id.drawer_layout);
         nv_drawer = findViewById(R.id.nv_drawer);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Act_Home_activity.this, drawer_layout, toolbar, R.string.open, R.string.close);
 
-        drawer_layout.addDrawerListener(toggle);
 
         //identity period-----------------------------------------------------
 
+        //toolbar-------------------------------------
         toolbar();
+        //toolbar-------------------------------------
         //check_permission();
 
-
-        /*
-        Dialog dialog = new Dialog(MainActivity.this);
-        dialog.setContentView(R.layout.nightmode_lightmode);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-        dialog.show();
-
-         */
+        //drawer navigation----------------------------------------------
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Act_Home_activity.this, drawer_layout, toolbar, R.string.open, R.string.close);
+        drawer_layout.addDrawerListener(toggle);
+        drawer_navigation();
+        //drawer navigation----------------------------------------------
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.frame_layout, new Fg_Home()).commit();
@@ -157,7 +153,8 @@ public class Act_Home_activity extends AppCompatActivity {
 
             Dexter.withContext(this).withPermissions(
 
-                    Manifest.permission.CALL_PHONE)
+                    Manifest.permission.CALL_PHONE,
+                            Manifest.permission.POST_NOTIFICATIONS)
 
                     .withListener(new MultiplePermissionsListener(){
                 @Override
@@ -264,7 +261,8 @@ public class Act_Home_activity extends AppCompatActivity {
 
     }
 
-    private void toolbar(){     //customize menu toolbar
+    //customize menu toolbar------------------------------
+    private void toolbar(){
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -279,13 +277,6 @@ public class Act_Home_activity extends AppCompatActivity {
                     intent.putExtra(Intent.EXTRA_TEXT,Body);
                     intent.putExtra(Intent.EXTRA_TEXT,sub);
                     startActivity(Intent.createChooser(intent,null));
-
-                } else if (item.getItemId() == R.id.info) {
-
-                    Dialog dialog1 = new Dialog(Act_Home_activity.this);
-                    dialog1.setContentView(R.layout.lay_info_dialog);
-                    dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-                    dialog1.show();
 
                 }
 
@@ -365,6 +356,41 @@ public class Act_Home_activity extends AppCompatActivity {
             login_dialog();
 
         }
+
+    }
+
+    //drawer navigation-------------------------------------
+    private void drawer_navigation(){
+
+        nv_drawer.setNavigationItemSelectedListener(item -> {
+
+            int id = item.getItemId();
+
+            if (id == R.id.review){
+
+            } else if (id == R.id.feedback) {
+
+            } else if (id == R.id.login) {
+
+                startActivity(new Intent(this, Act_Login.class));
+
+            } else if (id == R.id.logout) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                sharedPreferences.edit().remove("userInfo").apply();
+
+            } else if (id == R.id.info) {
+
+                Dialog dialog1 = new Dialog(Act_Home_activity.this);
+                dialog1.setContentView(R.layout.lay_info_dialog);
+                dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+                dialog1.show();
+
+            }
+
+            return true;
+
+        });
 
     }
 

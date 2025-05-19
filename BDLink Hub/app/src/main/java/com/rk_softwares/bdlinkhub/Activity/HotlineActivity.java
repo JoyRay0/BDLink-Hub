@@ -90,7 +90,7 @@ public class HotlineActivity extends AppCompatActivity {
             LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view1 = layoutInflater.inflate(R.layout.hotline_view_degsin, viewGroup, false);
 
-            Animation animation = AnimationUtils.loadAnimation(HotlineActivity.this, R.anim.slide_in);
+            Animation animation = AnimationUtils.loadAnimation(HotlineActivity.this, R.anim.scale_down);
             view1.startAnimation(animation);
 
             HashMap<String, String > hashMap1 = arrayList.get(i);

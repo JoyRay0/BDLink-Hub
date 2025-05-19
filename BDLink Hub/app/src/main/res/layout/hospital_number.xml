@@ -9,7 +9,7 @@
     tools:context=".Activity.HospitalNumberActivity"
     >
 
-    <include layout="@layout/lay_back_app_bar"
+    <include layout="@layout/lay_back_button"
         android:id="@+id/hospital_toolbar"
     />
 

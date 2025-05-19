@@ -60,18 +60,41 @@
 
         </androidx.cardview.widget.CardView>
 
-        <include layout="@layout/lay_view_link"
+        <include layout="@layout/lay_dashboard_link"
             android:id="@+id/lay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cv_button"
             />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            android:layout_margin="10dp"
+
+            >
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+        </androidx.cardview.widget.CardView>
+        
+        
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lay"
+            android:layout_below="@id/cv_slider"
             />
 
     </RelativeLayout>

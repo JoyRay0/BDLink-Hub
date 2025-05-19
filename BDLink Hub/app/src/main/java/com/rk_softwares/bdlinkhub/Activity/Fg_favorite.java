@@ -21,6 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -74,18 +76,27 @@ public class Fg_favorite extends Fragment {
 
         }else {
 
+            Animation up = AnimationUtils.loadAnimation(requireActivity(), R.anim.scale_up);
+            Animation down = AnimationUtils.loadAnimation(requireActivity(), R.anim.scale_down);
             cv_user_link.setOnClickListener(view1 -> {
 
                 if (isOpen){
 
                     fl_list.setVisibility(View.GONE);
                     fl_add_btn.setVisibility(View.GONE);
+
+                    fl_list.startAnimation(down);
+                    fl_add_btn.startAnimation(down);
+
                     isOpen = false;
 
                 }else {
 
                     fl_add_btn.setVisibility(View.VISIBLE);
                     fl_list.setVisibility(View.VISIBLE);
+
+                    fl_add_btn.startAnimation(up);
+                    fl_list.startAnimation(up);
                     isOpen = true;
                 }
 
@@ -109,8 +120,9 @@ public class Fg_favorite extends Fragment {
 
         fl_add_btn.setOnClickListener(view -> {
 
+
             Dialog dialog1 = new Dialog(requireActivity());
-            dialog1.setContentView(R.layout.lay_user_custom_link);
+            dialog1.setContentView(R.layout.lay_user_add_link);
             dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
             Window window = dialog1.getWindow();
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -217,7 +229,7 @@ public class Fg_favorite extends Fragment {
     private void user_save_links(){
 
         Dialog dialog1 = new Dialog(requireActivity());
-        dialog1.setContentView(R.layout.lay_link_view_sp);
+        dialog1.setContentView(R.layout.lay_user_save_link);
         dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         Window window = dialog1.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

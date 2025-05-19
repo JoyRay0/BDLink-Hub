@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    
+
     >
 
-    <item android:id="@+id/test"
-        android:title="icon"
-        android:icon="@drawable/ic_login"
-        app:showAsAction="ifRoom"
-        />
+    <group
+        >
+
+        <item android:id="@+id/review"
+            android:title="আপনার রেটিং দিন"
+            android:icon="@drawable/ic_review"
+
+            />
+
+        <item android:id="@+id/feedback"
+            android:title="মতামত দিন"
+            android:icon="@drawable/ic_feedback"
+            />
+
+        <item android:id="@+id/login"
+            android:title="লগইন"
+            android:icon="@drawable/ic_login"
+            
+            />
+
+        <item android:id="@+id/logout"
+            android:title="লগআউট"
+            android:icon="@drawable/ic_logout"
+            />
+
+        <item android:id="@+id/info"
+            android:title="অ্যাপ সম্পর্কিত তথ্য"
+            android:icon="@drawable/ic_info"
+            />
+
+
+    </group>
+
+
 
 </menu>

@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="CustomSize">
+    <!-- drawer menu-->
+    <style name="Custom_menu_text" parent="TextAppearance.AppCompat.Menu">
 
-        <item name="cornerFamily">rounded</item>
+        <item name="fontFamily">@font/noto_serif</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">17sp</item>
 
-        <item name="cornerRadius">16dp</item>
-
-        <item name="android:layout_gravity">center</item>
     </style>
+    <!-- drawer menu-->
+
+    <!-- bottom navigation menu-->
+    <style name="bottom_menu_text_active" parent="TextAppearance.AppCompat.Menu">
+
+        <item name="fontFamily">@font/noto_serif</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="bottom_menu_text_inactive" parent="TextAppearance.AppCompat.Menu">
+
+        <item name="fontFamily">@font/noto_serif</item>
+        <item name="android:textSize">13sp</item>
+
+    </style>
+    <!-- bottom navigation menu-->
+
 
 </resources>

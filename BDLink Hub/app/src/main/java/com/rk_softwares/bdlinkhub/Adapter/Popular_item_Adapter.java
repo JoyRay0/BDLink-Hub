@@ -51,7 +51,7 @@ public class Popular_item_Adapter extends BaseAdapter {
 
         if (view == null){
 
-           view =  LayoutInflater.from(context).inflate(R.layout.lay_pouplar_links, viewGroup, false);
+           view =  LayoutInflater.from(context).inflate(R.layout.lay_links_icon, viewGroup, false);
 
            viewholder = new Viewholder();
            viewholder.iv_pl_icon = view.findViewById(R.id.iv_pl_icon);
