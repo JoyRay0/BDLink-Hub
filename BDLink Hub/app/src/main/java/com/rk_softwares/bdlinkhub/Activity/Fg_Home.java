@@ -14,7 +14,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -26,18 +25,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.MyAdapter;
 import com.rk_softwares.bdlinkhub.Adapter.Popular_item_Adapter;
 import com.rk_softwares.bdlinkhub.Adapter.ViewPagerAdapter;
-import com.rk_softwares.bdlinkhub.Api.GetApi;
 import com.rk_softwares.bdlinkhub.Model.Item;
 import com.rk_softwares.bdlinkhub.Model.Item_data;
 import com.rk_softwares.bdlinkhub.R;
@@ -46,10 +42,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 
 
@@ -99,7 +96,7 @@ import okhttp3.Response;
 
        //identity period------------------------------------------
 
-        rv_test = view.findViewById(R.id.rv_test);
+        //rv_test = view.findViewById(R.id.rv_test);
         gd_item = view.findViewById(R.id.gd_item);
         iv_forward = view.findViewById(R.id.iv_forward);
         tv_no_links = view.findViewById(R.id.tv_no_links);
@@ -113,14 +110,16 @@ import okhttp3.Response;
         //identity period------------------------------------------
 
 
-        adapter = new MyAdapter(requireActivity(), list);
-        rv_test.setAdapter(adapter);
-        rv_test.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
+        //adapter = new MyAdapter(requireActivity(), list);
+        //rv_test.setAdapter(adapter);
+        //rv_test.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
 
-        //grid view
+        //grid view---------------------------------------
         plAdapter = new Popular_item_Adapter(requireActivity(), item_list);
         gd_item.setAdapter(plAdapter);
-
+        //popular_item();
+        item_data();
+        //grid view---------------------------------------
 
         //image slider------------------------------------------
         viewPagerAdapter = new ViewPagerAdapter(requireActivity(), images);
@@ -145,9 +144,6 @@ import okhttp3.Response;
         handler.postDelayed(runnable, 2000);
 
         //image slider------------------------------------------
-
-        grid_view();
-
 
         hashMap = new HashMap<>();
         hashMap.put("itemType","1stLink");
@@ -274,13 +270,7 @@ import okhttp3.Response;
 
     }
 
-    private void grid_view(){
 
-        map = new HashMap<>();
-        map.put("item1", "item");
-        item_list.add(map);
-
-    }
 
     public void save_Links(){
 
@@ -317,15 +307,19 @@ import okhttp3.Response;
 
     }
 
-    private void item_icon_data(){
 
-        String device_id = UUID.randomUUID().toString();
+    //popular --------------------------------------------------------
+    private void item_data(){
 
         Gson gson = new Gson();
 
-        GetApi getApi = new GetApi("ai");
+        OkHttpClient client = new OkHttpClient();
 
-        getApi.getApi(new Callback() {
+        String url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=popular_item";
+
+        Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
@@ -342,44 +336,92 @@ import okhttp3.Response;
 
                         Item_data itemData = gson.fromJson(data, Item_data.class);
 
-                        new Handler(Looper.getMainLooper()).post(() -> {
+                        if (itemData.getStatus().contains("Successful")) {
 
-                            if (itemData.getStatus().equals("successful")){
+                            List<Item> items = itemData.getItem();
 
+                            for (int i = 0; i < items.size(); i++) {
 
-                                List<Item> item = itemData.getData();
+                                Item item = items.get(i);
 
-                                for (int i = 0; i < item.size(); i++){
-
-                                    Item item1 = item.get(i);
-
-                                    map = new HashMap<>();
-                                    map.put("cat",item1.getCat());
-                                    map.put("title",item1.getTitle());
-                                    map.put("description",item1.getDescription());
-                                    map.put("link", item1.getLink());
-                                    item_list.add(map);
-
-
-                                }
-
+                                map = new HashMap<>();
+                                map.put("item_name", item.getItem_name());
+                                map.put("item_pic", item.getItem_pic());
+                                item_list.add(map);
                             }
 
+                            new Handler(Looper.getMainLooper()).post(() -> {
 
-                        });
+                                plAdapter.notifyDataSetChanged();
+
+                            });
+
+                        }
 
                     } catch (Exception e) {
                         e.printStackTrace();
+                        /*
+                        new Handler(Looper.getMainLooper()).post(() -> {
+
+                            Toast.makeText(requireActivity(), ""+e, Toast.LENGTH_SHORT).show();
+
+                        });
+                         */
                     }
 
                 }
 
             }
         });
-
-
-
+        
     }
+
+
+
+     //popular item------------------------------------------------
+     private void popular_item(){
+
+         map = new HashMap<>();
+         map.put("item_name", "AI");
+         map.put("item_pic", getString(R.string.ai_images));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "পএিকা");
+         map.put("item_pic", getString(R.string.news));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "চাকরি");
+         map.put("item_pic", getString(R.string.job));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "বিনোদন ও টিভি");
+         map.put("item_pic", getString(R.string.tv));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "ইসলামিক সেবা");
+         map.put("item_pic", getString(R.string.muslim));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "শপিং");
+         map.put("item_pic", getString(R.string.e_commerce));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "টিকিট বুকিং");
+         map.put("item_pic", getString(R.string.bus));
+         item_list.add(map);
+
+         map = new HashMap<>();
+         map.put("item_name", "রাইড শেয়ারিং");
+         map.put("item_pic", getString(R.string.ride));
+         item_list.add(map);
+
+     }
 
 
      @Override

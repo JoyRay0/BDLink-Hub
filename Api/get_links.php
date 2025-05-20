@@ -36,8 +36,8 @@ function getAllLinks(){
                 $sql = "SELECT *FROM user_table";
                 break;
 
-            case ('data'):
-                $sql = "SELECT *FROM user_table2";
+            case ('ai'):
+                $sql = "SELECT *FROM ai_links";
                 break;
 
             case ('user'):

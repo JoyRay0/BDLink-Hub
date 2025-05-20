@@ -2,24 +2,14 @@ package com.rk_softwares.bdlinkhub.Model;
 
 public class Item {
 
-    private String cat;
-    private String title;
-    private String description;
-    private String link;
+    private String item_name;
+    private String item_pic;
 
-    public String getCat() {
-        return cat;
+    public String getItem_name() {
+        return item_name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getLink() {
-        return link;
+    public String getItem_pic() {
+        return item_pic;
     }
 }

@@ -15,6 +15,7 @@ header("Expect-CT: max-age=86400, enforce, report-uri='https://rksoftwares.xyz/r
 
 require 'db.php';
 require 'ID_middleware.php';
+include 'send_email.php';
 
 
 //middlewares
@@ -38,7 +39,6 @@ function Api_request(){
                     !empty($data['password']) ||
                     !empty($data['date_of_birth']) || 
                     !empty($data['new_password']) ||
-                    !empty($data['access_token']) ||
                     !empty($data['user_id']);
 
         //Registration & OAuth 
@@ -50,7 +50,6 @@ function Api_request(){
                     $date_of_birth = $data['date_of_birth'];
                     $password = $data['password'];
                     $new_password = $data['new_password'];
-                    $access_token = $data['access_token'];
 
                     //sanitizing user data
                     $sanitize_name = trim(strip_tags(filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS)));
@@ -65,63 +64,117 @@ function Api_request(){
                 //post method for registration
                 case('post_reg') :
                     
-                    $sql = "INSERT INTO user_info(name, email, date_of_birth, password) VALUES (?, ?, ?, ?)";
+                    $sql = "SELECT * FROM user_info WHERE email = ?";
                     $result = $database_connect->prepare($sql);
-                    $result->bind_param('ssss', $sanitize_name, $sanitize_email, $sanitize_date_of_birth, $sanitize_password);
+                    $result->bind_param("s", $sanitize_email);
+                    $result->execute();
+                    $data = $result->get_result();
 
-                    if($result->execute()){
+                    if($data->num_rows > 0){
 
-                        $user_id = $database_connect->insert_id;
-
-                        echo json_encode([
-
-                            'status' => 'Successful',
-                            'message' => 'Account created successfully',
-                            'user_id' => $user_id,
-                            'name' => $sanitize_name,
-
-                        ]);
-
-                    }else{
 
                         echo json_encode([
 
                             'status' => 'Failed',
-                            'message' => 'Connection timed out',
+                            'message' => 'An account with this email already exists. Please use a different email address.',
                             'user_id' => 'No id',
                             'name' => 'No name',
 
                         ]);
 
+                    }else{
+
+                        $sql = "INSERT INTO user_info(name, email, date_of_birth, password) VALUES (?, ?, ?, ?)";
+                        $result = $database_connect->prepare($sql);
+                        $result->bind_param('ssss', $sanitize_name, $sanitize_email, $sanitize_date_of_birth, $sanitize_password);
+
+                        if($result->execute()){
+
+                            $user_id = $database_connect->insert_id;
+
+                            try{
+
+                                send_welcome_email($sanitize_email);
+
+                            }catch(Exception $e){
+
+                                echo $e;
+
+                            }
+
+                            echo json_encode([
+
+                                'status' => 'Successful',
+                                'message' => 'Account created successfully',
+                                'user_id' => $user_id,
+                                'name' => $sanitize_name,
+
+                            ]);
+                            
+
+                        }else{
+
+                            echo json_encode([
+
+                                'status' => 'Failed',
+                                'message' => 'Connection timed out',
+                                'user_id' => 'No id',
+                                'name' => 'No name',
+
+                            ]);
+
+                        }
+                    
+                
                     }
-                    $result->close(); 
+
+                    $result->close();
 
                     break;
 
                 //put method for reset password
                 case('put_user_password'):
 
-                    $sql = "UPDATE user_info SET password = ? WHERE email = ?";
+                    $sql = "SELECT * FROM user_info WHERE email = ?";
                     $result = $database_connect->prepare($sql);
-                    $result->bind_param("ss", $sanitize_new_password, $sanitize_email);
+                    $result->bind_param("s", $sanitize_email);
+                    $result->execute();
+                    $info = $result->get_result();
 
-                    if($result->execute()){
+                    if($info->num_rows > 0){
 
-                        echo json_encode([
+                        $sql = "UPDATE user_info SET password = ? WHERE email = ?";
+                        $result = $database_connect->prepare($sql);
+                        $result->bind_param("ss", $sanitize_new_password, $sanitize_email);
 
-                            'status' => 'Successful',
-                            'message' => 'Password changed successfully'
+                        if($result->execute()){
 
-                        ]);
-                        
+                            echo json_encode([
+
+                                'status' => 'Successful',
+                                'message' => 'Password changed successfully'
+
+                            ]);
+                            
+                        }else{
+
+                            echo json_encode([
+
+                            'status' => 'Failed',
+                            'message' => 'Failed to update password'
+                            ]);
+                            exit();
+                        }
+
                     }else{
 
                         echo json_encode([
 
-                        'status' => 'Failed',
-                        'message' => 'Failed to update password'
-                        ]);
-                        exit();
+                            'status' => 'Failed',
+                            'message' => 'Please check your email address'
+                            ]);
+                            exit();
+
                     }
 
                     $result->close();
@@ -213,6 +266,17 @@ function Api_request(){
 
                             $user_id = $database_connect->insert_id;
 
+                            try{
+
+                                send_welcome_email($sanitize_email);
+
+                            }catch(Exception $e){
+
+                                echo $e;
+
+                            }
+
+                        
                             echo json_encode([
 
                                 'status' => 'Successful',
@@ -221,6 +285,8 @@ function Api_request(){
                                 'name' => $sanitize_name
 
                             ]);
+
+                            
 
                         }
 

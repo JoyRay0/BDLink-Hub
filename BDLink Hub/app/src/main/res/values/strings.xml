@@ -4,6 +4,13 @@
 
     <!-- image links-->
     <string name="ai_images">https://cdn.rksoftwares.xyz/images/ai.png</string>
+    <string name="news">https://cdn.rksoftwares.xyz/images/news.png</string>
+    <string name="job">https://cdn.rksoftwares.xyz/images/job.png</string>
+    <string name="tv">https://cdn.rksoftwares.xyz/images/tv.png</string>
+    <string name="muslim">https://cdn.rksoftwares.xyz/images/muslim.png</string>
+    <string name="e_commerce">https://cdn.rksoftwares.xyz/images/e_commerce.png</string>
+    <string name="bus">https://cdn.rksoftwares.xyz/images/bus.png</string>
+    <string name="ride">https://cdn.rksoftwares.xyz/images/ride.png</string>
 
 
     <!-- bottom sheet dialog -->

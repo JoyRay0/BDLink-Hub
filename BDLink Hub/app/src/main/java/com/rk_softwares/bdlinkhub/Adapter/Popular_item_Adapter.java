@@ -1,5 +1,6 @@
 package com.rk_softwares.bdlinkhub.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.rk_softwares.bdlinkhub.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +28,7 @@ public class Popular_item_Adapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return list.size();
     }
 
     @Override
@@ -38,32 +41,25 @@ public class Popular_item_Adapter extends BaseAdapter {
         return position;
     }
 
-    static class Viewholder{
-
-        AppCompatImageView iv_pl_icon;
-
-    }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        Viewholder viewholder;
+       @SuppressLint("ViewHolder")
+       View view1 =  LayoutInflater.from(context).inflate(R.layout.lay_links_icon, viewGroup, false);
 
-        if (view == null){
+         AppCompatImageView iv_pl_icon = view1.findViewById(R.id.iv_pl_icon);
+         AppCompatTextView tv_icon_text = view1.findViewById(R.id.tv_icon_text);
 
-           view =  LayoutInflater.from(context).inflate(R.layout.lay_links_icon, viewGroup, false);
+         HashMap<String, String> hashMap = list.get(position);
 
-           viewholder = new Viewholder();
-           viewholder.iv_pl_icon = view.findViewById(R.id.iv_pl_icon);
+         String item_name = hashMap.get("item_name");
+         String item_pic = hashMap.get("item_pic");
 
-           view.setTag(viewholder);
+         tv_icon_text.setText(item_name);
+         Picasso.get().load(item_pic).into(iv_pl_icon);
 
-        }else {
 
-            viewholder = (Viewholder) view.getTag();
-
-        }
-
-        return view;
+        return view1;
     }
 }
