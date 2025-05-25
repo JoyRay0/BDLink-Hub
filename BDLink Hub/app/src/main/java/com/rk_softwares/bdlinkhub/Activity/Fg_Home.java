@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 
@@ -37,6 +38,7 @@ import com.rk_softwares.bdlinkhub.Adapter.ViewPagerAdapter;
 import com.rk_softwares.bdlinkhub.Model.Item;
 import com.rk_softwares.bdlinkhub.Model.Item_data;
 import com.rk_softwares.bdlinkhub.R;
+import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,9 +81,11 @@ import okhttp3.Response;
      private boolean link1 = false;
      private boolean link2 = false;
 
+     private WormDotsIndicator dotsIndicator;
+
      int currentItem = 0;
 
-     private TabLayout tl_dot;
+     private SwipeRefreshLayout sl_refresh;
 
      Handler handler;
 
@@ -105,6 +109,8 @@ import okhttp3.Response;
         ll_saved_links = view.findViewById(R.id.ll_saved_links);
         tv_my_links = view.findViewById(R.id.tv_my_links);
         vp_img = view.findViewById(R.id.vp_img);
+        sl_refresh = view.findViewById(R.id.sl_refresh);
+        dotsIndicator = view.findViewById(R.id.dotsIndicator);
 
 
         //identity period------------------------------------------
@@ -124,7 +130,16 @@ import okhttp3.Response;
         //image slider------------------------------------------
         viewPagerAdapter = new ViewPagerAdapter(requireActivity(), images);
         vp_img.setAdapter(viewPagerAdapter);
+        dotsIndicator.setViewPager2(vp_img);
 
+        sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                item_data();
+
+            }
+        });
 
 
         handler  = new Handler();
@@ -135,8 +150,6 @@ import okhttp3.Response;
                 currentItem = (currentItem + 1) % images.length;
                 vp_img.setCurrentItem(currentItem, true);
                 handler.postDelayed(this, 5000);
-
-
 
             }
         };
@@ -215,63 +228,10 @@ import okhttp3.Response;
         //save links--------------------------------------------------------
 
 
-
-
-        //chcek();
-
         return view;
     }//on create view =========================================
 
-
-    //checking network--------------------------------------------------------
-
-    private void chcek(){
-
-       new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-           @Override
-           public void run() {
-
-               Dialog dialog = new Dialog(getContext());
-               dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-               dialog.setContentView(R.layout.lay_bottom_sheet_dialog);
-               dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-               //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
-               dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-               dialog.getWindow().setGravity(Gravity.BOTTOM);
-               dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-               dialog.show();
-
-               //bottom dialog interface--------------------------------------------------------
-
-               AppCompatButton no_button = dialog.findViewById(R.id.no_button);
-               AppCompatButton yes_button = dialog.findViewById(R.id.yes_button);
-
-               no_button.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View view) {
-
-                       dialog.dismiss();
-
-                   }
-               });
-
-               yes_button.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View view) {
-
-
-                       dialog.dismiss();
-
-                   }
-               });
-           }
-
-       },2000);
-
-    }
-
-
-
+     //save links----------------------------------------------
     public void save_Links(){
 
         SharedPreferences user_link1 = requireActivity().getSharedPreferences("user_link1", Context.MODE_PRIVATE);
@@ -340,6 +300,7 @@ import okhttp3.Response;
 
                             List<Item> items = itemData.getItem();
 
+                            item_list.clear();
                             for (int i = 0; i < items.size(); i++) {
 
                                 Item item = items.get(i);
@@ -353,6 +314,7 @@ import okhttp3.Response;
                             new Handler(Looper.getMainLooper()).post(() -> {
 
                                 plAdapter.notifyDataSetChanged();
+                                sl_refresh.setRefreshing(false);
 
                             });
 
@@ -360,13 +322,7 @@ import okhttp3.Response;
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        /*
-                        new Handler(Looper.getMainLooper()).post(() -> {
 
-                            Toast.makeText(requireActivity(), ""+e, Toast.LENGTH_SHORT).show();
-
-                        });
-                         */
                     }
 
                 }
@@ -375,54 +331,6 @@ import okhttp3.Response;
         });
         
     }
-
-
-
-     //popular item------------------------------------------------
-     private void popular_item(){
-
-         map = new HashMap<>();
-         map.put("item_name", "AI");
-         map.put("item_pic", getString(R.string.ai_images));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "পএিকা");
-         map.put("item_pic", getString(R.string.news));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "চাকরি");
-         map.put("item_pic", getString(R.string.job));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "বিনোদন ও টিভি");
-         map.put("item_pic", getString(R.string.tv));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "ইসলামিক সেবা");
-         map.put("item_pic", getString(R.string.muslim));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "শপিং");
-         map.put("item_pic", getString(R.string.e_commerce));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "টিকিট বুকিং");
-         map.put("item_pic", getString(R.string.bus));
-         item_list.add(map);
-
-         map = new HashMap<>();
-         map.put("item_name", "রাইড শেয়ারিং");
-         map.put("item_pic", getString(R.string.ride));
-         item_list.add(map);
-
-     }
-
 
      @Override
      public void onDestroy() {

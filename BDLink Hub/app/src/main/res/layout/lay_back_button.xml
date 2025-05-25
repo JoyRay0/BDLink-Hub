@@ -6,7 +6,7 @@
     android:layout_height="56dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="15dp"
-    android:background="?attr/actionBarItemBackground"
+
     android:elevation="3dp"
     >
 
@@ -16,6 +16,7 @@
         android:layout_height="35dp"
         android:src="@drawable/ic_back"
         android:layout_gravity="center"
+        android:background="?attr/actionBarItemBackground"
         />
 
 

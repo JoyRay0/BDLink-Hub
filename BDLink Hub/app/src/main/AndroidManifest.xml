@@ -6,9 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +20,12 @@
         android:theme="@style/Base.Theme.BDLink_Hub"
         android:usesCleartextTraffic="false"
         tools:targetApi="31">
+        <activity
+            android:name=".Act_item_view"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Act_ItemLinks"
+            android:exported="false" />
         <activity
             android:name=".Activity.Act_all_item"
             android:exported="false" />
@@ -53,9 +58,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- service-->
+        </activity> <!-- service -->
         <service
             android:name=".Utils.MyFirebaseMessagingService"
             android:exported="false"
@@ -63,16 +66,11 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-        <!-- service-->
-
-        <!-- meta data-->
-
+        </service> <!-- service -->
+        <!-- meta data -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_alert" />
-        <!-- meta data-->
-
     </application>
 
 </manifest>

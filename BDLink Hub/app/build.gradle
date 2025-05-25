@@ -58,6 +58,8 @@ dependencies {
     implementation libs.firebase.auth  // Firebase Auth Dependency
     implementation libs.gson
     implementation(libs.firebase.inappmessaging.display)
+    implementation libs.swiperefreshlayout
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 
 
 

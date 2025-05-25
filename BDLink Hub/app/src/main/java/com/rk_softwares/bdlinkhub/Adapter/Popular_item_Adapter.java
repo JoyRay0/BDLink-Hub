@@ -2,6 +2,7 @@ package com.rk_softwares.bdlinkhub.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.rk_softwares.bdlinkhub.Activity.Act_ItemLinks;
 import com.rk_softwares.bdlinkhub.R;
 import com.squareup.picasso.Picasso;
 
@@ -58,6 +60,14 @@ public class Popular_item_Adapter extends BaseAdapter {
 
          tv_icon_text.setText(item_name);
          Picasso.get().load(item_pic).into(iv_pl_icon);
+
+         iv_pl_icon.setOnClickListener(view2 -> {
+
+             Intent intent = new Intent(context, Act_ItemLinks.class);
+             intent.putExtra("position", position);
+             context.startActivity(intent);
+
+         });
 
 
         return view1;
