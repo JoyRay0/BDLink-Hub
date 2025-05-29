@@ -13,6 +13,7 @@ header("Referrer-Policy: no-referrer");
 header("Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate");
 header("Expect-CT: max-age=86400, enforce, report-uri='https://rksoftwares.xyz/report'");
 
+
 require 'db.php';
 require 'ID_middleware.php';
 include 'send_email.php';

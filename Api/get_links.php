@@ -4,6 +4,7 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("X-XSS-Protection: 1; mode=block");
 header("X-Frame-Options: DENY");
+header("Cache-Control: public, max-age=3600");
 
 require 'db.php';
 require 'ID_middleware.php';
