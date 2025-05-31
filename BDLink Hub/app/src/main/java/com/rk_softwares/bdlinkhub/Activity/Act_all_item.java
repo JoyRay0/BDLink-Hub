@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +15,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.All_item_Adapter;
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.Model.Item;
 import com.rk_softwares.bdlinkhub.Model.Item_data;
 import com.rk_softwares.bdlinkhub.R;
-import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,10 +39,12 @@ public class Act_all_item extends AppCompatActivity {
 
     private RecyclerView rv_item;
     private SwipeRefreshLayout Sl_refresh;
-    private FrameLayout fl_backButton;
+    private AppCompatImageView iv_back;
 
     List<HashMap<String, String>> mapList = new ArrayList<>();
     HashMap<String, String> map;
+
+    private String link;
 
     All_item_Adapter itemAdapter;
 
@@ -58,56 +61,81 @@ public class Act_all_item extends AppCompatActivity {
 
         rv_item = findViewById(R.id.rv_item);
         Sl_refresh = findViewById(R.id.Sl_refresh);
-        //fl_backButton = findViewById(R.id.fl_backButton);
+        iv_back = findViewById(R.id.iv_back);
 
         //identity period-----------------------------------------------------
 
-        /*
-        fl_backButton.setOnClickListener(view -> {
+        iv_back.setOnClickListener(view -> {
 
             startActivity(new Intent(Act_all_item.this, Act_Home_activity.class));
-
+            finishAffinity();
         });
 
-         */
-
-        Sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                item_data();
-
-
-            }
-        });
 
         //all item adapter----------------------------------------------
 
         rv_item.setLayoutManager(new GridLayoutManager(this, 4));
         itemAdapter = new All_item_Adapter(this, mapList);
         rv_item.setAdapter(itemAdapter);
-        item_data();
-
 
         //all item adapter----------------------------------------------
+
+        Api_config apiConfig = new Api_config();
+        Request_link requestLink = new Request_link(new ApiResponseListener() {
+            @Override
+            public void onApiResponse(Api_config config) {
+
+                String link = config.getItem_links();
+
+                item_data(link);
+
+                Sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+
+                        item_data(link);
+
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onApiFailed(String error) {
+
+
+            }
+        });
+        requestLink.Apis();
+
+
+
 
 
     }//on create================
 
     //all item--------------------------------------------------------------
-    private void item_data(){
+    private void item_data(String url){
 
         Gson gson = new Gson();
 
         OkHttpClient client = new OkHttpClient();
 
-        String url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=all_item";
+
+        //String url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=all_item";
 
         Request request = new Request.Builder().url(url).build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    Sl_refresh.setRefreshing(false);
+
+                });
 
             }
 
@@ -165,4 +193,6 @@ public class Act_all_item extends AppCompatActivity {
         startActivity(new Intent(Act_all_item.this, Act_Home_activity.class));
         finishAffinity();
     }
+
+
 }//public class==================

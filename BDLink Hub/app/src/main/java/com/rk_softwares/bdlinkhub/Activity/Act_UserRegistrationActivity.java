@@ -24,6 +24,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.PostApi;
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
@@ -36,10 +39,6 @@ import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
@@ -47,7 +46,6 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
     //XML id's----------------------------------------------------
 
-    private FrameLayout fl_backButton;
     private TextInputEditText ed_name, ed_email, ed_password;
     private AppCompatTextView tv_date;
     private AppCompatButton btn_submit;
@@ -64,7 +62,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
         //identity period ---------------------------------------------
 
-        fl_backButton = findViewById(R.id.fl_backButton);
+
         ed_name = findViewById(R.id.ed_name);
         ed_email = findViewById(R.id.ed_email);
         ed_password = findViewById(R.id.ed_password);
@@ -80,13 +78,6 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
         Request_limit limit = new Request_limit(this);
 
 
-
-        fl_backButton.setOnClickListener(view -> {      //back button
-
-            startActivity(new Intent(this, Act_Login.class));
-            finishAffinity();
-
-        });
 
         date_picker.setVisibility(View.GONE);
 
@@ -154,7 +145,24 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
                     if (limit.canMakeRequest(Act_UserRegistrationActivity.this)){
 
                         loading_anim.setVisibility(View.VISIBLE);
-                        send_data_to_server(name, email, password, DateofBirth);
+
+                        Request_link link = new Request_link(new ApiResponseListener() {
+                            @Override
+                            public void onApiResponse(Api_config config) {
+
+                                String reg_link = config.getUser_reg_login_reg();
+
+                                send_data_to_server(name, email, password, DateofBirth,reg_link);
+                            }
+
+                            @Override
+                            public void onApiFailed(String error) {
+
+                            }
+                        });
+                        link.Apis();
+
+
 
                     }
 
@@ -170,7 +178,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
     }//on create ================================
 
     //sending user data to server
-    private void send_data_to_server(String name, String email, String password, String DateofBirth){
+    private void send_data_to_server(String name, String email, String password, String DateofBirth, String url){
 
         String device_id = UUID.randomUUID().toString();
 
@@ -184,7 +192,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
         String user_reg = gson.toJson(userInfo);
 
 
-        PostApi postApi = new PostApi("post_reg", user_reg, device_id);
+        PostApi postApi = new PostApi(url, user_reg, device_id);
 
         postApi.postApi(new Callback() {
             @Override

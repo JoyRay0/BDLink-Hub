@@ -50,6 +50,7 @@ public class All_item_Adapter extends RecyclerView.Adapter<All_item_Adapter.myVi
             Intent intent = new Intent(context, Act_ItemLinks.class);
             String po = String.valueOf(position);
             intent.putExtra("position", po);
+            intent.putExtra("end_Link", hashMap.get("endLink"));
             context.startActivity(intent);
 
         });

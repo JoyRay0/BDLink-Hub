@@ -35,13 +35,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.PostApi;
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
 import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 import com.rk_softwares.bdlinkhub.Utils.Request_limit;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -49,10 +50,6 @@ import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Act_Login extends AppCompatActivity {
@@ -70,6 +67,7 @@ public class Act_Login extends AppCompatActivity {
     private static final int RC_SIGN_IN = 100;
     private GoogleSignInClient signInClient;
     private  FirebaseAuth auth;
+    private Request_link link;
 
     //XML id's----------------------------------------------
 
@@ -81,7 +79,6 @@ public class Act_Login extends AppCompatActivity {
 
         //identity period------------------------------------------
 
-        fl_backButton = findViewById(R.id.fl_backButton);
         tv_new_account = findViewById(R.id.tv_new_account);
         tv_forgetPassword = findViewById(R.id.tv_forgetPassword);
         login_email = findViewById(R.id.login_email);
@@ -99,12 +96,7 @@ public class Act_Login extends AppCompatActivity {
         check_network(this);
 
         loading_anim.setVisibility(View.GONE);
-        fl_backButton.setOnClickListener(view -> {  //back Button
 
-            startActivity(new Intent(this, Act_Home_activity.class));
-            finishAffinity();
-
-        });
 
         tv_new_account.setOnClickListener(view -> {  //Registration page
 
@@ -148,7 +140,25 @@ public class Act_Login extends AppCompatActivity {
                 if (limit.canMakeRequest(this)){
 
                     loading_anim.setVisibility(View.VISIBLE);
-                    login(email, password);
+
+                    link = new Request_link(new ApiResponseListener() {
+                        @Override
+                        public void onApiResponse(Api_config config) {
+
+                            String link = config.getUser_reg_login_login();
+
+                            login(email, password, link);
+
+                        }
+
+                        @Override
+                        public void onApiFailed(String error) {
+
+                        }
+                    });
+                    link.Apis();
+
+
 
                 }
 
@@ -218,7 +228,25 @@ public class Act_Login extends AppCompatActivity {
                             String email = user.getEmail();
 
                             loading_anim.setVisibility(View.VISIBLE);
-                            send_data_to_server(name, email);
+
+                            link = new Request_link(new ApiResponseListener() {
+                                @Override
+                                public void onApiResponse(Api_config config) {
+
+                                    String g_link = config.getUser_reg_login_gAuth();
+
+                                    send_data_to_server(name, email, g_link);
+
+                                }
+
+                                @Override
+                                public void onApiFailed(String error) {
+
+                                }
+                            });
+                            link.Apis();
+
+
 
                         }
 
@@ -242,7 +270,7 @@ public class Act_Login extends AppCompatActivity {
     }
 
     //Login user
-    private void login(String email, String password){
+    private void login(String email, String password, String url){
 
         String device_id = UUID.randomUUID().toString();
 
@@ -253,7 +281,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setPassword(password);
         String user_login = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi("post_userLogin", user_login, device_id);
+        PostApi postApi = new PostApi(url, user_login, device_id);
 
         postApi.postApi(new Callback() {
             @Override
@@ -335,7 +363,7 @@ public class Act_Login extends AppCompatActivity {
     }
 
     //send data to server
-    private void send_data_to_server(String name, String email){
+    private void send_data_to_server(String name, String email, String url){
 
         String device_id = UUID.randomUUID().toString();
         Gson gson = new Gson();
@@ -345,7 +373,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setEmail(email);
         String user_data = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi("post_google_OAuth",user_data, device_id);
+        PostApi postApi = new PostApi(url,user_data, device_id);
 
            postApi.postApi(new Callback() {
                @Override

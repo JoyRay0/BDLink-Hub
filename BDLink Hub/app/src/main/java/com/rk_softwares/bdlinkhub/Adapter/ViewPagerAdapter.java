@@ -10,16 +10,20 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rk_softwares.bdlinkhub.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Vholder> {
 
 
     private Context context;
-    private int[] images;
+    private List<HashMap<String, String>> img_list;
 
-    public ViewPagerAdapter(Context context, int[] images) {
+    public ViewPagerAdapter(Context context, List<HashMap<String, String>> img_list) {
         this.context = context;
-        this.images = images;
+        this.img_list = img_list;
     }
 
     @NonNull
@@ -34,14 +38,17 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Vhol
     @Override
     public void onBindViewHolder(@NonNull Vholder holder, int position) {
 
+        HashMap<String, String> map = img_list.get(position);
 
-        holder.iv_viewpager.setImageResource(images[position]);
+        String img = map.get("vp_image");
+
+        Picasso.get().load(img).into(holder.iv_viewpager);
 
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return img_list.size();
     }
 
     public class Vholder extends RecyclerView.ViewHolder{

@@ -10,7 +10,7 @@ import okhttp3.RequestBody;
 
 public class PutApi {
 
-    private String endPointLink;
+    private String link;
     private OkHttpClient client;
     private String url;
     private String strValue;
@@ -19,23 +19,22 @@ public class PutApi {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-    public PutApi(String endPointLink, String strValue) {
+    public PutApi(String link, String strValue) {
         this.client = new OkHttpClient();
-        this.endPointLink = endPointLink;
+        this.link = link;
         this.strValue = strValue;
     }
 
 
     public void putApi(Callback callback){
 
-        url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/user_reg_login?res="+endPointLink;
 
         device_id = UUID.randomUUID().toString();
 
         RequestBody body = RequestBody.create(JSON, strValue);
 
         Request request = new Request.Builder()
-                .url(url)
+                .url(link)
                 .put(body)
                 .addHeader("Content-Type", "application/json")
                 .header("X-UUID", device_id)

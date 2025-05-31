@@ -94,7 +94,7 @@ function links(){
                 'id' => '1',
                 'item_name' => 'AI',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/ai.png',
-                'endLink' => 'ai_links'
+                'endLink' => 'ai'
                 ],
                 [
                 'id' => '2',
@@ -135,7 +135,7 @@ function links(){
                 [
                 'id' => '8',
                 'item_name' => 'টিকিট বুকিং',
-                'item_pic' => 'https://cdn.rksoftwares.xyz/images/bus.png',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/tickets.png',
                 'endLink' => ''
                 ],
                 [
@@ -238,6 +238,54 @@ function links(){
                 'id' => '25',
                 'item_name' => 'ইন্টারনেট সেবা',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/internet.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '26',
+                'item_name' => 'আমদানি-রপ্তানি সেবা',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/port.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '27',
+                'item_name' => 'আবহাওয়া বার্তা',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/weather.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '28',
+                'item_name' => 'স্টক মার্কেট',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/stock.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '29',
+                'item_name' => 'ভিসা সেন্টার ও দূতাবাস',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/visa_center.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '30',
+                'item_name' => 'অনলাইন টুলস',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/tools.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '31',
+                'item_name' => 'বাড়িভাড়া ও সম্পত্তি সেবা',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/rent.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '32',
+                'item_name' => 'ফর্ম ও সনদ',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/form.png',
+                'endLink' => ''
+                ],
+                [
+                'id' => '33',
+                'item_name' => 'কৃষিসেবা কেন্দ্র',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/agriculture.png',
                 'endLink' => ''
                 ],
 

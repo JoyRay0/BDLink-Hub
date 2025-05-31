@@ -6,18 +6,17 @@ import okhttp3.Request;
 
 public class GetApi {
     private OkHttpClient client;
-    private String endPointLink;
+    private String link;
 
-    public GetApi(String endPointLink) {
-        this.endPointLink = endPointLink;
+    public GetApi(String link) {
+        this.link = link;
         this.client = new OkHttpClient();
     }
 
     public void getApi(Callback callback){
 
-        String url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/get_links?res="+endPointLink;
 
-        Request request = new Request.Builder().url(url).build();
+        Request request = new Request.Builder().url(link).build();
 
         client.newCall(request).enqueue(callback);
 

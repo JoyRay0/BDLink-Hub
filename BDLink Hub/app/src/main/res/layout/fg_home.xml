@@ -21,13 +21,52 @@
             android:layout_height="match_parent"
             >
 
+            <!-- view pager -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="2dp"
+                android:layout_margin="10dp"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vp_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        />
+
+                    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                        android:id="@+id/dotsIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        app:dotsColor="#3F51B5"
+                        app:dotsSize="10dp"
+                        app:dotsSpacing="5dp"
+                        app:dotsStrokeColor="#10D3EB"
+                        android:layout_margin="10dp"
+                        />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- popular item-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_popular"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="3dp"
+                app:cardElevation="2dp"
+                android:layout_below="@id/cv_slider"
                 >
                 <GridView
                     android:id="@+id/gd_item"
@@ -46,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cv_popular"
-                app:cardElevation="5dp"
+                app:cardElevation="3dp"
                 app:cardCornerRadius="30dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="-35dp"
@@ -66,6 +105,7 @@
 
             </androidx.cardview.widget.CardView>
 
+            <!-- user save link -->
             <include layout="@layout/lay_dashboard_link"
                 android:id="@+id/lay"
                 android:layout_width="match_parent"
@@ -73,47 +113,6 @@
                 android:layout_below="@id/cv_button"
                 />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_slider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/lay"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="2dp"
-                android:layout_margin="10dp"
-
-                >
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   >
-                   <androidx.viewpager2.widget.ViewPager2
-                       android:id="@+id/vp_img"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-
-                       />
-
-                   <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-                       android:id="@+id/dotsIndicator"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center_horizontal"
-                       app:dotsColor="#3F51B5"
-                       app:dotsSize="10dp"
-                       app:dotsSpacing="5dp"
-                       app:dotsStrokeColor="#10D3EB"
-                       android:layout_margin="10dp"
-                       />
-
-               </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_below="@id/cv_slider"/>
 
         </RelativeLayout>
 

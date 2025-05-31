@@ -16,25 +16,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.DeleteApi;
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
 public class Act_Profile extends AppCompatActivity {
 
     //XML id's---------------------------------------------------------
+
+    private Request_link link;
 
     //XML id's---------------------------------------------------------
 
@@ -46,6 +46,7 @@ public class Act_Profile extends AppCompatActivity {
         //identity period----------------------------------------------------
 
         //identity period----------------------------------------------------
+
 
         check_network(this);
 
@@ -63,7 +64,7 @@ public class Act_Profile extends AppCompatActivity {
     }
     
     //delete user data
-    private void delete_user_data(String user_id){
+    private void delete_user_data(String user_id, String url){
 
         Gson gson = new Gson();
 
@@ -71,7 +72,7 @@ public class Act_Profile extends AppCompatActivity {
         userInfo.setUser_id(user_id);
         String delete_user = gson.toJson(userInfo);
 
-        DeleteApi deleteApi = new DeleteApi("delete_user" ,delete_user);
+        DeleteApi deleteApi = new DeleteApi(url ,delete_user);
 
         deleteApi.deleteApi(new Callback() {
             @Override
@@ -149,7 +150,24 @@ public class Act_Profile extends AppCompatActivity {
                  .setMessage("আপনি কি একাউন্ট ডিলিট করতে চান ?")
                  .setPositiveButton("হ্যাঁ", (dialogInterface, i) -> {
 
-                     delete_user_data(userid);
+                     link = new Request_link(new ApiResponseListener() {
+                         @Override
+                         public void onApiResponse(Api_config config) {
+
+                             String d_user = config.getUser_reg_login_delete_account();
+
+                             delete_user_data(userid, d_user);
+
+                         }
+
+                         @Override
+                         public void onApiFailed(String error) {
+
+                         }
+                     });
+                     link.Apis();
+
+
                      dialogInterface.dismiss();
 
                  })

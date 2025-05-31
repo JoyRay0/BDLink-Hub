@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.R;
 
 
@@ -24,6 +27,25 @@ public class Fg_search_view extends Fragment {
         //identity period----------------------------------------------
 
         //identity period----------------------------------------------
+
+        Request_link requestLink = new Request_link(new ApiResponseListener() {
+            @Override
+            public void onApiResponse(Api_config config) {
+
+
+
+
+            }
+
+            @Override
+            public void onApiFailed(String error) {
+
+
+            }
+        });
+        requestLink.Apis();
+
+
 
         return view;
     }//on create=====================

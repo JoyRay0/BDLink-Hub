@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="#DACACA"
-    app:cardCornerRadius="20dp"
-    android:layout_margin="10dp"
+
+
     >
 
     <androidx.appcompat.widget.AppCompatImageView

@@ -1,16 +1,13 @@
  package com.rk_softwares.bdlinkhub.Activity;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
@@ -21,20 +18,19 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.MyAdapter;
 import com.rk_softwares.bdlinkhub.Adapter.Popular_item_Adapter;
 import com.rk_softwares.bdlinkhub.Adapter.ViewPagerAdapter;
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.Model.Item;
 import com.rk_softwares.bdlinkhub.Model.Item_data;
 import com.rk_softwares.bdlinkhub.R;
@@ -74,9 +70,12 @@ import okhttp3.Response;
      List<HashMap<String, String>> item_list = new ArrayList<>();
      HashMap<String, String> map;
 
+     List<HashMap<String, String>> image_list = new ArrayList<>();
+     HashMap<String, String> img_map;
+
+
      private ViewPagerAdapter viewPagerAdapter;
 
-     int[] images = {R.drawable.img_test2, R.drawable.img_test, R.drawable.img_google_login};
 
      private boolean link1 = false;
      private boolean link2 = false;
@@ -120,26 +119,46 @@ import okhttp3.Response;
         //rv_test.setAdapter(adapter);
         //rv_test.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
 
+
         //grid view---------------------------------------
         plAdapter = new Popular_item_Adapter(requireActivity(), item_list);
         gd_item.setAdapter(plAdapter);
         //popular_item();
-        item_data();
+
         //grid view---------------------------------------
 
         //image slider------------------------------------------
-        viewPagerAdapter = new ViewPagerAdapter(requireActivity(), images);
+        viewPagerAdapter = new ViewPagerAdapter(requireActivity(), image_list);
         vp_img.setAdapter(viewPagerAdapter);
         dotsIndicator.setViewPager2(vp_img);
 
-        sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        Request_link link = new Request_link(new ApiResponseListener() {
             @Override
-            public void onRefresh() {
+            public void onApiResponse(Api_config config) {
 
-                item_data();
+                String item_link = config.getP_item_links();
+                String viewpager = config.getViewpager();
+
+                item_data(item_link);
+                viewPager_img(viewpager);
+
+                sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+
+                        item_data(item_link);
+                        viewPager_img(viewpager);
+
+                    }
+                });
+            }
+
+            @Override
+            public void onApiFailed(String error) {
 
             }
         });
+        link.Apis();
 
 
         handler  = new Handler();
@@ -147,14 +166,17 @@ import okhttp3.Response;
             @Override
             public void run() {
 
-                currentItem = (currentItem + 1) % images.length;
-                vp_img.setCurrentItem(currentItem, true);
-                handler.postDelayed(this, 5000);
+                if (image_list != null && image_list.size() > 0) {
+                    currentItem = (currentItem + 1) % image_list.size();
+                    vp_img.setCurrentItem(currentItem, true);
+                }
+
+                handler.postDelayed(this, 7000);
 
             }
         };
 
-        handler.postDelayed(runnable, 2000);
+        handler.postDelayed(runnable, 5000);
 
         //image slider------------------------------------------
 
@@ -269,19 +291,23 @@ import okhttp3.Response;
 
 
     //popular --------------------------------------------------------
-    private void item_data(){
+    private void item_data(String url){
 
         Gson gson = new Gson();
 
         OkHttpClient client = new OkHttpClient();
-
-        String url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=popular_item";
 
         Request request = new Request.Builder().url(url).build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    sl_refresh.setRefreshing(false);
+
+                });
 
             }
 
@@ -308,6 +334,7 @@ import okhttp3.Response;
                                 map = new HashMap<>();
                                 map.put("item_name", item.getItem_name());
                                 map.put("item_pic", item.getItem_pic());
+                                map.put("endLink", item.getEndLink());
                                 item_list.add(map);
                             }
 
@@ -331,6 +358,72 @@ import okhttp3.Response;
         });
         
     }
+
+    //viewPager images--------------------------------------------
+     private void viewPager_img(String url){
+
+        Gson gson = new Gson();
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder().url(url).build();
+
+         client.newCall(request).enqueue(new Callback() {
+             @Override
+             public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+                 new Handler(Looper.getMainLooper()).post(() -> {
+
+                     sl_refresh.setRefreshing(false);
+
+                 });
+
+             }
+
+             @Override
+             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                 if (response.isSuccessful() && response.body() != null){
+
+                     String data = response.body().string();
+
+                     try {
+
+                         Item_data itemData = gson.fromJson(data, Item_data.class);
+
+                         if (itemData.getStatus().contains("Successful")) {
+
+                             List<Item> items = itemData.getItem();
+
+                             image_list.clear();
+                             for (int i = 0; i < items.size(); i++) {
+
+                                 Item item = items.get(i);
+
+                                 img_map = new HashMap<>();
+                                 img_map.put("vp_image", item.getImage());
+                                 image_list.add(img_map);
+                             }
+
+                             new Handler(Looper.getMainLooper()).post(() -> {
+
+                                 viewPagerAdapter.notifyDataSetChanged();
+                                 sl_refresh.setRefreshing(false);
+
+                             });
+
+                         }
+
+                     } catch (Exception e) {
+                         e.printStackTrace();
+                     }
+
+                 }
+
+             }
+         });
+
+     }
 
      @Override
      public void onDestroy() {

@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -19,8 +18,10 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
-import com.rk_softwares.bdlinkhub.Api.PostApi;
 import com.rk_softwares.bdlinkhub.Api.PutApi;
+import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
+import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
@@ -28,20 +29,14 @@ import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 import com.rk_softwares.bdlinkhub.Utils.Request_limit;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
     //XML id's-------------------------------------------------------
-    private FrameLayout fl_backButton;
     private TextInputEditText ed_userOld_Password, ed_userNew_Password, ed_userEmail;
     private AppCompatButton btn_submit;
     private LottieAnimationView loading_anim;
@@ -54,7 +49,6 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
         setContentView(R.layout.act_forget_password);
 
         //identity period------------------------------------------------
-        fl_backButton = findViewById(R.id.fl_backButton);
         ed_userOld_Password = findViewById(R.id.ed_userOld_Password);
         ed_userNew_Password = findViewById(R.id.ed_userNew_Password);
         btn_submit = findViewById(R.id.btn_submit);
@@ -67,12 +61,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
         check_network(this);
         loading_anim.setVisibility(View.GONE);
-        fl_backButton.setOnClickListener(view -> {      //back button
 
-            startActivity(new Intent(this, Act_Login.class));
-            finishAffinity();
-
-        });
 
         btn_submit.setOnClickListener(view -> {     //submit button
 
@@ -97,7 +86,23 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
                 if (limit.canMakeRequest(this)){
 
                     loading_anim.setVisibility(View.VISIBLE);
-                    changing_Password(email, newPassword);
+
+                    Request_link link = new Request_link(new ApiResponseListener() {
+                        @Override
+                        public void onApiResponse(Api_config config) {
+
+                            String link = config.getUser_reg_login_reset_password();
+
+                            changing_Password(email, newPassword, link);
+                        }
+
+                        @Override
+                        public void onApiFailed(String error) {
+
+                        }
+                    });
+                    link.Apis();
+
 
                 }
 
@@ -118,7 +123,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
     //changing password
 
-    private void changing_Password(String email, String new_password) {
+    private void changing_Password(String email, String new_password, String url) {
 
         Gson gson = new Gson();
         User_info userInfo = new User_info();
@@ -127,7 +132,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
         String change_password = gson.toJson(userInfo);
 
 
-        PutApi putApi = new PutApi("put_user_password", change_password);
+        PutApi putApi = new PutApi(url, change_password);
 
         putApi.putApi(new Callback() {
             @Override

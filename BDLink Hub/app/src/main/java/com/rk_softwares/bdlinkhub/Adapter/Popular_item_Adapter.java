@@ -57,6 +57,7 @@ public class Popular_item_Adapter extends BaseAdapter {
 
          String item_name = hashMap.get("item_name");
          String item_pic = hashMap.get("item_pic");
+         String endLink = hashMap.get("endLink");
 
          tv_icon_text.setText(item_name);
          Picasso.get().load(item_pic).into(iv_pl_icon);
@@ -64,7 +65,9 @@ public class Popular_item_Adapter extends BaseAdapter {
          iv_pl_icon.setOnClickListener(view2 -> {
 
              Intent intent = new Intent(context, Act_ItemLinks.class);
-             intent.putExtra("position", position);
+             String po = String.valueOf(position);
+             intent.putExtra("position", po);
+             intent.putExtra("end_Link", endLink);
              context.startActivity(intent);
 
          });
