@@ -21,6 +21,9 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="31">
         <activity
+            android:name=".Act_In_App_Browser"
+            android:exported="false" />
+        <activity
             android:name=".Act_item_view"
             android:exported="false" />
         <activity

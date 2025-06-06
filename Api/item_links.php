@@ -35,25 +35,25 @@ function links(){
                 'id' => '1',
                 'item_name' => 'AI',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/ai.png',
-                'endLink' => 'ai_links'
+                'endLink' => 'ai'
                 ],
                 [
                 'id' => '2',
                 'item_name' => 'পএিকা',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/news.png',
-                'endLink' => ''
+                'endLink' => 'news'
                 ],
                 [
                 'id' => '3',
                 'item_name' => 'চাকরি',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/job.png',
-                'endLink' => ''
+                'endLink' => 'jobs'
                 ],
                 [
                 'id' => '4',
                 'item_name' => 'বিনোদন ও টিভি',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/tv.png',
-                'endLink' => ''
+                'endLink' => 'tv'
                 ],
                 [
                 'id' => '5',
@@ -100,13 +100,13 @@ function links(){
                 'id' => '2',
                 'item_name' => 'পএিকা',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/news.png',
-                'endLink' => ''
+                'endLink' => 'news'
                 ],
                 [
                 'id' => '3',
                 'item_name' => 'চাকরি',
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/job.png',
-                'endLink' => ''
+                'endLink' => 'jobs'
                 ],
                 [
                 'id' => '4',
@@ -288,6 +288,12 @@ function links(){
                 'item_pic' => 'https://cdn.rksoftwares.xyz/images/agriculture.png',
                 'endLink' => ''
                 ],
+                [
+                'id' => '34',
+                'item_name' => 'বাংলাদেশি দূতাবাস',
+                'item_pic' => 'https://cdn.rksoftwares.xyz/images/bd.png',
+                'endLink' => ''
+                ],
 
 
             ];
@@ -307,7 +313,7 @@ function links(){
 
     echo json_encode([
 
-        'status' => 'Successful',
+        'status' => 'successful',
         'item' => $item
 
     ]);

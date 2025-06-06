@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -64,11 +65,13 @@ public class Popular_item_Adapter extends BaseAdapter {
 
          iv_pl_icon.setOnClickListener(view2 -> {
 
-             Intent intent = new Intent(context, Act_ItemLinks.class);
+             Intent intent = new Intent(context.getApplicationContext(), Act_ItemLinks.class);
              String po = String.valueOf(position);
              intent.putExtra("position", po);
              intent.putExtra("end_Link", endLink);
+             //Act_ItemLinks.ENDLINK = hashMap.get("endLink");
              context.startActivity(intent);
+
 
          });
 

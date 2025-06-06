@@ -2,17 +2,23 @@ package com.rk_softwares.bdlinkhub.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.Item_link;
+import com.rk_softwares.bdlinkhub.Adapter.Item_links;
 import com.rk_softwares.bdlinkhub.Api.GetApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Model.All_data;
+import com.rk_softwares.bdlinkhub.Model.Data;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
 import com.rk_softwares.bdlinkhub.Model.Api_config;
 import com.rk_softwares.bdlinkhub.R;
@@ -36,6 +42,7 @@ public class Act_ItemLinks extends AppCompatActivity {
     private String endlink;
     private Item_link itemLink;
     private SwipeRefreshLayout sl_refresh;
+    public static String ENDLINK = "";
 
     List<HashMap<String, String>> mapList = new ArrayList<>();
     HashMap<String, String> hashMap;
@@ -62,259 +69,208 @@ public class Act_ItemLinks extends AppCompatActivity {
 
             case "0":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "1":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "2":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "3":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "4":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
+
                 break;
 
             case "5":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "6":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "7":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "8":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "9":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "10":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "11":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "12":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "13":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "14":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "15":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "16":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "17":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "18":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "19":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "20":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "21":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "22":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "23":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "24":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "25":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "26":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "27":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "28":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "29":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "30":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "31":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "32":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "33":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "34":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "35":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "36":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "37":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "38":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "39":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "40":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "41":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "42":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "43":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "44":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "45":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "46":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "47":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "48":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "49":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
 
             case "50":
                 endpointLink = endlink;
-                Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
                 break;
-
 
 
 
@@ -323,22 +279,29 @@ public class Act_ItemLinks extends AppCompatActivity {
 
 
 
-        itemLink = new Item_link(this, mapList);
-        rv_item_links.setAdapter(itemLink);
+        Ad();
 
         Request_link link = new Request_link(new ApiResponseListener() {
             @Override
             public void onApiResponse(Api_config config) {
 
-                String link = config.getGet_links_ai();
+                String link = config.getGet_links();
 
-                item_link(link+endpointLink);
+                String url = link+endpointLink;
+
+                runOnUiThread(() -> {
+
+                    Toast.makeText(Act_ItemLinks.this, ""+url, Toast.LENGTH_SHORT).show();
+                });
+
+
+                item_link(url);
 
                 sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
 
-                        item_link(endpointLink);
+                        item_link(url);
                     }
                 });
 
@@ -347,15 +310,16 @@ public class Act_ItemLinks extends AppCompatActivity {
             @Override
             public void onApiFailed(String error) {
 
+
+
             }
         });
         link.Apis();
 
 
-
-
-
-
+        itemLink = new Item_link(this, mapList);
+        rv_item_links.setAdapter(itemLink);
+        rv_item_links.setLayoutManager(new LinearLayoutManager(this));
 
     }//on create=========================
 
@@ -370,14 +334,86 @@ public class Act_ItemLinks extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    Toast.makeText(Act_ItemLinks.this, "Check your connection", Toast.LENGTH_SHORT).show();
+                    sl_refresh.setRefreshing(false);
+                });
+
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+
+                if (response.isSuccessful() && response.body() != null){
+
+                    String link = response.body().string();
+
+                    
+                    try {
+
+                        All_data allData = gson.fromJson(link, All_data.class);
+
+                        mapList.clear();
+
+                        if (allData.getStatus().contains("successful")){
+
+                            List<Data> data = allData.getData();
+
+                            //mapList.clear();
+
+                            for (int i = 0; i < data.size(); i++){
+
+                                Data data1 = data.get(i);
+
+                                hashMap = new HashMap<>();
+                                hashMap.put("item_type","link");
+                                hashMap.put("category", data1.getCategory());
+                                hashMap.put("title", data1.getTitle());
+                                hashMap.put("description", data1.getDescription());
+                                hashMap.put("link", data1.getLink());
+                                mapList.add(hashMap);
+
+                            }
+
+                            new Handler(Looper.getMainLooper()).post(() -> {
+
+                                itemLink.notifyDataSetChanged();
+                                sl_refresh.setRefreshing(false);
+
+                            });
+
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+
+                }
+
 
             }
         });
 
     }
 
+    private void Ad(){
+
+        hashMap = new HashMap<>();
+        hashMap.put("item_type", "ad");
+        mapList.add(hashMap);
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(this, Act_Home_activity.class));
+        finishAffinity();
+    }
 }//public class==================================

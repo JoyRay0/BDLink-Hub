@@ -322,7 +322,7 @@ import okhttp3.Response;
 
                         Item_data itemData = gson.fromJson(data, Item_data.class);
 
-                        if (itemData.getStatus().contains("Successful")) {
+                        if (itemData.getStatus().contains("successful")) {
 
                             List<Item> items = itemData.getItem();
 

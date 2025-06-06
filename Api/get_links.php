@@ -41,9 +41,19 @@ function getAllLinks(){
                 $sql = "SELECT *FROM ai_links";
                 break;
 
-            case ('user'):
+            case ('jobs'):
+                $sql = "SELECT * FROM jobs";
+                break;
 
-                $sql = "SELECT * FROM user_info";
+            case ('news'):
+
+                $sql = "SELECT * FROM news";
+
+                break;
+
+            case ('tv'):
+
+                $sql = "SELECT * FROM tv";
 
                 break;
 

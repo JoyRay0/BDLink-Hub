@@ -12,10 +12,10 @@ public class Api_config {
     private String user_reg_login_gAuth;
     private String user_reg_login_delete_account;
     private String get_links_user_info;
-    private String get_links_ai;
+    private String get_links;
 
-    public String getGet_links_ai() {
-        return get_links_ai;
+    public String getGet_links() {
+        return get_links;
     }
 
     public String getGet_links_user_info() {

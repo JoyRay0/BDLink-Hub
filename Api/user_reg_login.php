@@ -58,6 +58,9 @@ function Api_request(){
                     $sanitize_date_of_birth = trim($date_of_birth);
                     $sanitize_password = password_hash($password, PASSWORD_DEFAULT);
                     $sanitize_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+                    date_default_timezone_set("Asia/Dhaka");
+                    $created_at = date("Y-m-d H:i:s");
                 
             //checking res method
             switch($res){
@@ -85,9 +88,9 @@ function Api_request(){
 
                     }else{
 
-                        $sql = "INSERT INTO user_info(name, email, date_of_birth, password) VALUES (?, ?, ?, ?)";
+                        $sql = "INSERT INTO user_info(name, email, date_of_birth, password, created_at) VALUES (?, ?, ?, ?, ?)";
                         $result = $database_connect->prepare($sql);
-                        $result->bind_param('ssss', $sanitize_name, $sanitize_email, $sanitize_date_of_birth, $sanitize_password);
+                        $result->bind_param('sssss', $sanitize_name, $sanitize_email, $sanitize_date_of_birth, $sanitize_password, $created_at);
 
                         if($result->execute()){
 
@@ -259,9 +262,9 @@ function Api_request(){
                     }else{
 
                         //google registration
-                        $sql = "INSERT INTO user_info(email, name) VALUES (?, ?)";
+                        $sql = "INSERT INTO user_info(email, name, created_at) VALUES (?, ?, ?)";
                         $result = $database_connect->prepare($sql);
-                        $result->bind_param("ss", $sanitize_email, $sanitize_name);
+                        $result->bind_param("sss", $sanitize_email, $sanitize_name, $created_at);
 
                         if($result->execute()){
 

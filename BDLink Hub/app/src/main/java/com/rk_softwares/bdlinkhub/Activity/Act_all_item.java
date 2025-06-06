@@ -150,7 +150,7 @@ public class Act_all_item extends AppCompatActivity {
 
                         Item_data itemData = gson.fromJson(data, Item_data.class);
 
-                        if (itemData.getStatus().contains("Successful")) {
+                        if (itemData.getStatus().contains("successful")) {
 
                             List<Item> items = itemData.getItem();
 
@@ -163,6 +163,7 @@ public class Act_all_item extends AppCompatActivity {
                                 map = new HashMap<>();
                                 map.put("item_name", item.getItem_name());
                                 map.put("item_pic", item.getItem_pic());
+                                map.put("endLink", item.getEndLink());
                                 mapList.add(map);
                             }
 
