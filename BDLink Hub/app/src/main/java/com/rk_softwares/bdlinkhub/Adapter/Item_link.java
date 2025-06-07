@@ -1,6 +1,8 @@
 package com.rk_softwares.bdlinkhub.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +42,7 @@ public class Item_link extends RecyclerView.Adapter{
 
         if (viewType == LINK){
 
-            View link = LayoutInflater.from(context).inflate(R.layout.lay_link_view, parent, false);
+            View link = LayoutInflater.from(context).inflate(R.layout.lay_link, parent, false);
             return new LinkHolder(link);
 
         }else if (viewType == AD){
@@ -68,6 +71,12 @@ public class Item_link extends RecyclerView.Adapter{
             viewholder1.tv_cat.setText(cat);
             viewholder1.tv_title.setText(title);
             viewholder1.tv_description.setText(des);
+
+            viewholder1.cv_view.setOnClickListener(view -> {
+
+                context.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(link)));
+
+            });
 
         } else if (getItemViewType(position) == AD) {
 
@@ -102,18 +111,18 @@ public class Item_link extends RecyclerView.Adapter{
     }
     public static class LinkHolder extends RecyclerView.ViewHolder{
 
-        private ConstraintLayout cl_view;
+        private CardView cv_view;
         private AppCompatTextView tv_cat, tv_title, tv_description;
-        private AppCompatImageButton favorite;
+        private AppCompatImageView iv_favorite;
 
         public LinkHolder(@NonNull View itemView) {
             super(itemView);
 
-            cl_view = itemView.findViewById(R.id.cl_view);
+            cv_view = itemView.findViewById(R.id.cv_view);
             tv_cat = itemView.findViewById(R.id.tv_cat);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_description = itemView.findViewById(R.id.tv_description);
-            favorite = itemView.findViewById(R.id.favorite);
+            iv_favorite = itemView.findViewById(R.id.iv_favorite);
 
 
         }

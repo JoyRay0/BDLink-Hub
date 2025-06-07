@@ -10,4 +10,6 @@
         android:id="@+id/search_bar"
         />
 
+
+
 </RelativeLayout>
