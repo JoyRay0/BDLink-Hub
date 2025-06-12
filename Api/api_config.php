@@ -21,7 +21,7 @@ $apis = [
 
     'viewpager' =>'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/viewPagerimage?res=vp_images',
     'google_ad' => 'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/google_ad',
-    'item_links' => 'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=all_item',
+    'item_li nks' => 'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=all_item',
     'P_item_links' => 'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/item_links?res=popular_item',
 
     'user_reg_login_reg' => 'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/user_reg_login?res=post_reg',

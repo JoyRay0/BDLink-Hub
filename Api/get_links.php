@@ -7,9 +7,9 @@ header("X-Frame-Options: DENY");
 header("Cache-Control: public, max-age=3600");
 
 require 'db.php';
-require 'ID_middleware.php';
+//require 'ID_middleware.php';
 
-check_deviceIds();    //middleware
+//check_deviceIds();    //middleware
 
 getAllLinks();
 
@@ -56,6 +56,24 @@ function getAllLinks(){
                 $sql = "SELECT * FROM tv";
 
                 break;
+
+            case ('education'):
+
+                $sql = "SELECT * FROM education";
+
+                break;
+
+            case ('shoping'):
+
+                $sql = "SELECT * FROM shoping";
+
+                break;  
+                
+            case ('food'):
+
+                $sql = "SELECT * FROM food";
+
+                break;     
 
             default:
 
