@@ -2,56 +2,46 @@
 
 header('Content-Type: application/json; charset=utf-8');
 
-function check_deviceIds(){
+function check_deviceIds($token){
 
-    session_start();
+    $Api_key = "AIzaSyDy-lLcqoC3c6vgOiAydNjlKugAftHqJJQ";
 
-    if(!isset($_SESSION['valid_id'])){
+    $url = "https://playintegrity.googleapis.com/v1/com.google.android.play.integrity.v1.PlayIntegrityService/DecodeIntegrityToken";
 
-        $_SESSION['valid_id'] =[];
 
-    }
+    $post_data = json_encode([
 
-    $client_id = $_SERVER['HTTP_X_UUID'] ?? '';
-
-    if(!$client_id){
-
-        die(json_encode([
-
-            'status' => 'Error',
-            'message' => 'Invalid device ID'
-
-        ]));
-
-    }
-
-    if(in_array($client_id, $_SESSION['valid_id'])){
-    
-        die(json_encode([
-
-            'status' => 'Error',
-            'message' => 'Duplicate client id'
-
-        ]));
-    
-    }
-
-    $_SESSION['valid_id'][] = $client_id;
-
-    if(count($_SESSION['valid_id']) > 100){
-
-        array_shift($_SESSION['valid_id']);
-
-    }
-
-    echo json_encode([
-
-        'status' => 'Success',
-        'message' => 'Access granted'
+        'integrity_token' => $token
 
     ]);
 
+     $headers = [
+        "Content-Type: application/json",
+        "Authorization: Bearer $Api_key"
+    ];
 
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+    $response = curl_exec($ch);
+
+    if($response){
+
+        echo json_encode([
+
+            'status' => 'successful'
+
+        ]);
+    }else{
+
+        curl_error($ch);
+
+    }
+    curl_close($ch);
 
 }
 

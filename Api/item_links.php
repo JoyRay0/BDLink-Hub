@@ -33,7 +33,7 @@ function links(){
     $education = 'education';
     $shoping = 'shoping';
     $food = 'food';
-    $ride = '';
+    $ride = 'ride';
     $hindu = '';
     $muslim = '';
     $tickets = '';

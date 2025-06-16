@@ -17,6 +17,9 @@ function getAllLinks(){
 
     $method = $_SERVER['REQUEST_METHOD'];
     $res = $_GET['res'] ?? '';
+    $search = $_GET['query'] ?? '';
+    $sanitize_search = trim(strip_tags(filter_var($search, FILTER_SANITIZE_FULL_SPECIAL_CHARS)));
+
     global $database_connect;
 
     if($method != 'GET'){
@@ -73,7 +76,13 @@ function getAllLinks(){
 
                 $sql = "SELECT * FROM food";
 
-                break;     
+                break;
+
+            case ('ride'):
+
+                $sql = "SELECT * FROM ride";
+
+                break;       
 
             default:
 

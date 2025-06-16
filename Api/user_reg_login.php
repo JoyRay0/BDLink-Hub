@@ -20,7 +20,7 @@ include 'send_email.php';
 
 
 //middlewares
-check_deviceIds();
+//check_deviceIds();
 Api_request();
 
 //put, post, delete methods
