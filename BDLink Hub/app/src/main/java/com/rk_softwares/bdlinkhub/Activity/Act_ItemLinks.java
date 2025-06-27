@@ -14,7 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.Item_link;
-import com.rk_softwares.bdlinkhub.Adapter.Item_links;
 import com.rk_softwares.bdlinkhub.Api.GetApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
 import com.rk_softwares.bdlinkhub.Model.All_data;

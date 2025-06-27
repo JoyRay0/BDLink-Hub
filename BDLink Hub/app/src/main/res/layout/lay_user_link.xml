@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ll_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/sh_link_view_sp"
+
+    >
+
+    <!-- link 1-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FDEBEB"
+        app:cardCornerRadius="14dp"
+        android:layout_margin="10dp"
+        app:cardElevation="3dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cat1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cat"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:background="@drawable/sh_cat_corner"
+                android:layout_margin="10dp"
+                android:padding="7dp"
+                android:fontFamily="@font/noto_serif"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8C6C6"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_below="@id/tv_title1"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:padding="7dp"
+                android:textStyle="bold"
+                android:layout_below="@id/tv_cat1"
+                android:textAlignment="center"
+                android:fontFamily="@font/noto_serif"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_description1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="des"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:padding="10dp"
+                android:layout_below="@id/tv_title1"
+                android:textAlignment="center"
+                android:fontFamily="@font/noto_serif"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_delete1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_delete2"
+                android:background="@drawable/sh_favorite_icon_background"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:padding="10dp"
+                android:tooltipText="ডিলিট লিংক"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+    <!-- link 1-->
+
+    <!-- link 2-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FDEBEB"
+        app:cardCornerRadius="14dp"
+        android:layout_margin="10dp"
+        app:cardElevation="3dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cat"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:background="@drawable/sh_cat_corner"
+                android:layout_margin="10dp"
+                android:padding="7dp"
+                android:fontFamily="@font/noto_serif"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F8C6C6"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_below="@id/tv_title2"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:padding="7dp"
+                android:textStyle="bold"
+                android:layout_below="@id/tv_cat2"
+                android:textAlignment="center"
+                android:fontFamily="@font/noto_serif"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_description2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="des"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:padding="10dp"
+                android:layout_below="@id/tv_title2"
+                android:textAlignment="center"
+                android:fontFamily="@font/noto_serif"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_delete2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_delete2"
+                android:background="@drawable/sh_favorite_icon_background"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:padding="10dp"
+                android:tooltipText="ডিলিট লিংক"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+    <!-- link 2-->
+
+</LinearLayout>

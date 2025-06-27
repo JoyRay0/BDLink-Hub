@@ -9,12 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
-import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -24,10 +24,18 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.rk_softwares.bdlinkhub.Adapter.Favorite_item;
+import com.rk_softwares.bdlinkhub.Database.Favorite;
 import com.rk_softwares.bdlinkhub.R;
+import com.rk_softwares.bdlinkhub.Utils.OnItemDeletedListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class Fg_favorite extends Fragment {
@@ -35,10 +43,17 @@ public class Fg_favorite extends Fragment {
     // XML id's---------------------------------------------------
 
     private FrameLayout fl_add_btn, fl_list;
+    private RecyclerView rv_fav;
     private AppCompatTextView tv_text;
     private CardView cv_user_link;
     private long lastTime = 0;
     private boolean isOpen = false;
+    private Favorite favorite;
+    private Favorite_item favoriteItem;
+
+    List<HashMap<String, String>> show_list = new ArrayList<>();
+    HashMap<String, String> show_map;
+
 
 
     // XML id's---------------------------------------------------
@@ -55,11 +70,28 @@ public class Fg_favorite extends Fragment {
         tv_text = view.findViewById(R.id.tv_text);
         fl_list = view.findViewById(R.id.fl_list);
         cv_user_link = view.findViewById(R.id.cv_user_link);
+        rv_fav = view.findViewById(R.id.rv_fav);
 
         //identity period--------------------------------------
 
 
         check_user();
+        favoriteItem = new Favorite_item(requireActivity(), show_list);
+        rv_fav.setAdapter(favoriteItem);
+
+        show_data();
+
+
+        if (show_list.isEmpty()){
+
+            tv_text.setVisibility(View.VISIBLE);
+
+        }else {
+
+            tv_text.setVisibility(View.GONE);
+
+        }
+
 
         return view;
     }//on create ======================
@@ -229,26 +261,27 @@ public class Fg_favorite extends Fragment {
     private void user_save_links(){
 
         Dialog dialog1 = new Dialog(requireActivity());
-        dialog1.setContentView(R.layout.lay_user_save_link);
+        dialog1.setContentView(R.layout.lay_user_link);
         dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         Window window = dialog1.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        AppCompatTextView tv_cat, tv_title, tv_description,tv_cat2, tv_title2, tv_description2;
-        ConstraintLayout cl_view, cl_view2, cl_link_view_sp;
-        AppCompatImageButton iv_link2_delete2, iv_link1_delete;
+        AppCompatTextView tv_cat1, tv_title1, tv_description1,tv_cat2, tv_title2, tv_description2;
+        LinearLayout  ll_view;
+        AppCompatImageView iv_delete1, iv_delete2;
+        CardView cv_view1,cv_view2;
 
-        tv_cat = dialog1.findViewById(R.id.tv_cat);
-        tv_title = dialog1.findViewById(R.id.tv_title);
-        tv_description = dialog1.findViewById(R.id.tv_description);
+        tv_cat1 = dialog1.findViewById(R.id.tv_cat1);
+        tv_title1 = dialog1.findViewById(R.id.tv_title1);
+        tv_description1 = dialog1.findViewById(R.id.tv_description1);
         tv_cat2 = dialog1.findViewById(R.id.tv_cat2);
         tv_title2 = dialog1.findViewById(R.id.tv_title2);
         tv_description2 = dialog1.findViewById(R.id.tv_description2);
-        cl_view = dialog1.findViewById(R.id.cl_view);
-        cl_view2 = dialog1.findViewById(R.id.cl_view2);
-        iv_link1_delete = dialog1.findViewById(R.id.iv_link1_delete);
-        iv_link2_delete2 = dialog1.findViewById(R.id.iv_link2_delete2);
-        cl_link_view_sp = dialog1.findViewById(R.id.cl_link_view_sp);
+        cv_view1 = dialog1.findViewById(R.id.cv_view1);
+        cv_view2 = dialog1.findViewById(R.id.cv_view2);
+        iv_delete1 = dialog1.findViewById(R.id.iv_delete1);
+        iv_delete2 = dialog1.findViewById(R.id.iv_delete2);
+        ll_view = dialog1.findViewById(R.id.ll_view);
 
         //others---------------------------------------------------
         SharedPreferences user_link1 = requireActivity().getSharedPreferences("user_link1", Context.MODE_PRIVATE);
@@ -268,18 +301,18 @@ public class Fg_favorite extends Fragment {
         String description2 = user_link2.getString("description","No description");
         String link2 = user_link2.getString("link","No link");
 
-        cl_link_view_sp.setVisibility(View.GONE);
-        cl_view.setVisibility(View.GONE);
-        cl_view2.setVisibility(View.GONE);
-        iv_link1_delete.setVisibility(View.GONE);
-        iv_link2_delete2.setVisibility(View.GONE);
+        ll_view.setVisibility(View.GONE);
+        cv_view1.setVisibility(View.GONE);
+        cv_view2.setVisibility(View.GONE);
+        iv_delete1.setVisibility(View.GONE);
+        iv_delete2.setVisibility(View.GONE);
 
         if (l1 && l2) {
 
             Toast.makeText(requireActivity(), "কোন লিংক নেই", Toast.LENGTH_SHORT).show();
 
             new Handler().postDelayed(() -> {
-                cl_link_view_sp.setVisibility(View.VISIBLE);
+                ll_view.setVisibility(View.VISIBLE);
                 dialog1.dismiss();
 
             }, 1000);
@@ -287,14 +320,14 @@ public class Fg_favorite extends Fragment {
         }
         if (!l1){
 
-            cl_link_view_sp.setVisibility(View.VISIBLE);
-            cl_view.setVisibility(View.VISIBLE);
-            iv_link1_delete.setVisibility(View.VISIBLE);
-            tv_cat.setText(cat1);
-            tv_title.setText(title1);
-            tv_description.setText(description1);
+            ll_view.setVisibility(View.VISIBLE);
+            cv_view1.setVisibility(View.VISIBLE);
+            iv_delete1.setVisibility(View.VISIBLE);
+            tv_cat1.setText(cat1);
+            tv_title1.setText(title1);
+            tv_description1.setText(description1);
 
-            cl_view.setOnClickListener(new View.OnClickListener() {
+            cv_view1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -303,7 +336,7 @@ public class Fg_favorite extends Fragment {
                 }
             });
 
-            iv_link1_delete.setOnClickListener(view -> {
+            iv_delete1.setOnClickListener(view -> {
 
                 user_link1.edit()
                         .clear()
@@ -317,14 +350,14 @@ public class Fg_favorite extends Fragment {
         }
         if (!l2){
 
-            cl_link_view_sp.setVisibility(View.VISIBLE);
-            cl_view2.setVisibility(View.VISIBLE);
-            iv_link2_delete2.setVisibility(View.VISIBLE);
+            ll_view.setVisibility(View.VISIBLE);
+            cv_view2.setVisibility(View.VISIBLE);
+            iv_delete2.setVisibility(View.VISIBLE);
             tv_cat2.setText(cat2);
             tv_title2.setText(title2);
             tv_description2.setText(description2);
 
-            cl_view2.setOnClickListener(new View.OnClickListener() {
+            cv_view2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -333,7 +366,7 @@ public class Fg_favorite extends Fragment {
                 }
             });
 
-            iv_link2_delete2.setOnClickListener(view -> {
+            iv_delete2.setOnClickListener(view -> {
 
                 user_link2.edit()
                         .clear()
@@ -359,6 +392,7 @@ public class Fg_favorite extends Fragment {
     public void onResume() {
         super.onResume();
 
+
         // যদি ৫ সেকেন্ড এর বেশি সময় অ্যাপ বাইরে ছিল, তাহলে রিস্টার্ট করাও
         if (lastTime != 0 && (System.currentTimeMillis() - lastTime > 5000)) {
             Intent intent = new Intent(requireActivity(), Act_Home_activity.class);
@@ -366,6 +400,18 @@ public class Fg_favorite extends Fragment {
             startActivity(intent);
             requireActivity().finish(); // পুরনো অ্যাক্টিভিটি শেষ
         }
+    }
+
+    //sqlite -----------------------------------------------------
+
+    private void show_data(){
+
+        favorite = new Favorite(requireActivity());
+
+        List<HashMap<String, String>> list = favorite.getAlldata();
+
+       show_list.addAll(list);
+
     }
 
 

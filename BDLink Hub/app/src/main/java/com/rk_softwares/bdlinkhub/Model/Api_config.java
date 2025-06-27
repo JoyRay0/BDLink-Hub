@@ -13,6 +13,7 @@ public class Api_config {
     private String user_reg_login_delete_account;
     private String get_links_user_info;
     private String get_links;
+    private String search;
 
     public String getGet_links() {
         return get_links;
@@ -58,5 +59,7 @@ public class Api_config {
         return viewpager;
     }
 
-
+    public String getSearch() {
+        return search;
+    }
 }

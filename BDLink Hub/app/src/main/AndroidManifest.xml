@@ -43,6 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Act_Home_activity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".Activity.HospitalNumberActivity"

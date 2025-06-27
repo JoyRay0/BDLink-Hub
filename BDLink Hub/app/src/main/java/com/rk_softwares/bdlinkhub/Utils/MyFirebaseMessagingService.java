@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 
@@ -37,6 +38,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     }
 
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+
+
+
+    }
 
     private void sendNotification(String body, String title) {
         Intent intent = new Intent(this, Act_all_item.class);

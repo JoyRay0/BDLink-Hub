@@ -1,38 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-   <com.google.android.material.textfield.TextInputLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:endIconMode="clear_text"
-       app:hintEnabled="false"
-       android:layout_margin="10dp"
+    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        android:id="@+id/ATV_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/search"
+        android:drawablePadding="12dp"
+        android:hint="সার্চ করুন....."
+        android:fontFamily="@font/noto_serif"
+        android:textColorHint="#8B6C6C"
+        android:background="@drawable/sh_searchview"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:inputType="text"
+        android:imeOptions="actionSearch"
+        android:ems="5"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
 
-       >
-       <com.google.android.material.textfield.MaterialAutoCompleteTextView
-           android:id="@+id/ATV_search"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:drawableStart="@drawable/search"
-           android:drawablePadding="12dp"
-           android:hint="সার্চ করুন....."
-           android:fontFamily="@font/noto_serif"
-           android:textColorHint="#8B6C6C"
-           android:background="@drawable/sh_searchview"
-           android:textAlignment="viewStart"
-           android:padding="10dp"
-           android:inputType="text"
-           android:imeOptions="actionSearch"
-           android:ems="5"
-           android:textSize="17sp"
-           />
-   </com.google.android.material.textfield.TextInputLayout>
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

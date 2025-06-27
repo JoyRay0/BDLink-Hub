@@ -37,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         if (viewType == LINK1){
 
-            View view = LayoutInflater.from(context).inflate(R.layout.lay_link_view, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.lay_link, parent, false);
             return new MyviewHolder(view);
 
         } else{

@@ -6,6 +6,7 @@ import java.util.List;
 public class All_data {
 
     private String status;
+    private String message;
     private List<Data> data;
 
     public String getStatus() {
@@ -16,5 +17,7 @@ public class All_data {
         return data;
     }
 
-
+    public String getMessage() {
+        return message;
+    }
 }

@@ -127,6 +127,7 @@ import okhttp3.Response;
 
         //grid view---------------------------------------
 
+
         //image slider------------------------------------------
         viewPagerAdapter = new ViewPagerAdapter(requireActivity(), image_list);
         vp_img.setAdapter(viewPagerAdapter);

@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -20,15 +21,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -46,15 +46,11 @@ import java.util.List;
 public class Act_Home_activity extends AppCompatActivity {
 
 
-
-
     //XML id's ------------------------------------------------------------
 
     private FrameLayout frame_layout;
-    CardView dh,ch,raj,kh,sy,bo,ra,my,hotline_cardview,hospital_cardview;
 
     MaterialToolbar toolbar;
-    FloatingActionButton floating_button;
 
 
     private final String appPackageName = "com.mala.digital_joper_mala";
@@ -62,6 +58,7 @@ public class Act_Home_activity extends AppCompatActivity {
     public static boolean INTERNET = false;
     private boolean isDialog = false;
     private static final long TIME = 3 * 24 * 60 * 60 * 1000L;
+
 
 
     private BottomNavigationView bottom_nav;
@@ -83,7 +80,6 @@ public class Act_Home_activity extends AppCompatActivity {
 
         frame_layout = findViewById(R.id.frame_layout);
         toolbar = findViewById(R.id.toolbar);
-        //floating_button = findViewById(R.id.floating_button);
         bottom_nav = findViewById(R.id.bottom_nav);
         drawer_layout = findViewById(R.id.drawer_layout);
         nv_drawer = findViewById(R.id.nv_drawer);
@@ -114,6 +110,24 @@ public class Act_Home_activity extends AppCompatActivity {
         user_id();
 
 
+        //firebase------------------------------------------------------
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+
+                    if (!task.isSuccessful()){
+
+                        return;
+
+                    }
+
+                    String token = task.getResult();
+
+                    Log.d("token", "key="+token);
+
+                });
+
+        //firebase------------------------------------------------------
+        
     }//on create ===============================
 
     private void check_permission(){    //permission check

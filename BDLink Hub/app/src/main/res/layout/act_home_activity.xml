@@ -29,7 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/appbar"
+            android:layout_above="@id/bottom_nav"
             />
+
 
         <!-- bottom navigation-->
 
@@ -49,10 +51,7 @@
             app:itemTextAppearanceInactive="@style/bottom_menu_text_inactive"
             app:itemPaddingTop="10dp"
             app:itemPaddingBottom="8dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+
             />
 
 
