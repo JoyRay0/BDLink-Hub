@@ -10,8 +10,10 @@ function notification($token){
 
     $title = "";
     $body = "";
+    $project_id = "";
+    $path = "Api/";
 
-    $url = "https://fcm.googleapis.com/fcm/send";
+    $url = "https://fcm.googleapis.com/v1/projects/{$project_id}/messages:send";
     $server_key = "";
 
     $data = [
@@ -38,9 +40,12 @@ function notification($token){
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+    
+    
 
     $response = curl_exec($ch);
 

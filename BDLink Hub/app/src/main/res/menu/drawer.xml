@@ -10,7 +10,6 @@
         <item android:id="@+id/review"
             android:title="আপনার রেটিং দিন"
             android:icon="@drawable/ic_review"
-
             />
 
         <item android:id="@+id/feedback"
@@ -27,6 +26,16 @@
         <item android:id="@+id/logout"
             android:title="লগআউট"
             android:icon="@drawable/ic_logout"
+            />
+
+        <item android:id="@+id/other_app"
+            android:title="আমাদের অনান্য অ্যাপ"
+            android:icon="@drawable/ic_other_app"
+            />
+
+        <item android:id="@+id/privacy"
+            android:title="প্রাইভেসি পলিসি"
+            android:icon="@drawable/ic_privacy_policy"
             />
 
         <item android:id="@+id/info"

@@ -400,6 +400,22 @@ public class Act_Home_activity extends AppCompatActivity {
                 dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
                 dialog1.show();
 
+            }else if (id == R.id.other_app) {
+
+                String other_apps = "https://sites.google.com/view/rk-softwares-official-site";
+
+                Intent intent = new Intent(this, Act_web_view.class);
+                intent.putExtra("other_app", other_apps);
+                startActivity(intent);
+
+            } else if (id == R.id.privacy) {
+
+                String privacy = "https://sites.google.com/view/jopermala/home";
+
+                Intent intent = new Intent(this, Act_web_view.class);
+                intent.putExtra("privacy", privacy);
+                startActivity(intent);
+
             }
 
             return true;

@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.All_item_Adapter;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
@@ -50,6 +55,8 @@ public class Act_all_item extends AppCompatActivity {
 
     private boolean isDataloaded = false;
 
+    private ShimmerFrameLayout sfl_container;
+
     //XML id's--------------------------------------------------------------
 
     @SuppressLint("MissingInflatedId")
@@ -62,6 +69,7 @@ public class Act_all_item extends AppCompatActivity {
         rv_item = findViewById(R.id.rv_item);
         Sl_refresh = findViewById(R.id.Sl_refresh);
         iv_back = findViewById(R.id.iv_back);
+        sfl_container = findViewById(R.id.sfl_container);
 
         //identity period-----------------------------------------------------
 
@@ -74,27 +82,34 @@ public class Act_all_item extends AppCompatActivity {
 
         //all item adapter----------------------------------------------
 
+
         rv_item.setLayoutManager(new GridLayoutManager(this, 4));
         itemAdapter = new All_item_Adapter(this, mapList);
         rv_item.setAdapter(itemAdapter);
 
         //all item adapter----------------------------------------------
 
-        Api_config apiConfig = new Api_config();
+        //Api_config apiConfig = new Api_config();
         Request_link requestLink = new Request_link(new ApiResponseListener() {
             @Override
             public void onApiResponse(Api_config config) {
 
                 String link = config.getItem_links();
+                new Handler(Looper.getMainLooper()).post(() -> {
 
-                item_data(link);
+                    //Toast.makeText(Act_all_item.this, ""+link, Toast.LENGTH_SHORT).show();
+
+                    item_data(link);
+
+                });
+
+
 
                 Sl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
 
                         item_data(link);
-
 
                     }
                 });
@@ -104,6 +119,12 @@ public class Act_all_item extends AppCompatActivity {
             @Override
             public void onApiFailed(String error) {
 
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    sfl_container.stopShimmer();
+                    sfl_container.setVisibility(View.GONE);
+
+                });
 
             }
         });
@@ -171,6 +192,10 @@ public class Act_all_item extends AppCompatActivity {
 
                                 itemAdapter.notifyDataSetChanged();
                                 Sl_refresh.setRefreshing(false);
+
+                                sfl_container.stopShimmer();
+                                sfl_container.setVisibility(View.GONE);
+                                rv_item.setVisibility(View.VISIBLE);
 
                             });
 

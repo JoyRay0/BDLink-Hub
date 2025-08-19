@@ -21,6 +21,12 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.Act_check_link"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.Act_web_view"
+            android:exported="false" />
+        <activity
             android:name=".Act_In_App_Browser"
             android:exported="false" />
         <activity
@@ -43,8 +49,8 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Act_Home_activity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.HospitalNumberActivity"
             android:exported="false" />

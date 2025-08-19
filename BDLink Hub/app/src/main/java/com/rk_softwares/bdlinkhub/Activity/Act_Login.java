@@ -1,5 +1,6 @@
 package com.rk_softwares.bdlinkhub.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,16 +8,23 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
+import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Lifecycle;
 
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -89,7 +97,9 @@ public class Act_Login extends AppCompatActivity {
 
         //identity period------------------------------------------
 
+        verify_otp();
 
+        getOnBackPressedDispatcher().addCallback(this, callback);   // back button
         auth = FirebaseAuth.getInstance();
 
         Request_limit limit = new Request_limit(this);
@@ -110,6 +120,7 @@ public class Act_Login extends AppCompatActivity {
 
 
         });
+
 
         tv_forgetPassword.setOnClickListener(view -> {      //forget password page
 
@@ -261,13 +272,13 @@ public class Act_Login extends AppCompatActivity {
     }
 
     //google sign in option
-    @Override
-    public void onBackPressed() {
-
-        startActivity(new Intent(this, Act_Home_activity.class));
-        finishAffinity();
-        super.onBackPressed();
-    }
+    private OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            startActivity(new Intent(Act_Login.this, Act_Home_activity.class));
+            finishAffinity();
+        }
+    };
 
     //Login user
     private void login(String email, String password, String url){
@@ -493,6 +504,50 @@ public class Act_Login extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         NetworkUtils.stop_monitoring(this);
+    }
+
+    //otp verification-----------------------------------------
+    public void verify_otp(){
+
+        ConstraintLayout parent = findViewById(R.id.main);
+
+        View view = LayoutInflater.from(this).inflate(R.layout.lay_otp_verification, null, false);
+        parent.removeAllViews();
+        parent.addView(view);
+
+        AppCompatEditText ed_otp1 = view.findViewById(R.id.ed_otp1);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        AppCompatEditText ed_otp2 = view.findViewById(R.id.ed_otp2);
+        AppCompatEditText ed_otp3 = view.findViewById(R.id.ed_otp3);
+        AppCompatEditText ed_otp4 = view.findViewById(R.id.ed_otp4);
+        AppCompatEditText ed_otp5 = view.findViewById(R.id.ed_otp5);
+        AppCompatEditText ed_otp6 = view.findViewById(R.id.ed_otp6);
+        AppCompatTextView tv_resend_code = view.findViewById(R.id.tv_resend_code);
+        AppCompatButton btn_verify = view.findViewById(R.id.btn_verify);
+
+        btn_verify.setOnClickListener(view1 -> {
+
+
+            String otp1 = ed_otp1.getText().toString();
+            String otp2 = ed_otp2.getText().toString();
+            String otp3 = ed_otp3.getText().toString();
+            String otp4 = ed_otp4.getText().toString();
+            String otp5 = ed_otp5.getText().toString();
+            String otp6 = ed_otp6.getText().toString();
+
+
+            if (!otp1.isEmpty() && !otp2.isEmpty() && !otp3.isEmpty() && !otp4.isEmpty() && !otp5.isEmpty() && !otp6.isEmpty()){
+
+                Toast.makeText(this, "Verification successful"+otp1+otp2+otp3+otp4+otp5+otp6, Toast.LENGTH_SHORT).show();
+                //view.setVisibility(View.GONE);
+            }else {
+                Toast.makeText(this, "Some filed are missing", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+
+
     }
 
 }//public class====================================

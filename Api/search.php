@@ -56,6 +56,7 @@ $sanitize_query = trim(strip_tags(filter_var($query, FILTER_SANITIZE_FULL_SPECIA
 
         }
 
+
         if(empty($data)){
 
             echo json_encode([
@@ -76,6 +77,8 @@ $sanitize_query = trim(strip_tags(filter_var($query, FILTER_SANITIZE_FULL_SPECIA
             ], JSON_UNESCAPED_UNICODE);
 
         }
+
+        $database_connect->close();
 
         
         

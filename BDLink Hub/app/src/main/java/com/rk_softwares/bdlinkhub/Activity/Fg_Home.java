@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.MyAdapter;
 import com.rk_softwares.bdlinkhub.Adapter.Popular_item_Adapter;
@@ -88,6 +89,8 @@ import okhttp3.Response;
 
      Handler handler;
 
+     private ShimmerFrameLayout sfl_container, sfl_pager;
+
      //XML id's-----------------------------------------------
 
     @Override
@@ -110,6 +113,8 @@ import okhttp3.Response;
         vp_img = view.findViewById(R.id.vp_img);
         sl_refresh = view.findViewById(R.id.sl_refresh);
         dotsIndicator = view.findViewById(R.id.dotsIndicator);
+        sfl_container = view.findViewById(R.id.sfl_container);
+        sfl_pager = view.findViewById(R.id.sfl_pager);
 
 
         //identity period------------------------------------------
@@ -156,6 +161,11 @@ import okhttp3.Response;
 
             @Override
             public void onApiFailed(String error) {
+
+                sfl_container.stopShimmer();
+                sfl_container.setVisibility(View.GONE);
+                sfl_pager.stopShimmer();
+                sfl_pager.setVisibility(View.GONE);
 
             }
         });
@@ -344,6 +354,10 @@ import okhttp3.Response;
                                 plAdapter.notifyDataSetChanged();
                                 sl_refresh.setRefreshing(false);
 
+                                sfl_container.stopShimmer();
+                                sfl_container.setVisibility(View.GONE);
+                                gd_item.setVisibility(View.VISIBLE);
+
                             });
 
                         }
@@ -410,6 +424,11 @@ import okhttp3.Response;
 
                                  viewPagerAdapter.notifyDataSetChanged();
                                  sl_refresh.setRefreshing(false);
+
+                                 sfl_pager.stopShimmer();
+                                 sfl_pager.setVisibility(View.GONE);
+
+                                 vp_img.setVisibility(View.VISIBLE);
 
                              });
 

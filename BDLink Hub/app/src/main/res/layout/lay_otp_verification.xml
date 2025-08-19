@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    >
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="আপনার ইমেল যাচাই করুন"
+        android:fontFamily="@font/noto_serif"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        tools:ignore="HardcodedText"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/img_email"
+        android:padding="45dp"
+        android:background="@drawable/sh_img_email_bg"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="আপনার ইমেইলে ৬ সংখ্যার একটি ভেরিফিকেশন কোড পাঠানো হয়েছে।
+অনুগ্রহ করে নিচের ঘরে সেই কোডটি লিখুন।"
+        android:padding="8dp"
+        android:fontFamily="@font/noto_serif"
+        android:textSize="15sp"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        tools:ignore="HardcodedText"
+        />
+
+    <!-- 6 digit otp-->
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:rowCount="1"
+        android:columnCount="6"
+        android:layout_gravity="center"
+        >
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_otp1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_margin="6dp"
+            android:padding="15dp"
+            android:inputType="number"
+            android:elevation="2dp"
+            android:maxLength="1"
+            android:layout_gravity="clip_vertical"
+            android:background="@drawable/sh_otp_desgin"
+            tools:ignore="HardcodedText"
+            android:imeOptions="actionNext"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_otp2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:textSize="24sp"
+            android:padding="15dp"
+            android:inputType="number"
+            android:background="@drawable/sh_otp_desgin"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:textColor="#000"
+            tools:ignore="HardcodedText"
+            android:layout_margin="6dp"
+            android:maxLength="1"
+            android:layout_gravity="clip_vertical"
+            android:imeOptions="actionNext"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_otp3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:textSize="24sp"
+            android:padding="15dp"
+            android:layout_margin="6dp"
+            android:inputType="number"
+            android:background="@drawable/sh_otp_desgin"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:textColor="#000"
+            tools:ignore="HardcodedText"
+            android:maxLength="1"
+            android:layout_gravity="clip_vertical"
+            android:imeOptions="actionNext"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_otp4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:textSize="24sp"
+            android:padding="15dp"
+            android:inputType="number"
+            android:background="@drawable/sh_otp_desgin"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:textColor="#000"
+            tools:ignore="HardcodedText"
+            android:layout_margin="6dp"
+            android:maxLength="1"
+            android:layout_gravity="clip_vertical"
+            android:imeOptions="actionNext"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_otp5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:textSize="24sp"
+            android:padding="15dp"
+            android:layout_margin="6dp"
+            android:inputType="number"
+            android:background="@drawable/sh_otp_desgin"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:textColor="#000"
+            tools:ignore="HardcodedText"
+            android:maxLength="1"
+            android:layout_gravity="clip_vertical"
+            android:imeOptions="actionNext"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/ed_otp6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:textSize="24sp"
+            android:padding="15dp"
+            android:layout_margin="6dp"
+            android:inputType="number"
+            android:background="@drawable/sh_otp_desgin"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:textColor="#000"
+            tools:ignore="HardcodedText"
+            android:maxLength="1"
+            android:layout_gravity="clip_vertical"
+            android:imeOptions="actionDone"
+            />
+
+    </GridLayout>
+
+    <!-- Resend code-->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_resend_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="পুনরায় কোড পাঠান"
+        android:fontFamily="@font/noto_serif"
+        android:textSize="15sp"
+        android:textColor="#2196F3"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText"
+        android:tooltipText="Resend code"
+        />
+    <View
+        android:layout_width="120dp"
+        android:layout_height="1dp"
+        android:background="#2196F3"
+        android:layout_gravity="center"
+        />
+
+
+    <!-- button-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/sh_otp_verify_button_bg"
+        android:fontFamily="@font/noto_serif"
+        android:gravity="center"
+        android:padding="13dp"
+        android:text="OTP যাচাই করুন"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:tooltipText="Verify"
+        tools:ignore="HardcodedText" />
+
+
+</LinearLayout>

@@ -40,8 +40,10 @@
                         android:id="@+id/vp_img"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:visibility="gone"
                         />
+
+                    <include layout="@layout/lay_view_pager_loading"/>
 
                     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
                         android:id="@+id/dotsIndicator"
@@ -73,10 +75,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:numColumns="4"
-                    android:padding="5dp"
+
                     android:listSelector="@android:color/transparent"
                     android:scrollbars="none"
+                    android:visibility="gone"
                     />
+
+                <include layout="@layout/lay_loading_screen_grid_view"/>
 
             </androidx.cardview.widget.CardView>
 

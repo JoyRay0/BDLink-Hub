@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "310756133467",
+    "project_id": "bdlink-hub-11a36",
+    "storage_bucket": "bdlink-hub-11a36.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310756133467:android:a49884a8316d3693168d7e",
+        "android_client_info": {
+          "package_name": "com.rk_softwares.bdlinkhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310756133467-950cq4pki54074keh6vpkafj90g1m69u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rk_softwares.bdlinkhub",
+            "certificate_hash": "b4083102770f75a545c33e95978b0ce9ae5cbd94"
+          }
+        },
+        {
+          "client_id": "310756133467-tcdmlp051030bvqa0b4davujhet36jpa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy-lLcqoC3c6vgOiAydNjlKugAftHqJJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310756133467-tcdmlp051030bvqa0b4davujhet36jpa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
