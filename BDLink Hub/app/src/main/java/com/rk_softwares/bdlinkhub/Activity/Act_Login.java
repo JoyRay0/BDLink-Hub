@@ -97,7 +97,7 @@ public class Act_Login extends AppCompatActivity {
 
         //identity period------------------------------------------
 
-        verify_otp();
+        //verify_otp();
 
         getOnBackPressedDispatcher().addCallback(this, callback);   // back button
         auth = FirebaseAuth.getInstance();
