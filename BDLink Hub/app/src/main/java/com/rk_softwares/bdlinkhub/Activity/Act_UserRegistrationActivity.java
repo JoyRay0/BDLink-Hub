@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 
@@ -26,7 +25,7 @@ import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.PostApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
@@ -148,7 +147,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
                         Request_link link = new Request_link(new ApiResponseListener() {
                             @Override
-                            public void onApiResponse(Api_config config) {
+                            public void onApiResponse(c_api_config config) {
 
                                 String reg_link = config.getUser_reg_login_reg();
 

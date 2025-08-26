@@ -14,8 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcher;
-import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +22,6 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Lifecycle;
 
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -45,7 +42,7 @@ import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.PostApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
@@ -154,7 +151,7 @@ public class Act_Login extends AppCompatActivity {
 
                     link = new Request_link(new ApiResponseListener() {
                         @Override
-                        public void onApiResponse(Api_config config) {
+                        public void onApiResponse(c_api_config config) {
 
                             String link = config.getUser_reg_login_login();
 
@@ -242,7 +239,7 @@ public class Act_Login extends AppCompatActivity {
 
                             link = new Request_link(new ApiResponseListener() {
                                 @Override
-                                public void onApiResponse(Api_config config) {
+                                public void onApiResponse(c_api_config config) {
 
                                     String g_link = config.getUser_reg_login_gAuth();
 

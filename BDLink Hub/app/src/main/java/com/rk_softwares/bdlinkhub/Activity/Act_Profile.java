@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.DeleteApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
@@ -152,7 +152,7 @@ public class Act_Profile extends AppCompatActivity {
 
                      link = new Request_link(new ApiResponseListener() {
                          @Override
-                         public void onApiResponse(Api_config config) {
+                         public void onApiResponse(c_api_config config) {
 
                              String d_user = config.getUser_reg_login_delete_account();
 

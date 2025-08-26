@@ -20,14 +20,7 @@ class Search extends Model
 
     protected $hidden = [
         'id',
-        'category',
-        'title',
-        'description',
-        'link',
-        'created_at',
-        'updated_at',
-        'table_name',
-        'record_id'
+
     ];
 
     public $timestamps = true;

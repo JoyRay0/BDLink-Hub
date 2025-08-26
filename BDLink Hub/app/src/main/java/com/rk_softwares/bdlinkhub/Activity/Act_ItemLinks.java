@@ -16,10 +16,10 @@ import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.Item_link;
 import com.rk_softwares.bdlinkhub.Api.GetApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
-import com.rk_softwares.bdlinkhub.Model.All_data;
-import com.rk_softwares.bdlinkhub.Model.Data;
+import com.rk_softwares.bdlinkhub.Model.m_All_data;
+import com.rk_softwares.bdlinkhub.Model.c_all_data;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.R;
 
 import java.io.IOException;
@@ -282,7 +282,7 @@ public class Act_ItemLinks extends AppCompatActivity {
 
         Request_link link = new Request_link(new ApiResponseListener() {
             @Override
-            public void onApiResponse(Api_config config) {
+            public void onApiResponse(c_api_config config) {
 
                 String link = config.getGet_links();
 
@@ -352,26 +352,26 @@ public class Act_ItemLinks extends AppCompatActivity {
                     
                     try {
 
-                        All_data allData = gson.fromJson(link, All_data.class);
+                        m_All_data allData = gson.fromJson(link, m_All_data.class);
 
                         mapList.clear();
 
                         if (allData.getStatus().contains("successful")){
 
-                            List<Data> data = allData.getData();
+                            List<c_all_data> cData = allData.getData();
 
                             //mapList.clear();
 
-                            for (int i = 0; i < data.size(); i++){
+                            for (int i = 0; i < cData.size(); i++){
 
-                                Data data1 = data.get(i);
+                                c_all_data cData1 = cData.get(i);
 
                                 hashMap = new HashMap<>();
                                 hashMap.put("item_type","link");
-                                hashMap.put("category", data1.getCategory());
-                                hashMap.put("title", data1.getTitle());
-                                hashMap.put("description", data1.getDescription());
-                                hashMap.put("link", data1.getLink());
+                                hashMap.put("category", cData1.getCategory());
+                                hashMap.put("title", cData1.getTitle());
+                                hashMap.put("description", cData1.getDescription());
+                                hashMap.put("link", cData1.getLink());
                                 mapList.add(hashMap);
 
                             }

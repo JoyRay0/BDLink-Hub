@@ -24,7 +24,7 @@ class AuthController extends Controller
     public function user_first_reg(Request $request): ?JsonResponse
     {
 
-        $validated_information = Validaton::filter_validator($request->validate(Validaton::user_Registration($request->all())));
+        $validated_information = Validaton::filter_reg1($request->validate(Validaton::user_Registration($request->all())));
 
         $verify = Verified_code::send_mail($validated_information['email']);
 
@@ -57,7 +57,7 @@ class AuthController extends Controller
     public function second_step_reg(Request $request): ?JsonResponse
     {
 
-        $verify_code =  Validaton::verify_code($request->validate(Validaton::filter_validator($request->input('code'))));
+        $verify_code =  Validaton::verify_code($request->validate(Validaton::filter_reg2($request->input('code'))));
 
         $temp_token = $request['token'];
 
@@ -129,7 +129,7 @@ class AuthController extends Controller
     public function user_Login(Request $request): ?JsonResponse
     {
 
-        $validation_information = Validaton::filter_validator($request->validate(Validaton::user_Login($request->all())));
+        $validation_information = Validaton::filter_login($request->validate(Validaton::user_Login($request->all())));
 
         try {
 
@@ -164,7 +164,7 @@ class AuthController extends Controller
     public function user_update_password_first(Request $request): ?JsonResponse
     {
 
-        $validation_information = Validaton::filter_validator($request->validate(Validaton::user_update_password($request->all())));
+        $validation_information = Validaton::filter_update_password1($request->validate(Validaton::user_update_password($request->all())));
 
         $verify = Verified_code::send_mail($validation_information['email']);
 
@@ -195,7 +195,7 @@ class AuthController extends Controller
     public function second_step_password_update(Request $request): ?JsonResponse
     {
 
-        $verify_code = Validaton::filter_validator($request->validate(Validaton::verify_code($request->input('code'))));
+        $verify_code = Validaton::filter_update_password2($request->validate(Validaton::verify_code($request->input('code'))));
 
         $temp_token = $request['token'];
 
@@ -264,7 +264,7 @@ class AuthController extends Controller
     public function OAuth_login_or_register(Request $request): ?JsonResponse
     {
 
-        $validate_information = Validaton::filter_validator($request->validate(Validaton::user_oAuth($request->all())));
+        $validate_information = Validaton::filter_oAuth($request->validate(Validaton::user_oAuth($request->all())));
 
         try {
 

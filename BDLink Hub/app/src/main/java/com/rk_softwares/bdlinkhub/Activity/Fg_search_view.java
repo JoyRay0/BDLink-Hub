@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -22,16 +21,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.Search;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
-import com.rk_softwares.bdlinkhub.Model.All_data;
-import com.rk_softwares.bdlinkhub.Model.Data;
+import com.rk_softwares.bdlinkhub.Model.m_All_data;
+import com.rk_softwares.bdlinkhub.Model.c_all_data;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.R;
-import com.rk_softwares.bdlinkhub.Utils.InputValidation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -110,7 +107,7 @@ public class Fg_search_view extends Fragment {
 
                         Request_link link = new Request_link(new ApiResponseListener() {
                             @Override
-                            public void onApiResponse(Api_config config) {
+                            public void onApiResponse(c_api_config config) {
 
                                 String url = config.getSearch();
 
@@ -180,19 +177,19 @@ public class Fg_search_view extends Fragment {
 
                     try {
 
-                        All_data allData = gson.fromJson(link, All_data.class);
+                        m_All_data allData = gson.fromJson(link, m_All_data.class);
 
                         hashMapList.clear();
 
                         if (allData.getStatus().contains("successful")){
 
-                            List<Data> data = allData.getData();
+                            List<c_all_data> data = allData.getData();
 
                             //mapList.clear();
 
                             for (int i = 0; i < data.size(); i++){
 
-                                Data data1 = data.get(i);
+                                c_all_data data1 = data.get(i);
 
                                 hashMap = new HashMap<>();
                                 hashMap.put("item_type","link");

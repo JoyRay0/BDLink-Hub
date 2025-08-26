@@ -9,7 +9,7 @@ class Validaton
     public static function search_words(string $search): array
     {
         return [
-            'search' => 'required|string|max:100',
+            'query' => 'required|string|max:100',
         ];
 
     }
@@ -71,20 +71,81 @@ class Validaton
     }
 
 
-    // data sanitizer ---------------------------------------
-    public static function filter_validator(array $input):array
+    // reg1 data sanitizer ---------------------------------------
+    public static function filter_reg1(array $input):array
     {
         return [
-            'search' => !empty($input['search']) ? htmlspecialchars(filter_var(trim($input['search']), FILTER_SANITIZE_SPECIAL_CHARS), ENT_QUOTES, 'UTF-8') : null,
-            'endpoint' => !empty($input['endpoint']) ? filter_var(trim($input['endpoint']), FILTER_SANITIZE_SPECIAL_CHARS) : null,
             'name' => !empty($input['name']) ? htmlspecialchars(trim($input['name']), ENT_QUOTES, 'UTF-8') : null,
             'email' => !empty($input['email']) ? filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL) : null,
             'password' => $input['password'],
-            'new_password' => $input['new_password'],
             'date of birth' => !empty($input['date of birth']) ? filter_var(trim($input['date of birth']), FILTER_VALIDATE_INT) : null,
+        ];
+    }
+
+    //reg2 data sanitizer-----------------------------------------------
+    public static function filter_reg2(array $input):array
+    {
+
+        return [
             'code' => $input['code'],
         ];
     }
+
+    //login data sanitizer-----------------------------------------------
+    public static function filter_login(array $input):array
+    {
+        return [
+            'email' => !empty($input['email']) ? filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL) : null,
+            'password' => $input['password'],
+        ];
+    }
+
+    //update password1 data sanitizer-----------------------------------------------
+    public static function filter_update_password1(array $input):array
+    {
+
+        return [
+            'email' => !empty($input['email']) ? filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL) : null,
+            'new_password' => $input['new_password'],
+        ];
+    }
+
+    //update password2 data sanitizer-----------------------------------------------
+    public static function filter_update_password2(array $input):array
+    {
+
+        return [
+            'code' => $input['code'],
+        ];
+    }
+
+    //get links data sanitizer-----------------------------------------------
+    public static function filter_get_links(array $input):array
+    {
+        return [
+            'endpoint' => !empty($input['endpoint']) ? filter_var(trim($input['endpoint']), FILTER_SANITIZE_SPECIAL_CHARS) : null,
+        ];
+
+    }
+
+    //search data sanitizer-----------------------------------------------
+    public static function filter_search(array $input):array
+    {
+        return [
+            'query' => !empty($input['query']) ? htmlspecialchars(filter_var(trim($input['query']), FILTER_SANITIZE_SPECIAL_CHARS), ENT_QUOTES, 'UTF-8') : null,
+        ];
+
+    }
+
+    //oAuth data sanitizer-----------------------------------------------
+    public static function filter_oAuth(array $input):array
+    {
+        return [
+            'name' => !empty($input['name']) ? htmlspecialchars(trim($input['name']), ENT_QUOTES, 'UTF-8') : null,
+            'email' => !empty($input['email']) ? filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL) : null,        ];
+
+    }
+
 
     //validation error message---------------------------------------------
     public function messages():array

@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
@@ -30,10 +31,12 @@ import com.rk_softwares.bdlinkhub.Adapter.MyAdapter;
 import com.rk_softwares.bdlinkhub.Adapter.Popular_item_Adapter;
 import com.rk_softwares.bdlinkhub.Adapter.ViewPagerAdapter;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Model.m_popular_item_link;
+import com.rk_softwares.bdlinkhub.Model.c_popular_item_link;
+import com.rk_softwares.bdlinkhub.Model.c_viewpager;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
-import com.rk_softwares.bdlinkhub.Model.Item;
-import com.rk_softwares.bdlinkhub.Model.Item_data;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
+import com.rk_softwares.bdlinkhub.Model.m_viewpager;
 import com.rk_softwares.bdlinkhub.R;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
@@ -84,6 +87,8 @@ import okhttp3.Response;
      private WormDotsIndicator dotsIndicator;
 
      int currentItem = 0;
+
+     boolean isLoading = false;
 
      private SwipeRefreshLayout sl_refresh;
 
@@ -140,7 +145,7 @@ import okhttp3.Response;
 
         Request_link link = new Request_link(new ApiResponseListener() {
             @Override
-            public void onApiResponse(Api_config config) {
+            public void onApiResponse(c_api_config config) {
 
                 String item_link = config.getP_item_links();
                 String viewpager = config.getViewpager();
@@ -157,15 +162,20 @@ import okhttp3.Response;
 
                     }
                 });
+
             }
 
             @Override
             public void onApiFailed(String error) {
 
-                sfl_container.stopShimmer();
-                sfl_container.setVisibility(View.GONE);
-                sfl_pager.stopShimmer();
-                sfl_pager.setVisibility(View.GONE);
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    sfl_container.stopShimmer();
+                    sfl_container.setVisibility(View.GONE);
+                    sfl_pager.stopShimmer();
+                    sfl_pager.setVisibility(View.GONE);
+
+                });
+
 
             }
         });
@@ -304,6 +314,8 @@ import okhttp3.Response;
     //popular --------------------------------------------------------
     private void item_data(String url){
 
+
+
         Gson gson = new Gson();
 
         OkHttpClient client = new OkHttpClient();
@@ -331,16 +343,16 @@ import okhttp3.Response;
 
                     try {
 
-                        Item_data itemData = gson.fromJson(data, Item_data.class);
+                         m_popular_item_link itemData = gson.fromJson(data, m_popular_item_link.class);
 
                         if (itemData.getStatus().contains("successful")) {
 
-                            List<Item> items = itemData.getItem();
+                            List<c_popular_item_link> items = itemData.getItem();
 
                             item_list.clear();
                             for (int i = 0; i < items.size(); i++) {
 
-                                Item item = items.get(i);
+                                c_popular_item_link item = items.get(i);
 
                                 map = new HashMap<>();
                                 map.put("item_name", item.getItem_name());
@@ -348,6 +360,8 @@ import okhttp3.Response;
                                 map.put("endLink", item.getEndLink());
                                 item_list.add(map);
                             }
+
+
 
                             new Handler(Looper.getMainLooper()).post(() -> {
 
@@ -357,6 +371,7 @@ import okhttp3.Response;
                                 sfl_container.stopShimmer();
                                 sfl_container.setVisibility(View.GONE);
                                 gd_item.setVisibility(View.VISIBLE);
+
 
                             });
 
@@ -404,19 +419,19 @@ import okhttp3.Response;
 
                      try {
 
-                         Item_data itemData = gson.fromJson(data, Item_data.class);
+                         m_viewpager Vp_image = gson.fromJson(data, m_viewpager.class);
 
-                         if (itemData.getStatus().contains("Successful")) {
+                         if (Vp_image.getStatus().contains("successful")) {
 
-                             List<Item> items = itemData.getItem();
+                             List<c_viewpager> vp_items = Vp_image.getImages();
 
                              image_list.clear();
-                             for (int i = 0; i < items.size(); i++) {
+                             for (int i = 0; i < vp_items.size(); i++) {
 
-                                 Item item = items.get(i);
+                                 c_viewpager vpImage = vp_items.get(i);
 
                                  img_map = new HashMap<>();
-                                 img_map.put("vp_image", item.getImage());
+                                 img_map.put("vp_image", vpImage.getImage());
                                  image_list.add(img_map);
                              }
 
@@ -430,12 +445,15 @@ import okhttp3.Response;
 
                                  vp_img.setVisibility(View.VISIBLE);
 
+
+
                              });
 
                          }
 
                      } catch (Exception e) {
                          e.printStackTrace();
+
                      }
 
                  }

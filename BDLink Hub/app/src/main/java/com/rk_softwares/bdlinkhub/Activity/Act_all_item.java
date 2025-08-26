@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +18,10 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Adapter.All_item_Adapter;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Model.m_All_item_link;
+import com.rk_softwares.bdlinkhub.Model.c_all_item_link;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
-import com.rk_softwares.bdlinkhub.Model.Item;
-import com.rk_softwares.bdlinkhub.Model.Item_data;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.R;
 
 import java.io.IOException;
@@ -92,7 +89,7 @@ public class Act_all_item extends AppCompatActivity {
         //Api_config apiConfig = new Api_config();
         Request_link requestLink = new Request_link(new ApiResponseListener() {
             @Override
-            public void onApiResponse(Api_config config) {
+            public void onApiResponse(c_api_config config) {
 
                 String link = config.getItem_links();
                 new Handler(Looper.getMainLooper()).post(() -> {
@@ -169,22 +166,22 @@ public class Act_all_item extends AppCompatActivity {
 
                     try {
 
-                        Item_data itemData = gson.fromJson(data, Item_data.class);
+                        m_All_item_link allItemLink = gson.fromJson(data, m_All_item_link.class);
 
-                        if (itemData.getStatus().contains("successful")) {
+                        if (allItemLink.getStatus().contains("successful")) {
 
-                            List<Item> items = itemData.getItem();
+                            List<c_all_item_link> cAllItemLinks = allItemLink.getItem();
 
                             mapList.clear();
 
-                            for (int i = 0; i < items.size(); i++) {
+                            for (int i = 0; i < cAllItemLinks.size(); i++) {
 
-                                Item item = items.get(i);
+                                c_all_item_link c_all_item_link = cAllItemLinks.get(i);
 
                                 map = new HashMap<>();
-                                map.put("item_name", item.getItem_name());
-                                map.put("item_pic", item.getItem_pic());
-                                map.put("endLink", item.getEndLink());
+                                map.put("item_name", c_all_item_link.getItem_name());
+                                map.put("item_pic", c_all_item_link.getItem_pic());
+                                map.put("endLink", c_all_item_link.getEndLink());
                                 mapList.add(map);
                             }
 

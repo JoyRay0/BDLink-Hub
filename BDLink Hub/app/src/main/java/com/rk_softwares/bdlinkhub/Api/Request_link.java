@@ -1,10 +1,13 @@
 package com.rk_softwares.bdlinkhub.Api;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.rk_softwares.bdlinkhub.Model.m_api_config;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 
 import java.io.IOException;
 
@@ -30,7 +33,7 @@ public class Request_link {
 
         Gson gson = new Gson();
 
-        String url = "https://rksoftwares.xyz/All_app/BDLink_Hub/Api/api_config";
+        String url = "https://bdlinkhub.rksoftwares.xyz/api/api_config";
 
         Request request = new Request.Builder().url(url).build();
 
@@ -53,12 +56,19 @@ public class Request_link {
 
                     try {
 
-                        Api_config config = gson.fromJson(link, Api_config.class);
+                        m_api_config config = gson.fromJson(link, m_api_config.class);
 
+                        Log.d("worked", ""+config.getStatus());
 
-                       if (listener != null){
-                           listener.onApiResponse(config);
-                       }
+                        if (config.getStatus().contains("successful")){
+
+                           c_api_config links = config.getLinks();
+
+                            if (listener != null){
+                                listener.onApiResponse((c_api_config) links);
+                            }
+
+                        }
 
 
                     } catch (Exception e) {

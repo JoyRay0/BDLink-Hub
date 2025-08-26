@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class Item_linksController extends Controller
 {
-    private string $ai = 'ai';
+    private string $ai = 'ai_links';
     private string $news = 'news';
     private string $jobs = 'jobs';
     private string $tv = 'tv';
@@ -44,6 +45,18 @@ class Item_linksController extends Controller
     //popular items-------------------------------------------------------
     public function popular_item(): ?JsonResponse
     {
+
+        $cache = Cache::get('popular_item', 0);
+
+        if (!empty($cache)) {
+
+            return response()->json([
+                'status' => 'successful',
+                'source' => 'cache',
+                'item' => $cache
+            ]);
+
+        }
 
         $popular_item = [
             [
@@ -96,6 +109,8 @@ class Item_linksController extends Controller
             ]
         ];
 
+        Cache::put('popular_item', $popular_item, now()->addMinutes(10));
+
         return response()->json([
             'status' => 'successful',
             'item' => $popular_item
@@ -106,6 +121,18 @@ class Item_linksController extends Controller
     //all item --------------------------------------------------
     public function all_item(): JsonResponse
     {
+
+        $cache = Cache::get('all_item', 0);
+
+        if (!empty($cache)) {
+
+            return response()->json([
+                'status' => 'successful',
+                'source' => 'cache',
+                'item' => $cache
+            ]);
+
+        }
 
         $all_item = [
 
@@ -314,6 +341,8 @@ class Item_linksController extends Controller
                 'endLink' => $this->bd_visa_center
             ],
         ];
+
+        Cache::put('all_item', $all_item, now()->addMinutes(10));
 
         return response()->json([
             'status' => 'successful',

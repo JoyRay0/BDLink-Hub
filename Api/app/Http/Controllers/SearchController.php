@@ -16,11 +16,19 @@ class SearchController extends Controller
 
         $search = $request->query('query');
 
-        $search_data = Validaton::filter_validator($request->validate(Validaton::search_words($search)));
+        $search_data = Validaton::filter_search($request->validate(Validaton::search_words($search)));
 
         try {
 
-            $find_data = Search::whereRaw("MATCH (title) AGAINST (? IN NATURAL LANGUAGE MODE)", [$search_data['search']])->get();
+            if (!empty($search_data['query'])) {
+
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => $search_data['query'],
+                ]);
+            }
+
+            $find_data = Search::where('title', 'like', "%{$search_data['query']}%")->get();
 
             if ($find_data->isEmpty()) {
 
@@ -69,7 +77,8 @@ class SearchController extends Controller
 
             foreach ($tables as $table) {
 
-                DB::table($table)->chunk(100, function ($records) use ($table, &$total_updated) {
+                DB::table($table)->orderBy('id')
+                    ->chunk(100, function ($records) use ($table, &$total_updated) {
 
                     foreach ($records as $record) {
 
@@ -101,6 +110,8 @@ class SearchController extends Controller
             ]);
 
         }catch (\Exception $exception){
+
+            \Log::error('Search index update failed: '.$exception->getMessage());
 
             return response()->json([
                 'status' => 'failed',

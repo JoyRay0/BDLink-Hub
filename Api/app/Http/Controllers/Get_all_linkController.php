@@ -14,7 +14,7 @@ class Get_all_linkController extends Controller
     {
         $endpoint = $request->query('endpoint');
 
-        $validation_endpoint = Validaton::filter_validator($request->validate(Validaton::get_links($endpoint)));
+        $validation_endpoint = Validaton::filter_get_links($request->validate(Validaton::get_links($endpoint)));
 
         $allowed_tables = [
             'ai_links',
@@ -39,10 +39,11 @@ class Get_all_linkController extends Controller
 
         $cache = Cache::get('temp_links_'.$table_name,0);
 
-        if ($cache && !$cache->isEmpty()) {
+        if (!empty($cache)) {
 
            return response()->json([
                'status' => 'successful',
+               'source' => 'cache',
                'data' => $cache
            ]);
 

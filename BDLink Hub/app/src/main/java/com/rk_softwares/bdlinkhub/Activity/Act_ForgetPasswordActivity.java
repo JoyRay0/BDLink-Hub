@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,7 +20,7 @@ import com.google.gson.Gson;
 import com.rk_softwares.bdlinkhub.Api.PutApi;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
-import com.rk_softwares.bdlinkhub.Model.Api_config;
+import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.Model.User_info;
 import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
@@ -89,7 +88,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                     Request_link link = new Request_link(new ApiResponseListener() {
                         @Override
-                        public void onApiResponse(Api_config config) {
+                        public void onApiResponse(c_api_config config) {
 
                             String link = config.getUser_reg_login_reset_password();
 
