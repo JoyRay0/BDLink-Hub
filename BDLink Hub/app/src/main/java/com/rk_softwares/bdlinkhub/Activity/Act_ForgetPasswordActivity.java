@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -109,16 +110,17 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
         });
 
+        //back-------------------------------------------------------
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                startActivity(new Intent(Act_ForgetPasswordActivity.this, Act_Login.class));
+            }
+        });
+        //back-------------------------------------------------------
+
     }//on create==================================
 
-    @Override
-    public void onBackPressed() {
-
-        startActivity(new Intent(this, Act_Login.class));
-        finishAffinity();
-
-        super.onBackPressed();
-    }
 
     //changing password
 

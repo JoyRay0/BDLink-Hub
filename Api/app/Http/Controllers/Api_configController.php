@@ -29,14 +29,14 @@ class Api_configController extends Controller
             'item_links' => 'https://bdlinkhub.rksoftwares.xyz/api/all_item',
             'P_item_links' => 'https://bdlinkhub.rksoftwares.xyz/api/popular_item',
 
-            'user_reg_login_reg' => 'https://bdlinkhub.rksoftwares.xyz/api/register',
+            'user_reg' => 'https://bdlinkhub.rksoftwares.xyz/api/registration',
             'user_reg_code' => 'https://bdlinkhub.rksoftwares.xyz/api/register_code',
 
-            'user_reg_login_reset_password' => 'https://bdlinkhub.rksoftwares.xyz/api/update_password',
+            'user_update_password' => 'https://bdlinkhub.rksoftwares.xyz/api/update_password',
             'user_update_password_code' => 'https://bdlinkhub.rksoftwares.xyz/api/update_password_code',
 
-            'user_reg_login_login' => 'https://bdlinkhub.rksoftwares.xyz/api/login',
-            'user_reg_login_gAuth' => 'https://bdlinkhub.rksoftwares.xyz/api/Oauth_login_reg',
+            'user_login' => 'https://bdlinkhub.rksoftwares.xyz/api/user_login',
+            'user_OAuth' => 'https://bdlinkhub.rksoftwares.xyz/api/Oauth_login_reg',
 
             //'get_links_user_info' => 'https://rksoftwares.xyz/All_app/BDLink_Hub/Api/get_links?res=info',
             'get_links' => 'https://bdlinkhub.rksoftwares.xyz/api/get_links?endpoint=',

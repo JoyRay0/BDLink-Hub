@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -320,6 +321,19 @@ public class Act_ItemLinks extends AppCompatActivity {
         rv_item_links.setAdapter(itemLink);
         rv_item_links.setLayoutManager(new LinearLayoutManager(this));
 
+        //back---------------------------------------------
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                startActivity(new Intent(Act_ItemLinks.this, Act_Home_activity.class));
+                finishAffinity();
+            }
+        });
+
+        //back---------------------------------------------
+
     }//on create=========================
 
     //item_link-----------------------------------
@@ -407,12 +421,4 @@ public class Act_ItemLinks extends AppCompatActivity {
 
     }
 
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        startActivity(new Intent(this, Act_Home_activity.class));
-        finishAffinity();
-    }
 }//public class==================================

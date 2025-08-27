@@ -416,6 +416,11 @@ public class Act_Home_activity extends AppCompatActivity {
                 intent.putExtra("privacy", privacy);
                 startActivity(intent);
 
+            } else if (id == R.id.check) {
+
+                startActivity(new Intent(this, Act_check_link.class));
+                finishAffinity();
+
             }
 
             return true;

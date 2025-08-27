@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -174,6 +175,20 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
             }
         });
 
+        //back----------------------------------------------------
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                startActivity(new Intent(Act_UserRegistrationActivity.this, Act_Home_activity.class));
+                finishAffinity();
+
+            }
+        });
+
+        //back----------------------------------------------------
+
     }//on create ================================
 
     //sending user data to server
@@ -191,7 +206,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
         String user_reg = gson.toJson(userInfo);
 
 
-        PostApi postApi = new PostApi(url, user_reg, device_id);
+        PostApi postApi = new PostApi(url, user_reg);
 
         postApi.postApi(new Callback() {
             @Override
@@ -219,6 +234,8 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
                         User_info userInfo = gson.fromJson(data, User_info.class);
 
                         new Handler(Looper.getMainLooper()).post(() -> {
+
+                            Toast.makeText(Act_UserRegistrationActivity.this, ""+userInfo, Toast.LENGTH_SHORT).show();
 
                             if (userInfo.getStatus().equals("Successful")) {
 
@@ -268,15 +285,6 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        startActivity(new Intent(this, Act_Login.class));
-        finishAffinity();
-
-        super.onBackPressed();
     }
 
     private void saveUserData(String user_id, String name) {

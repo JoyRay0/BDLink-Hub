@@ -7,6 +7,11 @@
     <group
         >
 
+        <item android:id="@+id/check"
+            android:title="লিংক চেক করুন"
+            android:icon="@drawable/ic_scan"
+            />
+
         <item android:id="@+id/review"
             android:title="আপনার রেটিং দিন"
             android:icon="@drawable/ic_review"

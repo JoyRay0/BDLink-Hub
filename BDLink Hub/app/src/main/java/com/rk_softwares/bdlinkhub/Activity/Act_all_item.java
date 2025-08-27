@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -129,6 +130,19 @@ public class Act_all_item extends AppCompatActivity {
 
 
 
+        //back --------------------------------------------
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                startActivity(new Intent(Act_all_item.this, Act_Home_activity.class));
+                finishAffinity();
+
+            }
+        });
+
+        //back --------------------------------------------
 
 
     }//on create================
@@ -209,13 +223,5 @@ public class Act_all_item extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(Act_all_item.this, Act_Home_activity.class));
-        finishAffinity();
-    }
-
 
 }//public class==================

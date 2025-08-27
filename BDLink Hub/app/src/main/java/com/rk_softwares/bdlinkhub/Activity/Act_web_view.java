@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rk_softwares.bdlinkhub.R;
@@ -45,6 +46,15 @@ public class Act_web_view extends AppCompatActivity {
 
         }
 
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                startActivity(new Intent(Act_web_view.this, Act_Home_activity.class));
+                finishAffinity();
+
+            }
+        });
 
     }//on create=========================
 
@@ -58,13 +68,4 @@ public class Act_web_view extends AppCompatActivity {
 
     }
 
-    //back--------------------------------------------------
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        startActivity(new Intent(this, Act_Home_activity.class));
-        finishAffinity();
-
-    }
 }//public class==========================

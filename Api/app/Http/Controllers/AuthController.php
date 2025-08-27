@@ -133,6 +133,7 @@ class AuthController extends Controller
 
         try {
 
+
             $result = User_info::where('email', $validation_information['email'])->first();
 
             if ($result && Hash::check($validation_information['password'], $result->password)) {
@@ -149,6 +150,7 @@ class AuthController extends Controller
                 'status' => 'failed',
                 'message' => 'লগইন ব্যর্থ হয়েছে।'
             ]);
+
 
         }catch (\Exception $exception){
 

@@ -96,7 +96,6 @@ public class Act_Login extends AppCompatActivity {
 
         //verify_otp();
 
-        getOnBackPressedDispatcher().addCallback(this, callback);   // back button
         auth = FirebaseAuth.getInstance();
 
         Request_limit limit = new Request_limit(this);
@@ -194,6 +193,18 @@ public class Act_Login extends AppCompatActivity {
 
         });
 
+        //back-----------------------------------------------------
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                startActivity(new Intent(Act_Login.this, Act_Home_activity.class));
+                finishAffinity();
+            }
+        });
+
+        //back-----------------------------------------------------
+
     }//on create ===============================
 
     //google sign in option
@@ -269,18 +280,9 @@ public class Act_Login extends AppCompatActivity {
     }
 
     //google sign in option
-    private OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-        @Override
-        public void handleOnBackPressed() {
-            startActivity(new Intent(Act_Login.this, Act_Home_activity.class));
-            finishAffinity();
-        }
-    };
 
     //Login user
     private void login(String email, String password, String url){
-
-        String device_id = UUID.randomUUID().toString();
 
         Gson gson = new Gson();
 
@@ -289,7 +291,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setPassword(password);
         String user_login = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi(url, user_login, device_id);
+        PostApi postApi = new PostApi(url, user_login);
 
         postApi.postApi(new Callback() {
             @Override
@@ -318,7 +320,7 @@ public class Act_Login extends AppCompatActivity {
                         new Handler(Looper.getMainLooper()).post(() -> {
 
 
-                            if (userInfo.getStatus().equals("Successful")){
+                            if (userInfo.getStatus().equals("successful")){
 
                                 loading_anim.setVisibility(View.GONE);
 
@@ -381,7 +383,7 @@ public class Act_Login extends AppCompatActivity {
         userInfo.setEmail(email);
         String user_data = gson.toJson(userInfo);
 
-        PostApi postApi = new PostApi(url,user_data, device_id);
+        PostApi postApi =new PostApi(url,user_data);
 
            postApi.postApi(new Callback() {
                @Override

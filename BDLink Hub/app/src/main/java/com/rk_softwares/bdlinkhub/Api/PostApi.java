@@ -12,16 +12,15 @@ public class PostApi {
     private OkHttpClient client;
     private String url;
     private String strValue;
-    private String device_id;
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-    public PostApi(String link, String strValue, String device_id) {
+    public PostApi(String link, String strValue) {
         this.client = new OkHttpClient();
         this.link = link;
         this.strValue = strValue;
-        this.device_id = device_id;
+
     }
 
 
@@ -35,7 +34,6 @@ public class PostApi {
                 .url(link)
                 .post(body)
                 .addHeader("Content-Type", "application/json")
-                .header("X-UUID", device_id)
                 .build();
 
 

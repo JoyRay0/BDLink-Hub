@@ -62,6 +62,7 @@ dependencies {
     implementation libs.dotsindicator
     implementation libs.core
     implementation libs.shimmer
+    implementation libs.security.crypto
 
 
 

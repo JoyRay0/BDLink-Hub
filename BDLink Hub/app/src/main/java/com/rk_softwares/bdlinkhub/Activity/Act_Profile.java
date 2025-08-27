@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +50,16 @@ public class Act_Profile extends AppCompatActivity {
 
 
         check_network(this);
+
+
+        getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                startActivity(new Intent(Act_Profile.this, Act_Home_activity.class));
+                finishAffinity();
+            }
+        });
 
     }//on create=========================
     
@@ -217,10 +228,5 @@ public class Act_Profile extends AppCompatActivity {
 
     //back button
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
 
-        startActivity(new Intent(Act_Profile.this, Act_Home_activity.class));
-    }
 }//public class========================

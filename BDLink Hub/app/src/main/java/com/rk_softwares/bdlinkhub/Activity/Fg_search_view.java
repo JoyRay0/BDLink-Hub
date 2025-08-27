@@ -113,12 +113,6 @@ public class Fg_search_view extends Fragment {
 
                                 search(url+ed_search);
 
-                                new Handler(Looper.getMainLooper()).post(() -> {
-
-                                    Toast.makeText(requireActivity(), ""+url+ed_search, Toast.LENGTH_SHORT).show();
-
-                                });
-
                             }
 
                             @Override
@@ -215,7 +209,6 @@ public class Fg_search_view extends Fragment {
 
                                     pb.setVisibility(View.GONE);
                                     search.notifyDataSetChanged();
-                                    Toast.makeText(requireActivity(), ""+allData.getMessage(), Toast.LENGTH_SHORT).show();
 
                                 });
 

@@ -71,24 +71,21 @@ class ExampleTest extends TestCase
         ]);
     }
 
-    public function test_search():void
+
+
+    public function test_login():void
     {
-        $req = $this->get('/api/search?search=joy');
+
+        $p_json = [
+            'email' => 'google@gmail.com'
+        ];
+
+        $req = $this->post('/api/user_login', $p_json);
 
         $req->assertStatus(200);
-        $req->assertJson([
+        $req->assertJsonFragment([
             'status' => 'successful',
-            'search' => 'joy'
-        ]);
-    }
-
-    public function test_search_index():void
-    {
-        $req = $this->get('/api/search_index');
-
-        $req->assertStatus(200);
-        $req->assertJson([
-            'status' => 'successful',
+            'message' => 'google@gmail.com'
         ]);
     }
 

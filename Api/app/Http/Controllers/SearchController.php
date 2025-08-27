@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    public function search(Request $request): JsonResponse
+    public function search(Request $request): ?JsonResponse
     {
 
         $search = $request->query('query');
@@ -20,15 +20,7 @@ class SearchController extends Controller
 
         try {
 
-            if (!empty($search_data['query'])) {
-
-                return response()->json([
-                    'status' => 'failed',
-                    'message' => $search_data['query'],
-                ]);
-            }
-
-            $find_data = Search::where('title', 'like', "%{$search_data['query']}%")->get();
+            $find_data = Search::whereFullText(['title'], $search_data['query'])->get();
 
             if ($find_data->isEmpty()) {
 
@@ -40,7 +32,7 @@ class SearchController extends Controller
 
             return response()->json([
                 'status' => 'successful',
-                'search' => $find_data
+                'data' => $find_data
             ]);
 
         }catch (\Exception $exception){
