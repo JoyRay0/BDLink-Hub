@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        tools:ignore="Uselessparent"
         >
 
         <include layout="@layout/lay_search_bar"
@@ -21,11 +22,22 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:scrollbars="none"
+            android:layout_margin="10dp"
+            android:visibility="gone"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:layout_margin="3dp"
+            android:visibility="gone"
             />
 
         <ProgressBar

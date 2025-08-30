@@ -6,10 +6,12 @@ public class c_api_config {
     private String google_ad;
     private String item_links;
     private String P_item_links;
-    private String user_reg_login_reg;
-    private String user_reg_login_reset_password;
-    private String user_reg_login_login;
-    private String user_reg_login_gAuth;
+    private String user_reg;
+    private String user_reg_code;
+    private String user_update_password;
+    private String user_update_password_code;
+    private String user_login;
+    private String user_OAuth;
     private String user_reg_login_delete_account;
     private String get_links_user_info;
     private String get_links;
@@ -39,20 +41,20 @@ public class c_api_config {
         return user_reg_login_delete_account;
     }
 
-    public String getUser_reg_login_gAuth() {
-        return user_reg_login_gAuth;
+    public String getUser_login() {
+        return user_login;
     }
 
-    public String getUser_reg_login_login() {
-        return user_reg_login_login;
+    public String getUser_OAuth() {
+        return user_OAuth;
     }
 
-    public String getUser_reg_login_reg() {
-        return user_reg_login_reg;
+    public String getUser_reg() {
+        return user_reg;
     }
 
-    public String getUser_reg_login_reset_password() {
-        return user_reg_login_reset_password;
+    public String getUser_update_password() {
+        return user_update_password;
     }
 
     public String getViewpager() {
@@ -61,5 +63,13 @@ public class c_api_config {
 
     public String getSearch() {
         return search;
+    }
+
+    public String getUser_reg_code() {
+        return user_reg_code;
+    }
+
+    public String getUser_update_password_code() {
+        return user_update_password_code;
     }
 }

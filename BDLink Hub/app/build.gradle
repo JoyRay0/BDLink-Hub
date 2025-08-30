@@ -63,6 +63,8 @@ dependencies {
     implementation libs.core
     implementation libs.shimmer
     implementation libs.security.crypto
+    implementation libs.room.runtime
+    annotationProcessor libs.room.compiler
 
 
 

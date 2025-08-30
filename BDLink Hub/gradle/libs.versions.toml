@@ -20,6 +20,8 @@ constraintlayout = "2.2.1"
 okhttp = "5.1.0"
 picasso = "2.71828"
 firebaseMessagingVersion = "25.0.0"
+roomCompiler = "2.7.2"
+roomRuntime = "2.7.2"
 securityCrypto = "1.1.0"
 shimmer = "0.5.0"
 swiperefreshlayout = "1.1.0"
@@ -47,6 +49,8 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
 play-services-auth-v2070 = { module = "com.google.android.gms:play-services-auth", version.ref = "googlePlayServicesAuth" }
 google-firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessagingVersion" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }

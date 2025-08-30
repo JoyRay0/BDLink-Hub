@@ -48,6 +48,8 @@ import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
 import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 import com.rk_softwares.bdlinkhub.Utils.Request_limit;
+import com.rk_softwares.bdlinkhub.Utils.SecureStorge;
+import com.rk_softwares.bdlinkhub.Utils.Short_message;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -74,6 +76,8 @@ public class Act_Login extends AppCompatActivity {
     private  FirebaseAuth auth;
     private Request_link link;
 
+    private SecureStorge secureStorge;
+
     //XML id's----------------------------------------------
 
     @Override
@@ -94,7 +98,7 @@ public class Act_Login extends AppCompatActivity {
 
         //identity period------------------------------------------
 
-        //verify_otp();
+        secureStorge = new SecureStorge(this);
 
         auth = FirebaseAuth.getInstance();
 
@@ -152,7 +156,7 @@ public class Act_Login extends AppCompatActivity {
                         @Override
                         public void onApiResponse(c_api_config config) {
 
-                            String link = config.getUser_reg_login_login();
+                            String link = config.getUser_login();
 
                             login(email, password, link);
 
@@ -252,7 +256,7 @@ public class Act_Login extends AppCompatActivity {
                                 @Override
                                 public void onApiResponse(c_api_config config) {
 
-                                    String g_link = config.getUser_reg_login_gAuth();
+                                    String g_link = config.getUser_OAuth();
 
                                     send_data_to_server(name, email, g_link);
 
@@ -411,16 +415,13 @@ public class Act_Login extends AppCompatActivity {
 
                            new Handler(Looper.getMainLooper()).post(() -> {
 
-                               if (userInfo.getStatus().equals("Successful")){
+                               if (userInfo.getStatus().equals("successful")){
 
                                    loading_anim.setVisibility(View.GONE);
 
-                                   saveUserData(userInfo.getUser_id(), name);
+                                   //saveUserData(userInfo.getUser_id(), name);
 
-                                   Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "" + userInfo.getMessage(), Snackbar.LENGTH_SHORT);
-                                   snackbar.setBackgroundTint(Color.parseColor("#323232"));
-                                   snackbar.setTextColor(Color.WHITE);
-                                   snackbar.show();
+                                   Short_message.snack_bar(Act_Login.this,userInfo.getMessage(),"#323232", "#FFFFFF");
 
                                    new Handler().postDelayed(() -> {
 
@@ -428,23 +429,18 @@ public class Act_Login extends AppCompatActivity {
 
                                    },2000);
 
-                               }else if (userInfo.getStatus().equals("Failed")) {
+                               }else if (userInfo.getStatus().equals("failed")) {
 
                                    loading_anim.setVisibility(View.GONE);
 
-                                   Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "" + userInfo.getMessage(), Snackbar.LENGTH_SHORT);
-                                   snackbar.setBackgroundTint(Color.RED);
-                                   snackbar.setTextColor(Color.WHITE);
-                                   snackbar.show();
+                                   Short_message.snack_bar(Act_Login.this,userInfo.getMessage(),String.valueOf(Color.RED), "#FFFFFF");
 
                                }else {
 
                                    loading_anim.setVisibility(View.GONE);
 
-                                   Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), ""+ userInfo.getMessage() , Snackbar.LENGTH_SHORT);
-                                   snackbar.setBackgroundTint(Color.RED);
-                                   snackbar.setTextColor(Color.WHITE);
-                                   snackbar.show();
+                                   Short_message.snack_bar(Act_Login.this,userInfo.getMessage(),String.valueOf(Color.RED), "#FFFFFF");
+
 
                                }
 
@@ -463,11 +459,10 @@ public class Act_Login extends AppCompatActivity {
 
     //saving user data to share preferences
     private void saveUserData(String user_id, String name) {
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user_id", user_id);
-        editor.putString("name", name);
-        editor.apply(); // apply() তাত্ক্ষণিকভাবে সংরক্ষণ করে
+
+        secureStorge.putString("user_id", user_id);
+        secureStorge.putString("name", name);
+
     }
 
     //checking internet
@@ -503,50 +498,6 @@ public class Act_Login extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         NetworkUtils.stop_monitoring(this);
-    }
-
-    //otp verification-----------------------------------------
-    public void verify_otp(){
-
-        ConstraintLayout parent = findViewById(R.id.main);
-
-        View view = LayoutInflater.from(this).inflate(R.layout.lay_otp_verification, null, false);
-        parent.removeAllViews();
-        parent.addView(view);
-
-        AppCompatEditText ed_otp1 = view.findViewById(R.id.ed_otp1);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-        AppCompatEditText ed_otp2 = view.findViewById(R.id.ed_otp2);
-        AppCompatEditText ed_otp3 = view.findViewById(R.id.ed_otp3);
-        AppCompatEditText ed_otp4 = view.findViewById(R.id.ed_otp4);
-        AppCompatEditText ed_otp5 = view.findViewById(R.id.ed_otp5);
-        AppCompatEditText ed_otp6 = view.findViewById(R.id.ed_otp6);
-        AppCompatTextView tv_resend_code = view.findViewById(R.id.tv_resend_code);
-        AppCompatButton btn_verify = view.findViewById(R.id.btn_verify);
-
-        btn_verify.setOnClickListener(view1 -> {
-
-
-            String otp1 = ed_otp1.getText().toString();
-            String otp2 = ed_otp2.getText().toString();
-            String otp3 = ed_otp3.getText().toString();
-            String otp4 = ed_otp4.getText().toString();
-            String otp5 = ed_otp5.getText().toString();
-            String otp6 = ed_otp6.getText().toString();
-
-
-            if (!otp1.isEmpty() && !otp2.isEmpty() && !otp3.isEmpty() && !otp4.isEmpty() && !otp5.isEmpty() && !otp6.isEmpty()){
-
-                Toast.makeText(this, "Verification successful"+otp1+otp2+otp3+otp4+otp5+otp6, Toast.LENGTH_SHORT).show();
-                //view.setVisibility(View.GONE);
-            }else {
-                Toast.makeText(this, "Some filed are missing", Toast.LENGTH_SHORT).show();
-            }
-
-
-        });
-
-
     }
 
 }//public class====================================

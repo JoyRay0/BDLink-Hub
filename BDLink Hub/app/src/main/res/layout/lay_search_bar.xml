@@ -3,13 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="4"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatAutoCompleteTextView
         android:id="@+id/ATV_search"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/search"
+        android:drawableStart="@drawable/ic_search_b"
         android:drawablePadding="12dp"
         android:hint="সার্চ করুন....."
         android:fontFamily="@font/noto_serif"
@@ -22,7 +24,18 @@
         android:ems="5"
         android:textSize="16sp"
         android:layout_margin="10dp"
+        android:layout_weight="4"
+        />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_history"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_history"
+        android:background="?attr/actionBarItemBackground"
+        android:layout_gravity="center|end"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
         />
 
 

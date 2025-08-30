@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:fontFamily="@font/noto_serif"
+        android:textSize="17sp"
+        android:textColor="#000"
+        android:gravity="start"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_search_b"
+        android:drawableEnd="@drawable/ic_insert"
+        android:drawablePadding="20dp"
+        android:background="?attr/selectableItemBackground"
+
+        />
+
+</LinearLayout>

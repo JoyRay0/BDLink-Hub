@@ -10,6 +10,8 @@ public class User_info {
     private String password;
     private String new_password;
     private String date_of_birth;
+    private String user_reg_code;
+    private String user_update_password_code;
 
 
 
@@ -39,6 +41,14 @@ public class User_info {
         this.date_of_birth = date_of_birth;
     }
 
+    public void setUser_reg_code(String user_reg_code) {
+        this.user_reg_code = user_reg_code;
+    }
+
+    public void setUser_update_password_code(String user_update_password_code) {
+        this.user_update_password_code = user_update_password_code;
+    }
+
     //Getter methods------------------------------------------------------
     public String getStatus() {
         return status;
@@ -55,5 +65,7 @@ public class User_info {
     public String getUser_id() {
         return user_id;
     }
+
+
 
 }

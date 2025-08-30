@@ -1,16 +1,19 @@
 package com.rk_softwares.bdlinkhub.Activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +25,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.rk_softwares.bdlinkhub.Adapter.HistoryAdapter;
 import com.rk_softwares.bdlinkhub.Adapter.Search;
 import com.rk_softwares.bdlinkhub.Api.Request_link;
+import com.rk_softwares.bdlinkhub.Database.History;
+import com.rk_softwares.bdlinkhub.Database.MyDatabase;
 import com.rk_softwares.bdlinkhub.Model.m_All_data;
 import com.rk_softwares.bdlinkhub.Model.c_all_data;
 import com.rk_softwares.bdlinkhub.Utils.ApiResponseListener;
 import com.rk_softwares.bdlinkhub.Model.c_api_config;
 import com.rk_softwares.bdlinkhub.R;
+import com.rk_softwares.bdlinkhub.Utils.Short_message;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,13 +53,22 @@ public class Fg_search_view extends Fragment {
     // XML id's---------------------------------------------
 
     private AppCompatAutoCompleteTextView ATV_search;
-    private RecyclerView rv_search_item;
+    private RecyclerView rv_search_item, rv_history;
 
     private List<HashMap<String, String>> hashMapList = new ArrayList<>();
     private HashMap<String, String> hashMap;
 
+    private List<HashMap<String, String>> historyList = new ArrayList<>();
+    private HashMap<String, String> historyMap;
+
     private Search search;
     private ProgressBar pb;
+
+    private AppCompatImageView iv_history;
+
+    private HistoryAdapter historyAdapter;
+
+    private MyDatabase db;
 
     // XML id's---------------------------------------------
 
@@ -66,22 +82,32 @@ public class Fg_search_view extends Fragment {
         ATV_search = view.findViewById(R.id.ATV_search);
         rv_search_item = view.findViewById(R.id.rv_search_item);
         pb = view.findViewById(R.id.pb);
+        iv_history = view.findViewById(R.id.iv_history);
+        rv_history = view.findViewById(R.id.rv_history);
 
         //identity period----------------------------------------------
 
+        //for search------------------------------------------------
         search = new Search(requireActivity(), hashMapList);
         rv_search_item.setAdapter(search);
         rv_search_item.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
+        //for search history-------------------------------
+        historyAdapter = new HistoryAdapter(requireContext(), historyList);
+        rv_history.setAdapter(historyAdapter);
 
         send_data();
+        History();
+
+        //10
+        db = MyDatabase.getInstance(requireActivity());
+        iv_history.setTag("open");
 
         return view;
     }//on create=====================
 
     //send search data------------------------------------------
     private void send_data(){
-
 
         ATV_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -92,6 +118,8 @@ public class Fg_search_view extends Fragment {
                     InputMethodManager manager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
                     pb.setVisibility(View.VISIBLE);
+                    rv_search_item.setVisibility(View.VISIBLE);
+                    rv_history.setVisibility(View.GONE);
 
                     if (manager != null){
                         manager.hideSoftInputFromWindow(textView.getWindowToken(),0 );
@@ -112,6 +140,11 @@ public class Fg_search_view extends Fragment {
                                 String url = config.getSearch();
 
                                 search(url+ed_search);
+
+                                History history = new History();
+                                history.data = ed_search;
+                                db.historyDao().insert(history);
+
 
                             }
 
@@ -138,9 +171,6 @@ public class Fg_search_view extends Fragment {
                 return false;
             }
         });
-
-
-
 
     }
 
@@ -203,12 +233,14 @@ public class Fg_search_view extends Fragment {
 
                         }else {
 
-                            if (allData.getStatus().equals("Failed")){
+                            if (allData.getStatus().equals("failed")){
 
                                 new Handler(Looper.getMainLooper()).post(() -> {
 
                                     pb.setVisibility(View.GONE);
                                     search.notifyDataSetChanged();
+
+                                    Short_message.snack_bar(requireActivity(), allData.getMessage(), "#FF0000", "#FFFFFF");
 
                                 });
 
@@ -227,5 +259,89 @@ public class Fg_search_view extends Fragment {
         });
 
     }
+
+    //history-------------------------------------------------------------
+    private void History(){
+
+
+        iv_history.setOnClickListener(view -> {
+
+            ATV_search.setText("");
+
+            String currentTag = iv_history.getTag().toString();
+
+            if ("open".equals(currentTag)){
+
+                rv_history.setVisibility(View.VISIBLE);
+                rv_search_item.setVisibility(View.GONE);
+                iv_history.setTag("close");
+
+            }else if ("close".equals(currentTag)){
+
+                iv_history.setTag("open");
+                rv_history.setVisibility(View.GONE);
+                rv_search_item.setVisibility(View.GONE);
+
+            }
+
+            historyList.clear();
+            List<History> histories = db.historyDao().getAll();
+
+            Log.d("History", String.valueOf(histories.size()));
+
+            for (History history: histories) {
+
+                historyMap = new HashMap<>();
+                historyMap.put("history", history.data);
+                historyList.add(historyMap);
+
+            }
+
+            //historyAdapter.updateData(hashMapList);
+            historyAdapter.notifyDataSetChanged();
+
+            historyAdapter.setOnItemClickListener(history_text -> {
+
+                hashMapList.clear();
+
+                ATV_search.setText(history_text);
+                rv_history.setVisibility(View.GONE);
+                rv_search_item.setVisibility(View.VISIBLE);
+
+                pb.setVisibility(View.VISIBLE);
+
+                Request_link link = new Request_link(new ApiResponseListener() {
+                    @Override
+                    public void onApiResponse(c_api_config config) {
+
+                        String url = config.getSearch();
+
+                        search(url+history_text);
+
+
+                    }
+
+                    @Override
+                    public void onApiFailed(String error) {
+
+                        new Handler(Looper.getMainLooper()).post(() -> {
+
+                            pb.setVisibility(View.GONE);
+                            Toast.makeText(requireActivity(), "অনুগ্রহ করে আপনার ইন্টারনেট কানেকশন চেক করুন", Toast.LENGTH_SHORT).show();
+
+                        });
+
+
+                    }
+                });
+                link.Apis();
+
+            });
+
+
+        });
+
+    }
+
 
 }//public class =========================
