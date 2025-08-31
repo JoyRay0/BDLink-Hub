@@ -284,21 +284,27 @@ public class Fg_search_view extends Fragment {
 
             }
 
-            historyList.clear();
-            List<History> histories = db.historyDao().getAll();
+            new Thread(()->{
 
-            Log.d("History", String.valueOf(histories.size()));
+                List<History> histories = db.historyDao().getAll();
 
-            for (History history: histories) {
+                new Handler(Looper.getMainLooper()).post(() -> {
 
-                historyMap = new HashMap<>();
-                historyMap.put("history", history.data);
-                historyList.add(historyMap);
+                    historyList.clear();
+                    for (History history: histories) {
 
-            }
+                        historyMap = new HashMap<>();
+                        historyMap.put("history", history.data);
+                        historyList.add(historyMap);
 
-            //historyAdapter.updateData(hashMapList);
-            historyAdapter.notifyDataSetChanged();
+                    }
+
+                    historyAdapter.notifyDataSetChanged();
+
+                });
+
+            }).start();
+
 
             historyAdapter.setOnItemClickListener(history_text -> {
 

@@ -32,64 +32,121 @@
             />
 
     <!--Edit text -->
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/ed_check_link"
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ওয়েবসাইটের লিংক........"
-            android:textSize="17sp"
-            android:textColor="#000"
-            android:padding="15dp"
-            android:inputType="textMultiLine"
-            android:scrollHorizontally="false"
-            android:gravity="top|start"
-            android:overScrollMode="always"
-            android:layout_margin="10dp"
-            tools:ignore="HardcodedText"
-            android:background="@drawable/sh_check_edit_text_bg"
-            />
+            app:endIconMode="clear_text"
+            app:hintEnabled="false"
+            android:layout_marginTop="15dp"
+            >
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/ed_check_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ওয়েবসাইটের লিংক........"
+                android:textSize="17sp"
+                android:textColor="#000"
+                android:fontFamily="@font/noto_serif"
+                android:padding="12dp"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false"
+                android:gravity="top|start"
+                android:overScrollMode="always"
+                android:layout_margin="10dp"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/sh_check_edit_text_bg"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <!--Edit text -->
 
         <!--Reset text button -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="এখানে যেকোনো লিংক লিখুন। আমাদের সিস্টেম লিংকটি যাচাই করবে এবং জানাবে এটি সঠিক, সক্রিয় ও ব্যবহারযোগ্য কিনা। এতে আপনি সহজেই ভুয়া বা অকার্যকর লিংক থেকে বাঁচতে পারবেন।"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:fontFamily="@font/noto_serif"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <!--Reset text button -->
+
+        <!-- reset -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="রিসেট"
             android:textSize="15sp"
-            android:textColor="#673AB7"
+            android:textColor="#9C27B0"
             android:fontFamily="@font/noto_serif"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:background="?attr/selectableItemBackground"
             />
+
         <View
             android:layout_width="60dp"
             android:layout_height="1dp"
-            android:background="#673AB7"
+            android:background="#9C27B0"
             android:layout_gravity="center"
             />
 
-        <!--Reset text button -->
+        <!-- reset -->
 
         <!--check  button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_click"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="চেক করুন"
             android:textSize="17sp"
             android:fontFamily="@font/noto_serif"
             android:textAllCaps="false"
             android:textColor="#fff"
+            android:layout_gravity="center"
             android:padding="12dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="70dp"
-            android:layout_marginEnd="70dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/sh_check_edit_text_button_bg"
             tools:ignore="HardcodedText"
             />
         <!--check  button -->
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            />
+
+        <!-- checked result -->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_checked_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="17sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:fontFamily="@font/noto_serif"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:visibility="gone"
+            android:layout_marginTop="80dp"
+            />
 
 
     </LinearLayout>

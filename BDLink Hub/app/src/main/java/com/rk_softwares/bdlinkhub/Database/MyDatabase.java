@@ -17,7 +17,7 @@ public abstract class MyDatabase extends RoomDatabase {
 
         if (database == null){
 
-            database = Room.databaseBuilder(activity, MyDatabase.class, "DB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+            database = Room.databaseBuilder(activity, MyDatabase.class, "DB").build();
 
         }
 
