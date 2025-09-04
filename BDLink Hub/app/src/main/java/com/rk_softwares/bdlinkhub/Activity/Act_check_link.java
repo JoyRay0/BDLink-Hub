@@ -126,7 +126,7 @@ public class Act_check_link extends AppCompatActivity {
         //back--------------------------------------------------------
         iv_back.setOnClickListener(view -> {
 
-            startActivity(new Intent(Act_check_link.this, Act_Home_activity.class));
+            startActivity(new Intent(Act_check_link.this, Act_Home.class));
             finishAffinity();
 
         });
@@ -136,7 +136,7 @@ public class Act_check_link extends AppCompatActivity {
            @Override
            public void handleOnBackPressed() {
 
-               startActivity(new Intent(Act_check_link.this, Act_Home_activity.class));
+               startActivity(new Intent(Act_check_link.this, Act_Home.class));
                finishAffinity();
 
            }

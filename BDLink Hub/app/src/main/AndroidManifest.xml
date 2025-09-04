@@ -10,7 +10,6 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
-
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,6 +20,9 @@
         android:theme="@style/Base.Theme.BDLink_Hub"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".Activity.Act_edit_password_name_email_delete_ac"
+            android:exported="false" />
         <activity
             android:name=".Activity.Act_check_link"
             android:exported="false" />
@@ -40,16 +42,16 @@
             android:name=".Activity.Act_all_item"
             android:exported="false" />
         <activity
-            android:name=".Activity.Act_Profile"
+            android:name=".Activity.Act_Setting"
             android:exported="false" />
         <activity
-            android:name=".Activity.Act_ForgetPasswordActivity"
+            android:name=".Activity.Act_ForgetPassword"
             android:exported="false" />
         <activity
-            android:name=".Activity.Act_UserRegistrationActivity"
+            android:name=".Activity.Act_UserRegistration"
             android:exported="false" />
         <activity
-            android:name=".Activity.Act_Home_activity"
+            android:name=".Activity.Act_Home"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -62,7 +64,7 @@
             android:name=".Activity.Act_Login"
             android:exported="false" />
         <activity
-            android:name=".Activity.Act_SplashScreenActivity"
+            android:name=".Activity.Act_SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

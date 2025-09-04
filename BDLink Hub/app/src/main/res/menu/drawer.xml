@@ -28,11 +28,6 @@
             
             />
 
-        <item android:id="@+id/logout"
-            android:title="লগআউট"
-            android:icon="@drawable/ic_logout"
-            />
-
         <item android:id="@+id/other_app"
             android:title="আমাদের অনান্য অ্যাপ"
             android:icon="@drawable/ic_other_app"

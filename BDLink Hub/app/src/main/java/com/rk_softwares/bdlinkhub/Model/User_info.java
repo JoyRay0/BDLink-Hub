@@ -12,8 +12,7 @@ public class User_info {
     private String date_of_birth;
     private String user_reg_code;
     private String user_update_password_code;
-
-
+    private String update_name_code;
 
 
     //setter methods-----------------------------------------------
@@ -49,6 +48,10 @@ public class User_info {
         this.user_update_password_code = user_update_password_code;
     }
 
+    public void setUpdate_name_code(String update_name_code) {
+        this.update_name_code = update_name_code;
+    }
+
     //Getter methods------------------------------------------------------
     public String getStatus() {
         return status;
@@ -65,7 +68,6 @@ public class User_info {
     public String getUser_id() {
         return user_id;
     }
-
 
 
 }

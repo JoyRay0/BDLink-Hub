@@ -327,7 +327,7 @@ public class Act_ItemLinks extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
 
-                startActivity(new Intent(Act_ItemLinks.this, Act_Home_activity.class));
+                startActivity(new Intent(Act_ItemLinks.this, Act_Home.class));
                 finishAffinity();
             }
         });

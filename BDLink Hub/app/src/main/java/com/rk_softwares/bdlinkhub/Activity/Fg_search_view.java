@@ -263,7 +263,6 @@ public class Fg_search_view extends Fragment {
     //history-------------------------------------------------------------
     private void History(){
 
-
         iv_history.setOnClickListener(view -> {
 
             ATV_search.setText("");

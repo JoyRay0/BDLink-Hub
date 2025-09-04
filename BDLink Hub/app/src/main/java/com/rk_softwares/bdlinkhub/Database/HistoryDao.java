@@ -15,7 +15,7 @@ public interface HistoryDao {
     @Query("SELECT * FROM user_history")
     List<History> getAll();
 
-   @Query("DELETE  FROM user_history")
+   @Query("DELETE FROM user_history")
     void DeleteAll();
 
 }

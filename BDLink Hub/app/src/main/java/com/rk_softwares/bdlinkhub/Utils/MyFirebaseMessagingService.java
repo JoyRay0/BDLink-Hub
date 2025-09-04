@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -17,7 +16,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.rk_softwares.bdlinkhub.Activity.Act_Home_activity;
 import com.rk_softwares.bdlinkhub.Activity.Act_all_item;
 import com.rk_softwares.bdlinkhub.R;
 

@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,7 +48,7 @@ public class Act_web_view extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
 
-                startActivity(new Intent(Act_web_view.this, Act_Home_activity.class));
+                startActivity(new Intent(Act_web_view.this, Act_Home.class));
                 finishAffinity();
 
             }

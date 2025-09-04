@@ -36,18 +36,18 @@ import com.rk_softwares.bdlinkhub.R;
 import com.rk_softwares.bdlinkhub.Utils.InputValidation;
 import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 import com.rk_softwares.bdlinkhub.Utils.Request_limit;
+import com.rk_softwares.bdlinkhub.Utils.SecureStorge;
 import com.rk_softwares.bdlinkhub.Utils.Short_message;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.UUID;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 
-public class Act_UserRegistrationActivity extends AppCompatActivity {
+public class Act_UserRegistration extends AppCompatActivity {
 
     //XML id's----------------------------------------------------
 
@@ -58,6 +58,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
     private DatePicker date_picker;
     private LottieAnimationView loading_anim;
     private View view;
+    private SecureStorge secureStorge;
 
     //XML id's----------------------------------------------------
 
@@ -105,7 +106,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
                    @Override
                    public void onDateChanged(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
 
-                       tv_date.setText(selectedYear+ "/"+(selectedMonth + 1)+"/"+selectedDay);
+                       tv_date.setText(selectedDay+ "/"+(selectedMonth + 1)+"/"+selectedYear);
 
                    }
                });
@@ -131,24 +132,24 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
                 if (!InputValidation.isValidUsername(name)){
 
-                    Toast.makeText(Act_UserRegistrationActivity.this, "Invalid username", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_UserRegistration.this, "Invalid username", Toast.LENGTH_SHORT).show();
 
                 } else if (!InputValidation.isValidEmail(email)) {
 
-                    Toast.makeText(Act_UserRegistrationActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_UserRegistration.this, "Invalid Email", Toast.LENGTH_SHORT).show();
 
                 } else if (DateofBirth == null || DateofBirth.isEmpty()) {
 
-                    Toast.makeText(Act_UserRegistrationActivity.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_UserRegistration.this, "Invalid Date of Birth", Toast.LENGTH_SHORT).show();
 
                 }else if (!InputValidation.isValidPassword(password)) {
 
-                    Toast.makeText(Act_UserRegistrationActivity.this, "Password much contains 12+ character or number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_UserRegistration.this, "Password much contains 12+ character or number", Toast.LENGTH_SHORT).show();
 
                 }else {
 
 
-                    if (limit.canMakeRequest(Act_UserRegistrationActivity.this)){
+                    if (limit.canMakeRequest(Act_UserRegistration.this)){
 
                         loading_anim.setVisibility(View.VISIBLE);
 
@@ -159,11 +160,18 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
                                 String user_reg = config.getUser_reg();
                                 String user_reg_code = config.getUser_reg_code();
 
-                                send_data_to_server(name, email, password, DateofBirth, user_reg);
+                                send_data_to_server(name, email, password, DateofBirth, user_reg, user_reg_code);
                             }
 
                             @Override
                             public void onApiFailed(String error) {
+
+                                new Handler(Looper.getMainLooper()).post(() -> {
+
+                                    loading_anim.setVisibility(View.GONE);
+                                    Toast.makeText(Act_UserRegistration.this, "ইন্টারনেট কানেকশন চেক করুন", Toast.LENGTH_SHORT).show();
+
+                                });
 
                             }
                         });
@@ -185,7 +193,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
 
-                startActivity(new Intent(Act_UserRegistrationActivity.this, Act_Home_activity.class));
+                startActivity(new Intent(Act_UserRegistration.this, Act_Home.class));
                 finishAffinity();
 
             }
@@ -196,9 +204,7 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
     }//on create ================================
 
     //sending user data to server
-    private void send_data_to_server(String name, String email, String password, String DateofBirth, String url){
-
-        String device_id = UUID.randomUUID().toString();
+    private void send_data_to_server(String name, String email, String password, String DateofBirth, String url, String otp_url){
 
         Gson gson = new Gson();
 
@@ -216,13 +222,6 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
-                new Handler(Looper.getMainLooper()).post(() -> {
-
-                    loading_anim.setVisibility(View.VISIBLE);
-
-                    Toast.makeText(Act_UserRegistrationActivity.this, "Please check your connection", Toast.LENGTH_SHORT).show();
-
-                });
 
             }
 
@@ -239,43 +238,19 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
                         new Handler(Looper.getMainLooper()).post(() -> {
 
-                            Toast.makeText(Act_UserRegistrationActivity.this, ""+userInfo, Toast.LENGTH_SHORT).show();
-
-                            if (userInfo.getStatus().equals("Successful")) {
+                            if (userInfo.getStatus().equals("successful")) {
 
                                 loading_anim.setVisibility(View.GONE);
 
-                                saveUserData(userInfo.getUser_id(), name);
+                                Short_message.snack_bar(Act_UserRegistration.this, userInfo.getMessage(), "#323232", String.valueOf(Color.WHITE));
 
-                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "" + userInfo.getMessage(), Snackbar.LENGTH_SHORT);
-                                snackbar.setBackgroundTint(Color.parseColor("#323232"));
-                                snackbar.setTextColor(Color.WHITE);
-                                snackbar.show();
+                                verify_otp(otp_url);
 
-                                new Handler().postDelayed(() -> {
-
-                                    startActivity(new Intent(Act_UserRegistrationActivity.this, Act_Home_activity.class));
-                                    finishAffinity();
-
-                                }, 2000);
-
-                            } else if (userInfo.getStatus().equals("Failed")) {
+                            } else {
 
                                 loading_anim.setVisibility(View.GONE);
 
-                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "" + userInfo.getMessage(), Snackbar.LENGTH_SHORT);
-                                snackbar.setBackgroundTint(Color.RED);
-                                snackbar.setTextColor(Color.WHITE);
-                                snackbar.show();
-
-                            }else {
-
-                                loading_anim.setVisibility(View.GONE);
-
-                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), ""+ userInfo.getMessage() , Snackbar.LENGTH_SHORT);
-                                snackbar.setBackgroundTint(Color.RED);
-                                snackbar.setTextColor(Color.WHITE);
-                                snackbar.show();
+                                Short_message.snack_bar(Act_UserRegistration.this, userInfo.getMessage(), String.valueOf(Color.RED), String.valueOf(Color.WHITE));
 
                             }
 
@@ -291,19 +266,6 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
     }
 
-    private void saveUserData(String user_id, String name) {
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user_id", user_id);
-        editor.putString("name", name);
-        editor.apply(); // apply() তাত্ক্ষণিকভাবে সংরক্ষণ করে
-    }
-
-    private void getUserData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-        String user_id = sharedPreferences.getString("user_id","No id");
-        String userName = sharedPreferences.getString("name", "No Name");
-    }
 
     //checking internet
     private void check_network(Context context){
@@ -393,6 +355,17 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    Toast.makeText(Act_UserRegistration.this, "ওটিপি পাঠানো যায়নি", Toast.LENGTH_SHORT).show();
+
+                    new Handler().postDelayed(() -> {
+
+                        view.setVisibility(View.GONE);
+
+                    }, 2000);
+
+                });
 
             }
 
@@ -411,20 +384,24 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
                             if (code_info.getStatus().equals("successful")){
 
-                                Short_message.snack_bar(Act_UserRegistrationActivity.this, code_info.getMessage(), "#323232", String.valueOf(Color.WHITE));
+                                Short_message.snack_bar(Act_UserRegistration.this, code_info.getMessage(), "#323232", String.valueOf(Color.WHITE));
+
+                                //saving user name-----------------------------------------
+                                secureStorge = new SecureStorge(Act_UserRegistration.this);
+                                secureStorge.putString("name", code_info.getName());
+                                //saving user name-----------------------------------------
 
                                 new Handler().postDelayed(() -> {
 
-                                    startActivity(new Intent(Act_UserRegistrationActivity.this, Act_Home_activity.class));
+                                    startActivity(new Intent(Act_UserRegistration.this, Act_Home.class));
                                     finishAffinity();
 
                                 }, 2000);
 
 
-                            } else if (code_info.getStatus().equals("failed")) {
+                            } else {
 
-                                Short_message.snack_bar(Act_UserRegistrationActivity.this, code_info.getMessage(), String.valueOf(Color.RED), String.valueOf(Color.WHITE));
-
+                                Short_message.snack_bar(Act_UserRegistration.this, code_info.getMessage(), String.valueOf(Color.RED), String.valueOf(Color.WHITE));
 
                                 new Handler().postDelayed(() -> {
 
@@ -432,12 +409,9 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
 
                                 }, 2000);
 
-
-
                             }
 
                         });
-
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -456,7 +430,6 @@ public class Act_UserRegistrationActivity extends AppCompatActivity {
         super.onDestroy();
         NetworkUtils.stop_monitoring(this);
     }
-
 
 
 }//public class=============================

@@ -17,9 +17,9 @@
         android:icon="@drawable/ic_favorite"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/profile"
-        android:title="প্রোফাইল"
-        android:icon="@drawable/ic_profile"
+    <item android:id="@+id/setting"
+        android:title="সেটিংস"
+        android:icon="@drawable/ic_setting"
         app:showAsAction="ifRoom"/>
 
 </menu>

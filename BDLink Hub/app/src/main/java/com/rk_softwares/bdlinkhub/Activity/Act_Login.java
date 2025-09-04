@@ -1,14 +1,11 @@
 package com.rk_softwares.bdlinkhub.Activity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -18,10 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -32,7 +27,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -110,7 +104,7 @@ public class Act_Login extends AppCompatActivity {
 
         tv_new_account.setOnClickListener(view -> {  //Registration page
 
-            startActivity(new Intent(this, Act_UserRegistrationActivity.class));
+            startActivity(new Intent(this, Act_UserRegistration.class));
             new Handler().postDelayed(() -> {
 
                 login_email.setText("");
@@ -124,7 +118,7 @@ public class Act_Login extends AppCompatActivity {
 
         tv_forgetPassword.setOnClickListener(view -> {      //forget password page
 
-            startActivity(new Intent(this, Act_ForgetPasswordActivity.class));
+            startActivity(new Intent(this, Act_ForgetPassword.class));
             new Handler().postDelayed(() -> {
 
                 login_email.setText("");
@@ -165,6 +159,14 @@ public class Act_Login extends AppCompatActivity {
                         @Override
                         public void onApiFailed(String error) {
 
+                            new Handler(Looper.getMainLooper()).post(() -> {
+
+                                loading_anim.setVisibility(View.GONE);
+
+                                Toast.makeText(Act_Login.this, "ইন্টারনেট কানেকশন চেক করুন", Toast.LENGTH_SHORT).show();
+
+                            });
+
                         }
                     });
                     link.Apis();
@@ -202,7 +204,7 @@ public class Act_Login extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                startActivity(new Intent(Act_Login.this, Act_Home_activity.class));
+                startActivity(new Intent(Act_Login.this, Act_Home.class));
                 finishAffinity();
             }
         });
@@ -211,7 +213,7 @@ public class Act_Login extends AppCompatActivity {
 
     }//on create ===============================
 
-    //google sign in option
+    //google sign in option----------------------------------------------------------------
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -258,12 +260,20 @@ public class Act_Login extends AppCompatActivity {
 
                                     String g_link = config.getUser_OAuth();
 
-                                    send_data_to_server(name, email, g_link);
+                                    send_Oauth_data(name, email, g_link);
 
                                 }
 
                                 @Override
                                 public void onApiFailed(String error) {
+
+                                    new Handler(Looper.getMainLooper()).post(() -> {
+
+                                        loading_anim.setVisibility(View.GONE);
+
+                                        Toast.makeText(Act_Login.this, "ইন্টারনেট কানেকশন চেক করুন", Toast.LENGTH_SHORT).show();
+
+                                    });
 
                                 }
                             });
@@ -283,9 +293,9 @@ public class Act_Login extends AppCompatActivity {
 
     }
 
-    //google sign in option
+    //google sign in option---------------------------------------------------------
 
-    //Login user
+    //Login user------------------------------------------------------------------
     private void login(String email, String password, String url){
 
         Gson gson = new Gson();
@@ -304,7 +314,6 @@ public class Act_Login extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(() -> {
 
                     loading_anim.setVisibility(View.GONE);
-                    Toast.makeText(Act_Login.this, "Check your connection", Toast.LENGTH_SHORT).show();
 
                 });
 
@@ -328,36 +337,28 @@ public class Act_Login extends AppCompatActivity {
 
                                 loading_anim.setVisibility(View.GONE);
 
-                                saveUserData(userInfo.getUser_id(), userInfo.getName());
+                                //saving user name-------------------------------------------
 
-                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "" +userInfo.getMessage(), Snackbar.LENGTH_SHORT);
-                                snackbar.setBackgroundTint(Color.parseColor("#323232"));
-                                snackbar.setTextColor(Color.WHITE);
-                                snackbar.show();
+                                secureStorge = new SecureStorge(Act_Login.this);
+                                secureStorge.putString("name", userInfo.getName());
+
+                                //saving user name-------------------------------------------
+
+                                Short_message.snack_bar(Act_Login.this, userInfo.getMessage(), "#323232", String.valueOf(Color.WHITE));
 
                                 new Handler().postDelayed(() -> {
 
-                                    startActivity(new Intent(Act_Login.this, Act_Home_activity.class));
+                                    startActivity(new Intent(Act_Login.this, Act_Home.class));
                                     finishAffinity();
 
                                 },2000);
 
-                            }else if (userInfo.getStatus().equals("Failed")){
+                            }else{
 
                                 loading_anim.setVisibility(View.GONE);
 
-                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), ""+userInfo.getMessage() , Snackbar.LENGTH_SHORT);
-                                snackbar.setBackgroundTint(Color.RED);
-                                snackbar.setTextColor(Color.WHITE);
-                                snackbar.show();
+                                Short_message.snack_bar(Act_Login.this, userInfo.getMessage(), String.valueOf(Color.RED), String.valueOf(Color.WHITE));
 
-                            }else {
-
-                                loading_anim.setVisibility(View.GONE);
-                                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), ""+userInfo.getMessage() , Snackbar.LENGTH_SHORT);
-                                snackbar.setBackgroundTint(Color.RED);
-                                snackbar.setTextColor(Color.WHITE);
-                                snackbar.show();
 
                             }
 
@@ -376,8 +377,8 @@ public class Act_Login extends AppCompatActivity {
 
     }
 
-    //send data to server
-    private void send_data_to_server(String name, String email, String url){
+    //send data to server----------------------------------------------------------
+    private void send_Oauth_data(String name, String email, String url){
 
         String device_id = UUID.randomUUID().toString();
         Gson gson = new Gson();
@@ -396,7 +397,6 @@ public class Act_Login extends AppCompatActivity {
                    new Handler(Looper.getMainLooper()).post(() -> {
 
                        loading_anim.setVisibility(View.GONE);
-                       Toast.makeText(Act_Login.this, "Please check your connection", Toast.LENGTH_SHORT).show();
 
                    });
 
@@ -419,28 +419,27 @@ public class Act_Login extends AppCompatActivity {
 
                                    loading_anim.setVisibility(View.GONE);
 
-                                   //saveUserData(userInfo.getUser_id(), name);
+                                   //saving user name-------------------------------------------
+
+                                   secureStorge = new SecureStorge(Act_Login.this);
+                                   secureStorge.putString("name", userInfo.getName());
+
+                                   //saving user name-------------------------------------------
+
 
                                    Short_message.snack_bar(Act_Login.this,userInfo.getMessage(),"#323232", "#FFFFFF");
 
                                    new Handler().postDelayed(() -> {
 
-                                       startActivity(new Intent(Act_Login.this, Act_Home_activity.class));
+                                       startActivity(new Intent(Act_Login.this, Act_Home.class));
 
                                    },2000);
 
-                               }else if (userInfo.getStatus().equals("failed")) {
+                               }else{
 
                                    loading_anim.setVisibility(View.GONE);
 
                                    Short_message.snack_bar(Act_Login.this,userInfo.getMessage(),String.valueOf(Color.RED), "#FFFFFF");
-
-                               }else {
-
-                                   loading_anim.setVisibility(View.GONE);
-
-                                   Short_message.snack_bar(Act_Login.this,userInfo.getMessage(),String.valueOf(Color.RED), "#FFFFFF");
-
 
                                }
 
@@ -454,14 +453,6 @@ public class Act_Login extends AppCompatActivity {
 
                }
            });
-
-    }
-
-    //saving user data to share preferences
-    private void saveUserData(String user_id, String name) {
-
-        secureStorge.putString("user_id", user_id);
-        secureStorge.putString("name", name);
 
     }
 

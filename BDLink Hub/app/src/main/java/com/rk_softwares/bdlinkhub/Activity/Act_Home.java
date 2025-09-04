@@ -43,7 +43,7 @@ import com.rk_softwares.bdlinkhub.Utils.NetworkUtils;
 import java.util.List;
 
 
-public class Act_Home_activity extends AppCompatActivity {
+public class Act_Home extends AppCompatActivity {
 
 
     //XML id's ------------------------------------------------------------
@@ -94,7 +94,7 @@ public class Act_Home_activity extends AppCompatActivity {
         //check_permission();
 
         //drawer navigation----------------------------------------------
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Act_Home_activity.this, drawer_layout, toolbar, R.string.open, R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Act_Home.this, drawer_layout, toolbar, R.string.open, R.string.close);
         drawer_layout.addDrawerListener(toggle);
         drawer_navigation();
         //drawer navigation----------------------------------------------
@@ -182,11 +182,11 @@ public class Act_Home_activity extends AppCompatActivity {
 
                         //PERMISSION = false;
 
-                        Toast.makeText(Act_Home_activity.this, "Need permission to use this task", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Act_Home.this, "Need permission to use this task", Toast.LENGTH_LONG).show();
                     }
                     else {
 
-                        Toast.makeText(Act_Home_activity.this, "Allow all permission to use features", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Act_Home.this, "Allow all permission to use features", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -252,9 +252,9 @@ public class Act_Home_activity extends AppCompatActivity {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.frame_layout, new Fg_search_view()).commit();
 
-                } else if (itemId == R.id.profile) {
+                } else if (itemId == R.id.setting) {
 
-                    startActivity(new Intent(Act_Home_activity.this, Act_Login.class));
+                    startActivity(new Intent(Act_Home.this, Act_Setting.class));
 
                 } else if (itemId ==R.id.home) {
 
@@ -310,7 +310,7 @@ public class Act_Home_activity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
 
-                    Toast.makeText(Act_Home_activity.this, "Connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_Home.this, "Connected", Toast.LENGTH_SHORT).show();
 
                 });
 
@@ -321,7 +321,7 @@ public class Act_Home_activity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
 
-                    Toast.makeText(Act_Home_activity.this, "Not Connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_Home.this, "Not Connected", Toast.LENGTH_SHORT).show();
 
                 });
 
@@ -342,7 +342,7 @@ public class Act_Home_activity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
 
-            Dialog dialog1 = new Dialog(Act_Home_activity.this);
+            Dialog dialog1 = new Dialog(Act_Home.this);
             dialog1.setContentView(R.layout.lay_login_dialog);
             dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
             dialog1.show();
@@ -350,7 +350,7 @@ public class Act_Home_activity extends AppCompatActivity {
 
             login.setOnClickListener(view -> {
 
-                startActivity(new Intent(Act_Home_activity.this, Act_Login.class));
+                startActivity(new Intent(Act_Home.this, Act_Login.class));
 
             });
 
@@ -388,14 +388,9 @@ public class Act_Home_activity extends AppCompatActivity {
 
                 startActivity(new Intent(this, Act_Login.class));
 
-            } else if (id == R.id.logout) {
-
-                SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-                sharedPreferences.edit().remove("userInfo").apply();
-
             } else if (id == R.id.info) {
 
-                Dialog dialog1 = new Dialog(Act_Home_activity.this);
+                Dialog dialog1 = new Dialog(Act_Home.this);
                 dialog1.setContentView(R.layout.lay_info_dialog);
                 dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(0));
                 dialog1.show();

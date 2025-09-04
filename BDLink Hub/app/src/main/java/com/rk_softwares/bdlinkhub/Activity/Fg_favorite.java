@@ -31,7 +31,6 @@ import android.widget.Toast;
 import com.rk_softwares.bdlinkhub.Adapter.Favorite_item;
 import com.rk_softwares.bdlinkhub.Database.Favorite;
 import com.rk_softwares.bdlinkhub.R;
-import com.rk_softwares.bdlinkhub.Utils.OnItemDeletedListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -395,7 +394,7 @@ public class Fg_favorite extends Fragment {
 
         // যদি ৫ সেকেন্ড এর বেশি সময় অ্যাপ বাইরে ছিল, তাহলে রিস্টার্ট করাও
         if (lastTime != 0 && (System.currentTimeMillis() - lastTime > 5000)) {
-            Intent intent = new Intent(requireActivity(), Act_Home_activity.class);
+            Intent intent = new Intent(requireActivity(), Act_Home.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             requireActivity().finish(); // পুরনো অ্যাক্টিভিটি শেষ

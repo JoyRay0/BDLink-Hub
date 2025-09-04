@@ -73,7 +73,7 @@ public class Act_all_item extends AppCompatActivity {
 
         iv_back.setOnClickListener(view -> {
 
-            startActivity(new Intent(Act_all_item.this, Act_Home_activity.class));
+            startActivity(new Intent(Act_all_item.this, Act_Home.class));
             finishAffinity();
         });
 
@@ -136,7 +136,7 @@ public class Act_all_item extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() {
 
-                startActivity(new Intent(Act_all_item.this, Act_Home_activity.class));
+                startActivity(new Intent(Act_all_item.this, Act_Home.class));
                 finishAffinity();
 
             }

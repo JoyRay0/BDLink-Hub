@@ -6,16 +6,24 @@ public class c_api_config {
     private String google_ad;
     private String item_links;
     private String P_item_links;
+
     private String user_reg;
     private String user_reg_code;
+
     private String user_update_password;
     private String user_update_password_code;
+
     private String user_login;
+
     private String user_OAuth;
+
     private String user_reg_login_delete_account;
     private String get_links_user_info;
     private String get_links;
     private String search;
+
+    private String update_name;
+    private String update_name_code;
 
     public String getGet_links() {
         return get_links;
@@ -71,5 +79,13 @@ public class c_api_config {
 
     public String getUser_update_password_code() {
         return user_update_password_code;
+    }
+
+    public String getUpdate_name() {
+        return update_name;
+    }
+
+    public String getUpdate_name_code() {
+        return update_name_code;
     }
 }

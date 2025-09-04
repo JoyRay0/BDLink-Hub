@@ -41,7 +41,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class Act_ForgetPasswordActivity extends AppCompatActivity {
+public class Act_ForgetPassword extends AppCompatActivity {
 
     //XML id's-------------------------------------------------------
     private TextInputEditText ed_userOld_Password, ed_userNew_Password, ed_userEmail;
@@ -79,11 +79,11 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show();
 
-            } else if (!InputValidation.isValidPassword(oldPassword)) {
+            } else if (!InputValidation.isValidPassword(oldPassword) && oldPassword.length() < 12) {
 
                 Toast.makeText(this, "Old password much contains 12+ character or number", Toast.LENGTH_SHORT).show();
 
-            } else if (!InputValidation.isValidPassword(newPassword)) {
+            } else if (!InputValidation.isValidPassword(newPassword) && newPassword.length() < 12) {
 
                 Toast.makeText(this, "New password much contains 12+ character or number", Toast.LENGTH_SHORT).show();
 
@@ -106,6 +106,14 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
                         @Override
                         public void onApiFailed(String error) {
 
+                            new Handler(Looper.getMainLooper()).post(() -> {
+
+                                loading_anim.setVisibility(View.GONE);
+
+                                Toast.makeText(Act_ForgetPassword.this, "ইন্টারনেট কানেকশন চেক করুন", Toast.LENGTH_SHORT).show();
+
+                            });
+
                         }
                     });
                     link.Apis();
@@ -121,7 +129,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                startActivity(new Intent(Act_ForgetPasswordActivity.this, Act_Login.class));
+                startActivity(new Intent(Act_ForgetPassword.this, Act_Login.class));
             }
         });
         //back-------------------------------------------------------
@@ -167,7 +175,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                         new Handler(Looper.getMainLooper()).post(() -> {
 
-                            if (userInfo.getStatus().equals("Successful")) {
+                            if (userInfo.getStatus().equals("successful")) {
                                 loading_anim.setVisibility(View.GONE);
 
                                 verify_otp(url_code);
@@ -179,12 +187,12 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                                 new Handler().postDelayed(() -> {
 
-                                    startActivity(new Intent(Act_ForgetPasswordActivity.this, Act_Home_activity.class));
+                                    startActivity(new Intent(Act_ForgetPassword.this, Act_Home.class));
                                     finishAffinity();
 
                                 }, 2000);
 
-                            } else if (userInfo.getStatus().equals("Failed")) {
+                            } else if (userInfo.getStatus().equals("failed")) {
 
                                 loading_anim.setVisibility(View.GONE);
 
@@ -226,7 +234,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
 
-                    Toast.makeText(Act_ForgetPasswordActivity.this, "Connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_ForgetPassword.this, "Connected", Toast.LENGTH_SHORT).show();
 
                 });
 
@@ -237,7 +245,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
 
-                    Toast.makeText(Act_ForgetPasswordActivity.this, "Not Connected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Act_ForgetPassword.this, "Not Connected", Toast.LENGTH_SHORT).show();
 
                 });
 
@@ -305,6 +313,17 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
+                new Handler(Looper.getMainLooper()).post(() -> {
+
+                    Toast.makeText(Act_ForgetPassword.this, "ওটিপি পাঠানো যায়নি", Toast.LENGTH_SHORT).show();
+
+                    new Handler().postDelayed(() -> {
+
+                        view.setVisibility(View.GONE);
+
+                    }, 2000);
+
+                });
 
             }
 
@@ -323,11 +342,11 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                             if (code_info.getStatus().equals("successful")){
 
-                                Short_message.snack_bar(Act_ForgetPasswordActivity.this, code_info.getMessage(), "#323232", String.valueOf(Color.WHITE));
+                                Short_message.snack_bar(Act_ForgetPassword.this, code_info.getMessage(), "#323232", String.valueOf(Color.WHITE));
 
                                 new Handler().postDelayed(() -> {
 
-                                    startActivity(new Intent(Act_ForgetPasswordActivity.this, Act_Login.class));
+                                    startActivity(new Intent(Act_ForgetPassword.this, Act_Login.class));
                                     finishAffinity();
 
                                 }, 2000);
@@ -335,7 +354,7 @@ public class Act_ForgetPasswordActivity extends AppCompatActivity {
 
                             } else if (code_info.getStatus().equals("failed")) {
 
-                                Short_message.snack_bar(Act_ForgetPasswordActivity.this, code_info.getMessage(), String.valueOf(Color.RED), String.valueOf(Color.WHITE));
+                                Short_message.snack_bar(Act_ForgetPassword.this, code_info.getMessage(), String.valueOf(Color.RED), String.valueOf(Color.WHITE));
 
 
                                 new Handler().postDelayed(() -> {
